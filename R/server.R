@@ -13,6 +13,8 @@ shiny_server <- function(input, output, session) {
     leaflet() %>%
       addProviderTiles(providers$Stamen.TonerLite,
                        options = providerTileOptions(noWrap = TRUE)) %>%
-      addMarkers(data = getdata()$points, popup = ~as.character(getdata()$sitenames))
+      addMarkers(data = getdata()$points,
+                 popup = ~ as.character(getdata()$sitenames),
+                 clusterOptions = markerClusterOptions())
   })
 }
