@@ -9,10 +9,6 @@
 #'
 #' @examples
 shiny_server <- function(input, output, session) {
-
-  # r_colors <- rgb(t(col2rgb(colors()) / 255))
-  # names(r_colors) <- colors()
-
   output$soilmap <- renderLeaflet({
     leaflet() %>%
       addProviderTiles(providers$Stamen.TonerLite,

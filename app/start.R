@@ -4,6 +4,7 @@ library(leaflet)
 library(stringr)
 library(googlesheets4)
 library(dplyr)
+library(tidyr)
 library(GDSCNsoilsites)
 
 #devtools::document()
