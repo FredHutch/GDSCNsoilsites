@@ -26,6 +26,7 @@ RUN rm -rf /src/GDSCNsoilsites
 RUN rm -rf /srv/shiny-server/
 RUN mkdir -p /src/shiny-server/
 COPY app/start.R /srv/shiny-server/app.R
+COPY data /srv/shiny-server/data/
 
 RUN chown -R shiny:shiny /srv/shiny-server/
 EXPOSE 3838
