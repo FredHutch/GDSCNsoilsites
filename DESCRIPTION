@@ -1,8 +1,8 @@
 Package: GDSCNsoilsites
 Title: Launch a GDSCN Soil Sites Map using Leaflet
 Version: 1.0.0.0000
-Authors@R: 
-    person("Ava", "Hoffman", "ahoffma2@fredhutch.org", role = c("aut", "cre"),
+Authors@R:
+    person("Ava", "Hoffman", , "ahoffma2@fredhutch.org", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-1833-4397"))
 Description: What the package does (one paragraph).
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
