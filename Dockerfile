@@ -15,6 +15,7 @@ RUN Rscript -e "install.packages('stringr', dependencies=T)"
 RUN Rscript -e "install.packages('dplyr', dependencies=T)"
 RUN Rscript -e "install.packages('tidyr', dependencies=T)"
 RUN Rscript -e "install.packages('lubridate', dependencies=T)"
+RUN Rscript -e "install.packages('evaluate', dependencies=T)"
 RUN Rscript -e "install.packages('googlesheets4', dependencies=T)"
 # RUN Rscript -e "library(devtools);install_github('FredHutch/GDSCNsoilsites')"
 
