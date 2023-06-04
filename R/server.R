@@ -13,8 +13,18 @@ shiny_server <- function(input, output, session) {
     leaflet() %>%
       addProviderTiles(providers$Stamen.TonerLite,
                        options = providerTileOptions(noWrap = TRUE)) %>%
-      addMarkers(data = getdata()$points,
-                 popup = ~ as.character(getdata()$sitenames),
-                 clusterOptions = markerClusterOptions())
+      addMarkers(
+        data = getdata()$points,
+        popup = ~ as.character(getdata()$sitenames),
+        clusterOptions = markerClusterOptions()
+      ) %>%
+      addPolygons(
+        data = get_soil_data(),
+        stroke = FALSE,
+        smoothFactor = 0.3,
+        fillOpacity = 0.3,
+        fillColor = "#563d2d",
+        popup = ~paste0(MUNAME, "<br>CLAY: ", CLAY, "%<br>SAND: ", SAND, "%<br>SILT: ", SILT, "%")
+      )
   })
 }
