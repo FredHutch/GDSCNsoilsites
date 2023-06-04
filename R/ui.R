@@ -6,6 +6,6 @@
 #' @examples
 shiny_ui <- function() {
   fluidPage(
-    leafletOutput("soilmap")
+    leafletOutput("soilmap", height = 800)
   )
 }
