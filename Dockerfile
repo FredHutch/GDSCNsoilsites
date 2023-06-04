@@ -7,7 +7,10 @@ RUN Rscript -e "install.packages('systemfonts')"
 RUN Rscript -e "install.packages('textshaping')"
 RUN Rscript -e "install.packages('ragg')"
 
-# Devtools and custom package
+# gdal dependencies
+apt-get install -y gdal-bin proj-bin libgdal-dev libproj-dev
+
+# Load devtools and custom package
 RUN Rscript -e "install.packages('devtools', dependencies=T)"
 RUN Rscript -e "install.packages('leaflet', dependencies=T)"
 RUN Rscript -e "install.packages('rgdal', dependencies=T)"
