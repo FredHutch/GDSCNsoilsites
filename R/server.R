@@ -31,5 +31,7 @@ shiny_server <- function(input, output, session) {
 
   output$testtable <- renderTable(get_soil_data()$CLAY)
 
-  output$debug_text <- renderText(rgdal::readOGR("data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_1.geojson"))
+  output$debug_text <- renderText(
+    capture.output(rgdal::readOGR("data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_1.geojson"))
+  )
 }
