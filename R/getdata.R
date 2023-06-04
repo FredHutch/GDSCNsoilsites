@@ -5,31 +5,33 @@
 #'
 #' @examples
 getdata <- function() {
+  # Set filename and URL
+  google_sheet_url <-
+    "https://docs.google.com/spreadsheets/d/1KrPJe9OOGuix2EAvcTfuspAe3kqN-y20Huyf5ImBEl4/edit#gid=804798874"
+  soil_file <- "soil_data.csv"
+
   # Check if the file is/has been written recently.
-  # If not, read it in from google sheets
-  if (!(file.exists("soil_data.csv"))) {
+  # If not, read it in from google sheets, save as `soil_data`
+  if (!(file.exists(soil_file))) {
     gs4_auth(cache = ".secrets", email = "hutchdasl@gmail.com")
     soil_data <-
-      read_sheet(
-        "https://docs.google.com/spreadsheets/d/1KrPJe9OOGuix2EAvcTfuspAe3kqN-y20Huyf5ImBEl4/edit#gid=804798874"
-      )
-    write.csv(soil_data, "soil_data.csv")
+      read_sheet(google_sheet_url)
+    write.csv(soil_data, soil_file)
   } else {
-    last_created <- file.info("soil_data.csv")$ctime
+    last_created <- file.info(soil_file)$ctime
     time_since <- lubridate::now() - last_created
     if (time_since > 1440) {
       # 60mins * 24 = one day's worth of hours
       gs4_auth(cache = ".secrets", email = "hutchdasl@gmail.com")
       soil_data <-
-        read_sheet(
-          "https://docs.google.com/spreadsheets/d/1KrPJe9OOGuix2EAvcTfuspAe3kqN-y20Huyf5ImBEl4/edit#gid=804798874"
-        )
-      write.csv(soil_data, "soil_data.csv")
+        read_sheet(google_sheet_url)
+      write.csv(soil_data, soil_file)
     } else {
-      soil_data <- read.csv("soil_data.csv")[, -1]
+      soil_data <- read.csv(soil_file)[, -1]
     }
   }
 
+  # Clean up GPS points:
   # Remove parentheses, split column, fix negatives, and make numeric
   gps_points <-
     soil_data %>%
@@ -47,7 +49,7 @@ getdata <- function() {
     na.omit() %>%
     as.data.frame()
 
-  # Pull out site names from second column
+  # Pull out metadata site names separately
   sitenames <-
     soil_data %>%
     select(2) %>%

@@ -17,14 +17,17 @@ shiny_server <- function(input, output, session) {
         data = getdata()$points,
         popup = ~ as.character(getdata()$sitenames),
         clusterOptions = markerClusterOptions()
-      ) %>%
-      addPolygons(
-        data = get_soil_data(),
-        stroke = FALSE,
-        smoothFactor = 0.3,
-        fillOpacity = 0.3,
-        fillColor = "#563d2d",
-        popup = ~paste0(MUNAME, "<br>CLAY: ", CLAY, "%<br>SAND: ", SAND, "%<br>SILT: ", SILT, "%")
       )
+    # %>%
+    #   addPolygons(
+    #     data = get_soil_data(),
+    #     stroke = FALSE,
+    #     smoothFactor = 0.3,
+    #     fillOpacity = 0.3,
+    #     fillColor = "#563d2d",
+    #     popup = ~paste0(MUNAME, "<br>CLAY: ", CLAY, "%<br>SAND: ", SAND, "%<br>SILT: ", SILT, "%")
+    #   )
   })
+
+  output$testtable <- renderTable(get_soil_data()$CLAY)
 }
