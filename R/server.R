@@ -25,14 +25,8 @@ shiny_server <- function(input, output, session) {
         fillOpacity = 0.3,
         fillColor = "#563d2d",
         color = "#563d2d",
-        weight = 2,
+        weight = 1,
         popup = ~paste0(MUNAME, "<br>CLAY: ", CLAY, "%<br>SAND: ", SAND, "%<br>SILT: ", SILT, "%")
       )
   })
-
-  output$testtable <- renderTable(get_soil_data()$CLAY)
-
-  output$debug_text <- renderText(
-    capture.output(evaluate::evaluate('rgdal::readOGR("data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_1.geojson")'))
-  )
 }
