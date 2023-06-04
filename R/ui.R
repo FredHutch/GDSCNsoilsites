@@ -8,6 +8,8 @@ shiny_ui <- function() {
   fluidPage(
     leafletOutput("soilmap", height = 800),
 
-    tableOutput("testtable")
+    tableOutput("testtable"),
+
+    textOutput("debug_text")
   )
 }
