@@ -62,9 +62,11 @@ getdata <- function() {
 get_soil_data <- function() {
   # https://data.imap.maryland.gov/datasets/9c48f92b2b4e4663aa78fdd64a1ab010
   md_ssurgo1 <-
-    rgdal::readOGR("data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_1.geojson")
+    data_frame(CLAY = 20.3423, SAND = 234.21, SILT = 400)
+    #rgdal::readOGR("data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_1.geojson")
   md_ssurgo2 <-
-    rgdal::readOGR("data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_2.geojson")
+    data_frame(CLAY = 40.3, SAND = 23.21, SILT = 24123.23123132123)
+    #rgdal::readOGR("data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_2.geojson")
   soil_type_data <- rbind(md_ssurgo1, md_ssurgo2)
 
   soil_type_data$CLAY <- round(soil_type_data$CLAY, 1)
