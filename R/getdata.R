@@ -74,6 +74,9 @@ get_soil_data <- function() {
       ),
       rgdal::readOGR(
         "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_WymanDell.geojson"
+      ),
+      rgdal::readOGR(
+        "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_StonyRun.geojson"
       )
     )
 
