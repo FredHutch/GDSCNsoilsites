@@ -20,14 +20,14 @@ getdata <- function() {
   } else {
     last_created <- file.info(soil_file)$ctime
     time_since <- lubridate::now() - last_created
-    if (time_since > 1440) {
-      # 60mins * 24 = one day's worth of hours
+    # Check if the file was craeted in the last 24 hrs
+    if (time_since > lubridate::as.difftime(24, units = "hours")) {
       gs4_auth(cache = ".secrets", email = "hutchdasl@gmail.com")
       soil_data <-
         read_sheet(google_sheet_url)
       write.csv(soil_data, soil_file)
     } else {
-      soil_data <- read.csv(soil_file)[, -1]
+      soil_data <- read.csv(soil_file)[,-1]
     }
   }
 
@@ -62,21 +62,32 @@ getdata <- function() {
 get_soil_data <- function() {
   # https://data.imap.maryland.gov/datasets/9c48f92b2b4e4663aa78fdd64a1ab010
   soil_type_data <-
-    rbind(
-      rgdal::readOGR(
-        "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_1.geojson"
-      ),
-      rgdal::readOGR(
-        "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_2.geojson"
-      ),
-      rgdal::readOGR(
-        "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Homewood.geojson"
-      ),
-      rgdal::readOGR(
-        "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_WymanDell.geojson"
-      ),
-      rgdal::readOGR(
-        "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_StonyRun.geojson"
+    suppressWarnings(
+      rbind(
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_1.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_2.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Homewood.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_WymanDell.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_StonyRun.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_NDMU.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_DruidHill.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Gwynns.geojson"
+        )
       )
     )
 
