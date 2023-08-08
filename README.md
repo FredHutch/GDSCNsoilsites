@@ -1,1 +1,3 @@
-# GDSCN Soil Sites Map
+# GDSCN Soil Sites
+
+Showing the places we have sampled!
