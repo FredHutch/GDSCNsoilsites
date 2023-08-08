@@ -16,13 +16,14 @@ getdata <- function() {
   # If not, read data in from google sheets, save as `soil_data`
   if (!(file.exists(soil_file))) {
     gs4_auth(cache = ".secrets", email = "hutchdasl@gmail.com")
-    soil_data <-
-      inner_join(
-        read_sheet(google_sheet_url_1),
-        read_sheet(google_sheet_url_2),
-        by = c(`What is your site name?` = 'site_name'),
-        keep = TRUE
-      )
+    # soil_data <-
+    #   inner_join(
+    #     read_sheet(google_sheet_url_1),
+    #     read_sheet(google_sheet_url_2),
+    #     by = c(`What is your site name?` = 'site_name'),
+    #     keep = TRUE
+    #   )
+    soil_data <- read_sheet(google_sheet_url_1)
     write.csv(soil_data, soil_file)
   } else {
     last_created <- file.info(soil_file)$ctime
@@ -30,13 +31,14 @@ getdata <- function() {
     # Check if the file was craeted in the last 24 hrs
     if (time_since > lubridate::as.difftime(24, units = "hours")) {
       gs4_auth(cache = ".secrets", email = "hutchdasl@gmail.com")
-      soil_data <-
-        inner_join(
-          read_sheet(google_sheet_url_1),
-          read_sheet(google_sheet_url_2),
-          by = c(`What is your site name?` = 'site_name'),
-          keep = TRUE
-        )
+      # soil_data <-
+      #   inner_join(
+      #     read_sheet(google_sheet_url_1),
+      #     read_sheet(google_sheet_url_2),
+      #     by = c(`What is your site name?` = 'site_name'),
+      #     keep = TRUE
+      #   )
+      soil_data <- read_sheet(google_sheet_url_1)
       write.csv(soil_data, soil_file)
     } else {
       soil_data <- read.csv(soil_file)[,-1]
@@ -67,14 +69,14 @@ getdata <- function() {
     select(2) %>%
     pull()
 
-  # Adjust image urls
-  image_urls <-
-    soil_data %>%
-    mutate(url = paste0('https://drive.google.com/uc?export=view&id=', google_img_id)) %>%
-    select(url) %>%
-    pull()
+  # # Adjust image urls
+  # image_urls <-
+  #   soil_data %>%
+  #   mutate(url = paste0('https://drive.google.com/uc?export=view&id=', google_img_id)) %>%
+  #   select(url) %>%
+  #   pull()
 
-  return(list(points = gps_points, sitenames = sitenames, image_urls = image_urls))
+  return(list(points = gps_points, sitenames = sitenames)) # image_urls = image_urls
 }
 
 
