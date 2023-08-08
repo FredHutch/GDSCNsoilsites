@@ -5,6 +5,7 @@ library(stringr)
 library(googlesheets4)
 library(dplyr)
 library(tidyr)
+library(fontawesome)
 library(GDSCNsoilsites)
 
 #devtools::document()
