@@ -13,16 +13,16 @@ getdata <- function() {
   # Check if the file is/has been written recently.
   # If not, read it in from google sheets, save as `soil_data`
   if (!(file.exists(soil_file))) {
-    gs4_auth(cache = ".secrets", email = "hutchdasl@gmail.com", use_oob = TRUE)
+    gs4_auth(cache = ".secrets", email = TRUE, use_oob = TRUE)
     soil_data <-
       read_sheet(google_sheet_url)
     write.csv(soil_data, soil_file)
   } else {
     last_created <- file.info(soil_file)$ctime
     time_since <- lubridate::now() - last_created
-    # Check if the file was craeted in the last 24 hrs
+    # Check if the file was created in the last 24 hrs
     if (time_since > lubridate::as.difftime(24, units = "hours")) {
-      gs4_auth(cache = ".secrets", email = "hutchdasl@gmail.com", use_oob = TRUE)
+      gs4_auth(cache = ".secrets", email = TRUE, use_oob = TRUE)
       soil_data <-
         read_sheet(google_sheet_url)
       write.csv(soil_data, soil_file)
