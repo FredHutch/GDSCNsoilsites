@@ -122,6 +122,24 @@ make_soil_data <- function() {
         ),
         rgdal::readOGR(
           "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_HerringRun.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Leakin.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_CabinJohn.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_FarmPark.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_BlackHill.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_RidgeRoad.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_GoshenStream.geojson"
         )
       )
     )
