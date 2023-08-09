@@ -141,16 +141,18 @@ get_soil_data <- function() {
            file.info) %>%
     bind_rows()
 
-  # If there are data files younger than the composite file, remake it.
-  if (file.exists(soil_spatial_file)) {
-    if (any(file_info$mtime > file_info[soil_type_data_file,]$mtime)) {
-      make_soil_data()
-    } else {
-      soil_type_data <- readRDS(soil_type_data_file)
-    }
-  } else {
-    make_soil_data()
-  }
+  make_soil_data()
+
+  # # If there are data files younger than the composite file, remake it.
+  # if (file.exists(soil_spatial_file)) {
+  #   if (any(file_info$mtime > file_info[soil_type_data_file,]$mtime)) {
+  #     make_soil_data()
+  #   } else {
+  #     soil_type_data <- readRDS(soil_type_data_file)
+  #   }
+  # } else {
+  #   make_soil_data()
+  # }
 
   return(soil_type_data)
 }
