@@ -18,13 +18,13 @@ shiny_server <- function(input, output, session) {
                          options = providerTileOptions(noWrap = TRUE)) %>%
         addMarkers(
           data = getdata()$points,
-          # popup = ~ paste0(
-          #   '<img src="',
-          #   as.character(getdata()$image_urls),
-          #   '" alt="image of the site" width="300" height="200">',
-          #   '<br>',
-          #   as.character(getdata()$sitenames)
-          # ),
+          popup = ~ paste0(
+            '<img src="',
+            as.character(getdata()$image_urls),
+            '" alt="image of the site" width="300" height="200">',
+            '<br>',
+            as.character(getdata()$sitenames)
+          ),
           clusterOptions = markerClusterOptions()
         ) %>%
         addPolygons(
@@ -45,13 +45,13 @@ shiny_server <- function(input, output, session) {
                          options = providerTileOptions(noWrap = TRUE)) %>%
         addMarkers(
           data = getdata()$points,
-          # popup = ~ paste0(
-          #   '<img src="',
-          #   as.character(getdata()$image_urls),
-          #   '" alt="image of the site" width="300" height="200">',
-          #   '<br>',
-          #   as.character(getdata()$sitenames)
-          # ),
+          popup = ~ paste0(
+            '<img src="',
+            as.character(getdata()$image_urls),
+            '" alt="image of the site" width="300" height="200">',
+            '<br>',
+            as.character(getdata()$sitenames)
+          ),
           clusterOptions = markerClusterOptions()
         )
 
