@@ -1,11 +1,9 @@
-#' Does Google Sheets authentication using a Google Service Account. It looks
-#' for a `.json` service account key in the ".secrets" directory.
+#' Do Googlesheets authetication using a service account. Looks for
+#' a .json service account key in the ".secrets" directory.
 #'
-#' @return Provides authentication analagous to gs4_auth()
+#' @return Provides authentication step analagous to gs4_auth()
 #'
-#' @examples
-#' # Run before read_sheet() functions
-#' do_gs4_auth()
+#' @examples # Run before read_sheet(); do_gs4_auth()
 do_gs4_auth <- function() {
   gs4_auth(
     token = gargle::credentials_service_account(path = paste0(
@@ -16,14 +14,12 @@ do_gs4_auth <- function() {
 }
 
 
-#' Gets relevant data from Google Sheets.
+#' Title
 #'
-#' @return a list containing GPS points and site names relevant for mapping. GPS
-#' points are class `data.frame`. Site names are class `character`.
+#' @return
+#' @export
 #'
 #' @examples
-#' getdata()$points
-#' getdata()$sitenames
 getdata <- function() {
   # Set filename and URL
   google_sheet_url <-
@@ -79,69 +75,44 @@ getdata <- function() {
 }
 
 
-#' Get soil spatial data so that soil type areas can be plotted on a map. These
-#' are analagous to GIS polygons. Because loading up the different polygons takes
-#' a while, this function checks that the `soil_type_data.rds` file is younger than
-#' the script that created it (aka this one). If it is younger, there is no
-#' need to remake the file. It can simply be read in from `.rds`.
-#'
-#' @return an object of class SpatialPolygonsDataFrame
-#'
-#' @examples
-#' get_soil_data()
 get_soil_data <- function() {
   # https://data.imap.maryland.gov/datasets/9c48f92b2b4e4663aa78fdd64a1ab010
-
-  soil_spatial_file <- "data/soil_types/soil_type_data.rds"
-  last_modified_soil <- file.info(soil_spatial_file)$mtime
-  last_modified_script <- file.info("R/getdata.R")$mtime
-  # The time_since will be positive if this script is older
-  time_since <- last_modified_soil - last_modified_script
-
-  # If the file already exists, and is younger than this script, just read it
-  # in. Otherwise, recreate it.
-  if (file.exists(soil_spatial_file) & time_since >= 0) {
-    soil_type_data <- readRDS("data/soil_types/soil_type_data.rds")
-  } else {
-    soil_type_data <-
-      suppressWarnings(
-        rbind(
-          rgdal::readOGR(
-            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_1.geojson"
-          ),
-          rgdal::readOGR(
-            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_2.geojson"
-          ),
-          rgdal::readOGR(
-            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Homewood.geojson"
-          ),
-          rgdal::readOGR(
-            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_WymanDell.geojson"
-          ),
-          rgdal::readOGR(
-            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_StonyRun.geojson"
-          ),
-          rgdal::readOGR(
-            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_NDMU.geojson"
-          ),
-          rgdal::readOGR(
-            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_DruidHill.geojson"
-          ),
-          rgdal::readOGR(
-            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Gwynns.geojson"
-          ),
-          rgdal::readOGR(
-            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_HerringRun.geojson"
-          )
+  soil_type_data <-
+    suppressWarnings(
+      rbind(
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_1.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_2.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Homewood.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_WymanDell.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_StonyRun.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_NDMU.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_DruidHill.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Gwynns.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_HerringRun.geojson"
         )
       )
+    )
 
-    soil_type_data$CLAY <- round(soil_type_data$CLAY, 1)
-    soil_type_data$SAND <- round(soil_type_data$SAND, 1)
-    soil_type_data$SILT <- round(soil_type_data$SILT, 1)
-
-    saveRDS(soil_type_data, file = "data/soil_types/soil_type_data.rds")
-  }
+  soil_type_data$CLAY <- round(soil_type_data$CLAY, 1)
+  soil_type_data$SAND <- round(soil_type_data$SAND, 1)
+  soil_type_data$SILT <- round(soil_type_data$SILT, 1)
 
   return(soil_type_data)
 }
