@@ -75,63 +75,82 @@ getdata <- function() {
 }
 
 
+#' Title
+#'
+#' @return
+#' @export
+#'
+#' @examples
+make_soil_data <- function() {
+  # https://data.imap.maryland.gov/datasets/9c48f92b2b4e4663aa78fdd64a1ab010
+  soil_type_data_file <- "data/soil_types/soil_type_data.rds"
+
+  soil_type_data <-
+    suppressWarnings(
+      rbind(
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_1.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_2.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Homewood.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_WymanDell.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_StonyRun.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_NDMU.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_DruidHill.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Gwynns.geojson"
+        ),
+        rgdal::readOGR(
+          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_HerringRun.geojson"
+        )
+      )
+    )
+
+  soil_type_data$CLAY <- round(soil_type_data$CLAY, 1)
+  soil_type_data$SAND <- round(soil_type_data$SAND, 1)
+  soil_type_data$SILT <- round(soil_type_data$SILT, 1)
+
+  saveRDS(soil_type_data, file = soil_type_data_file)
+}
+
+
+#' Title
+#'
+#' @return
+#' @export
+#'
+#' @examples
 get_soil_data <- function() {
   # https://data.imap.maryland.gov/datasets/9c48f92b2b4e4663aa78fdd64a1ab010
 
   soil_type_data_file <- "data/soil_types/soil_type_data.rds"
+  file_info <-
+    lapply(paste0("data/soil_types/", list.files("data/soil_types/")),
+           file.info) %>%
+    bind_rows()
 
-  # if (file.exists(soil_spatial_file)) {
-  #   last_modified_soil <- file.info(soil_spatial_file)$mtime
-  #   last_modified_script <- file.info("R/getdata.R")$mtime
-  #   # The time_since will be positive if this script is older
-  #   time_since <- last_modified_soil - last_modified_script
-  # } else {
-  #   time_since <- -1
-  # }
-
-  # If the file already exists, and is younger than this script, just read it
-  # in. Otherwise, recreate it.
-  if (file.exists(soil_type_data_file)) {
-    soil_type_data <- readRDS(soil_type_data_file)
+  # If there are data files younger than the composite file, remake it.
+  if (file.exists(soil_spatial_file)) {
+    if (any(file_info$mtime > file_info[soil_type_data_file,]$mtime)) {
+      make_soil_data()
+    } else {
+      soil_type_data <- readRDS(soil_type_data_file)
+    }
   } else {
-    soil_type_data <-
-      suppressWarnings(
-        rbind(
-          rgdal::readOGR(
-            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_1.geojson"
-          ),
-          rgdal::readOGR(
-            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_2.geojson"
-          ),
-          rgdal::readOGR(
-            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Homewood.geojson"
-          ),
-          rgdal::readOGR(
-            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_WymanDell.geojson"
-          ),
-          rgdal::readOGR(
-            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_StonyRun.geojson"
-          ),
-          rgdal::readOGR(
-            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_NDMU.geojson"
-          ),
-          rgdal::readOGR(
-            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_DruidHill.geojson"
-          ),
-          rgdal::readOGR(
-            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Gwynns.geojson"
-          ),
-          rgdal::readOGR(
-            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_HerringRun.geojson"
-          )
-        )
-      )
-
-    soil_type_data$CLAY <- round(soil_type_data$CLAY, 1)
-    soil_type_data$SAND <- round(soil_type_data$SAND, 1)
-    soil_type_data$SILT <- round(soil_type_data$SILT, 1)
-
-    saveRDS(soil_type_data, file = soil_type_data_file)
+    make_soil_data()
   }
+
   return(soil_type_data)
 }
