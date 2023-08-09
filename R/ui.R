@@ -10,19 +10,11 @@ shiny_ui <- function() {
     # load custom stylesheet
     includeCSS("www/style.css"),
 
-    # checkboxInput(
-    #   "soil_geom_toggle",
-    #   label = 'Toggle Soil Data',
-    #   value = FALSE,
-    #   width = NULL
-    # ),
-    # leafletOutput("soilmap", height = 800),
-
     dashboardPage(
 
       skin = "green",
 
-      dashboardHeader(title="GDSCN Soils", titleWidth = 300),
+      dashboardHeader(title="Soil 🦠 Microbiomes", titleWidth = 300),
 
       dashboardSidebar(width = 300,
                        sidebarMenu(
