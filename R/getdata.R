@@ -43,7 +43,7 @@ getdata <- function() {
         read_sheet(google_sheet_url)
       write.csv(soil_data, soil_file)
     } else {
-      soil_data <- read.csv(soil_file)[,-1]
+      soil_data <- read.csv(soil_file)[, -1]
     }
   }
 
@@ -77,42 +77,56 @@ getdata <- function() {
 
 get_soil_data <- function() {
   # https://data.imap.maryland.gov/datasets/9c48f92b2b4e4663aa78fdd64a1ab010
-  soil_type_data <-
-    suppressWarnings(
-      rbind(
-        rgdal::readOGR(
-          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_1.geojson"
-        ),
-        rgdal::readOGR(
-          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_2.geojson"
-        ),
-        rgdal::readOGR(
-          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Homewood.geojson"
-        ),
-        rgdal::readOGR(
-          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_WymanDell.geojson"
-        ),
-        rgdal::readOGR(
-          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_StonyRun.geojson"
-        ),
-        rgdal::readOGR(
-          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_NDMU.geojson"
-        ),
-        rgdal::readOGR(
-          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_DruidHill.geojson"
-        ),
-        rgdal::readOGR(
-          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Gwynns.geojson"
-        ),
-        rgdal::readOGR(
-          "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_HerringRun.geojson"
+
+  soil_spatial_file <- "data/soil_types/soil_type_data.rds"
+  last_modified_soil <- file.info(soil_spatial_file)$mtime
+  last_modified_script <- file.info("R/getdata.R")$mtime
+  # The time_since will be positive if this script is older
+  time_since <- last_modified_soil - last_modified_script
+
+  # If the file already exists, and is younger than this script, just read it
+  # in. Otherwise, recreate it.
+  if (file.exists(soil_spatial_file) & time_since >= 0) {
+    soil_type_data <- readRDS("data/soil_types/soil_type_data.rds")
+  } else {
+    soil_type_data <-
+      suppressWarnings(
+        rbind(
+          rgdal::readOGR(
+            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_1.geojson"
+          ),
+          rgdal::readOGR(
+            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Needwood_2.geojson"
+          ),
+          rgdal::readOGR(
+            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Homewood.geojson"
+          ),
+          rgdal::readOGR(
+            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_WymanDell.geojson"
+          ),
+          rgdal::readOGR(
+            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_StonyRun.geojson"
+          ),
+          rgdal::readOGR(
+            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_NDMU.geojson"
+          ),
+          rgdal::readOGR(
+            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_DruidHill.geojson"
+          ),
+          rgdal::readOGR(
+            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_Gwynns.geojson"
+          ),
+          rgdal::readOGR(
+            "data/soil_types/Maryland_SSURGO_Soils_-_SSURGO_Soils_HerringRun.geojson"
+          )
         )
       )
-    )
 
-  soil_type_data$CLAY <- round(soil_type_data$CLAY, 1)
-  soil_type_data$SAND <- round(soil_type_data$SAND, 1)
-  soil_type_data$SILT <- round(soil_type_data$SILT, 1)
+    soil_type_data$CLAY <- round(soil_type_data$CLAY, 1)
+    soil_type_data$SAND <- round(soil_type_data$SAND, 1)
+    soil_type_data$SILT <- round(soil_type_data$SILT, 1)
 
+    saveRDS(soil_type_data, file = "data/soil_types/soil_type_data.rds")
+  }
   return(soil_type_data)
 }
