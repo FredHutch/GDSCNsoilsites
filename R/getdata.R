@@ -1,3 +1,19 @@
+#' Do Googlesheets authetication using a service account. Looks for
+#' a .json service account key in the ".secrets" directory.
+#'
+#' @return Provides authentication step analagous to gs4_auth()
+#'
+#' @examples # Run before read_sheet(); do_gs4_auth()
+do_gs4_auth <- function() {
+  gs4_auth(
+    token = gargle::credentials_service_account(path = paste0(
+      ".secrets/", grep(".json$", list.files(".secrets"), value = TRUE)
+    ),
+    scopes = "https://www.googleapis.com/auth/spreadsheets")
+  )
+}
+
+
 #' Title
 #'
 #' @return
@@ -13,7 +29,7 @@ getdata <- function() {
   # Check if the file is/has been written recently.
   # If not, read it in from google sheets, save as `soil_data`
   if (!(file.exists(soil_file))) {
-    gs4_auth(cache = ".secrets", email = TRUE, use_oob = TRUE)
+    do_gs4_auth()
     soil_data <-
       read_sheet(google_sheet_url)
     write.csv(soil_data, soil_file)
@@ -22,7 +38,7 @@ getdata <- function() {
     time_since <- lubridate::now() - last_created
     # Check if the file was created in the last 24 hrs
     if (time_since > lubridate::as.difftime(24, units = "hours")) {
-      gs4_auth(cache = ".secrets", email = TRUE, use_oob = TRUE)
+      do_gs4_auth()
       soil_data <-
         read_sheet(google_sheet_url)
       write.csv(soil_data, soil_file)
