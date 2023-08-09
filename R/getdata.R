@@ -1,9 +1,12 @@
-#' Do Googlesheets authetication using a service account. Looks for
-#' a .json service account key in the ".secrets" directory.
+#' Does Google Sheets authentication using a Google Service Account. It looks
+#' for a `.json` service account key in the ".secrets" directory.
 #'
-#' @return Provides authentication step analagous to gs4_auth()
+#' @return Provides authentication analagous to gs4_auth()
+#' @export
 #'
-#' @examples # Run before read_sheet(); do_gs4_auth()
+#' @examples
+#' # Run before read_sheet() functions
+#' do_gs4_auth()
 do_gs4_auth <- function() {
   gs4_auth(
     token = gargle::credentials_service_account(path = paste0(
@@ -14,12 +17,15 @@ do_gs4_auth <- function() {
 }
 
 
-#' Title
+#' Gets relevant data from Google Sheets.
 #'
-#' @return
+#' @return a list containing GPS points and site names relevant for mapping. GPS
+#' points are class `data.frame`. Site names are class `character`.
 #' @export
 #'
 #' @examples
+#' getdata()$points
+#' getdata()$sitenames
 getdata <- function() {
   # Set filename and URL
   google_sheet_url <-
@@ -75,12 +81,14 @@ getdata <- function() {
 }
 
 
-#' Title
+#' Get and write soil spatial data so that soil type areas can be plotted on a
+#' map. These are analagous to GIS polygons.
 #'
-#' @return
+#' @return an object of class SpatialPolygonsDataFrame and writes rds.
 #' @export
 #'
 #' @examples
+#' make_soil_data()
 make_soil_data <- function() {
   # https://data.imap.maryland.gov/datasets/9c48f92b2b4e4663aa78fdd64a1ab010
   soil_type_data_file <- "data/soil_types/soil_type_data.rds"
@@ -128,12 +136,15 @@ make_soil_data <- function() {
 }
 
 
-#' Title
+#' Get soil spatial data so that soil type areas can be plotted on a
+#' map. These are analagous to GIS polygons. This function does some checking
+#' to see that the `soil_type_data.rds` file is younger than other data files.
 #'
-#' @return
+#' @return an object of class SpatialPolygonsDataFrame
 #' @export
 #'
 #' @examples
+#' get_soil_data()
 get_soil_data <- function() {
   # https://data.imap.maryland.gov/datasets/9c48f92b2b4e4663aa78fdd64a1ab010
 
@@ -149,12 +160,12 @@ get_soil_data <- function() {
   # # If there are data files younger than the composite file, remake it.
   # if (file.exists(soil_spatial_file)) {
   #   if (any(file_info$mtime > file_info[soil_type_data_file,]$mtime)) {
-  #     make_soil_data()
+  #     soil_type_data <- make_soil_data()
   #   } else {
   #     soil_type_data <- readRDS(soil_type_data_file)
   #   }
   # } else {
-  #   make_soil_data()
+  #   soil_type_data <- make_soil_data()
   # }
 
   return(soil_type_data)
