@@ -137,9 +137,10 @@ get_soil_data <- function() {
 
   soil_type_data_file <- "data/soil_types/soil_type_data.rds"
   file_info <-
-    lapply(paste0("data/soil_types/", list.files("data/soil_types/")),
-           file.info) %>%
-    bind_rows()
+    bind_rows(lapply(paste0(
+      "data/soil_types/", list.files("data/soil_types/")
+    ),
+    file.info))
 
   make_soil_data()
 
