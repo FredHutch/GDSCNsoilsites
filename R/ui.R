@@ -9,3 +9,11 @@ shiny_ui <- function() {
     leafletOutput("soilmap", height = 800)
   )
 }
+
+
+
+
+
+
+
+
