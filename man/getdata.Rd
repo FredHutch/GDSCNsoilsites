@@ -2,10 +2,18 @@
 % Please edit documentation in R/getdata.R
 \name{getdata}
 \alias{getdata}
-\title{Title}
+\title{Gets relevant data from Google Sheets.}
 \usage{
 getdata()
 }
+\value{
+a list containing GPS points and site names relevant for mapping. GPS
+points are class \code{data.frame}. Site names are class \code{character}.
+}
 \description{
-Title
+Gets relevant data from Google Sheets.
+}
+\examples{
+getdata()$points
+getdata()$sitenames
 }
