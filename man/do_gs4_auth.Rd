@@ -2,18 +2,19 @@
 % Please edit documentation in R/getdata.R
 \name{do_gs4_auth}
 \alias{do_gs4_auth}
-\title{Do Googlesheets authetication using a service account. Looks for
-a .json service account key in the ".secrets" directory.}
+\title{Does Google Sheets authentication using a Google Service Account. It looks
+for a \code{.json} service account key in the ".secrets" directory.}
 \usage{
 do_gs4_auth()
 }
 \value{
-Provides authentication step analagous to gs4_auth()
+Provides authentication analagous to gs4_auth()
 }
 \description{
-Do Googlesheets authetication using a service account. Looks for
-a .json service account key in the ".secrets" directory.
+Does Google Sheets authentication using a Google Service Account. It looks
+for a \code{.json} service account key in the ".secrets" directory.
 }
 \examples{
-# Run before read_sheet(); do_gs4_auth()
+# Run before read_sheet() functions
+do_gs4_auth()
 }

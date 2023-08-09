@@ -2,10 +2,20 @@
 % Please edit documentation in R/getdata.R
 \name{get_soil_data}
 \alias{get_soil_data}
-\title{Title}
+\title{Get soil spatial data so that soil type areas can be plotted on a
+map. These are analagous to GIS polygons. This function does some checking
+to see that the \code{soil_type_data.rds} file is younger than other data files.}
 \usage{
 get_soil_data()
 }
+\value{
+an object of class SpatialPolygonsDataFrame
+}
 \description{
-Title
+Get soil spatial data so that soil type areas can be plotted on a
+map. These are analagous to GIS polygons. This function does some checking
+to see that the \code{soil_type_data.rds} file is younger than other data files.
+}
+\examples{
+get_soil_data()
 }

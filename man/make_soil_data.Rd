@@ -2,10 +2,18 @@
 % Please edit documentation in R/getdata.R
 \name{make_soil_data}
 \alias{make_soil_data}
-\title{Title}
+\title{Get and write soil spatial data so that soil type areas can be plotted on a
+map. These are analagous to GIS polygons.}
 \usage{
 make_soil_data()
 }
+\value{
+an object of class SpatialPolygonsDataFrame and writes rds.
+}
 \description{
-Title
+Get and write soil spatial data so that soil type areas can be plotted on a
+map. These are analagous to GIS polygons.
+}
+\examples{
+make_soil_data()
 }

@@ -155,10 +155,8 @@ get_soil_data <- function() {
     ),
     file.info))
 
-  soil_type_data <- make_soil_data()
-
   # If there are data files younger than the composite file, remake it.
-  if (file.exists(soil_spatial_file)) {
+  if (file.exists(soil_type_data_file)) {
     if (any(file_info$mtime > file_info[soil_type_data_file,]$mtime)) {
       soil_type_data <- make_soil_data()
     } else {
