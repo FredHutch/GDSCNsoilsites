@@ -26,11 +26,11 @@ shiny_ui <- function() {
 
       dashboardSidebar(width = 300,
                        sidebarMenu(
-                         # HTML(paste0(
-                         #   "<br>",
-                         #   "<a href='https://gdscn.org' target='_blank'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/jhudsl/AnVIL_Template/main/assets/GDSCN_style/logo-gdscn.png' width = '186'></a>",
-                         #   "<br>"
-                         # )),
+                         HTML(paste0(
+                           "<br>",
+                           "<a href='https://gdscn.org' target='_blank'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/jhudsl/AnVIL_Template/main/assets/GDSCN_style/logo-gdscn.png' width = '186'></a>",
+                           "<br>"
+                         )),
                        menuItem("Sample Map", tabName = "map", icon = icon("thumbtack"))
                        )
 
