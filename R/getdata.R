@@ -123,6 +123,8 @@ make_soil_data <- function() {
   soil_type_data$SILT <- round(soil_type_data$SILT, 1)
 
   saveRDS(soil_type_data, file = soil_type_data_file)
+
+  return(soil_type_data)
 }
 
 
@@ -137,12 +139,12 @@ get_soil_data <- function() {
 
   soil_type_data_file <- "data/soil_types/soil_type_data.rds"
   file_info <-
-    bind_rows(lapply(paste0(
+    dplyr::bind_rows(lapply(paste0(
       "data/soil_types/", list.files("data/soil_types/")
     ),
     file.info))
 
-  make_soil_data()
+  soil_type_data <- make_soil_data()
 
   # # If there are data files younger than the composite file, remake it.
   # if (file.exists(soil_spatial_file)) {
