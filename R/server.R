@@ -9,6 +9,11 @@
 #'
 #' @examples
 shiny_server <- function(input, output, session) {
+  ### Server logic
+
+  ### Plot tab logic
+
+  # Reactive leaflet plot that has the option to add soil spatial properties
   display <- reactive({
     if (input$soil_geom_toggle) {
       leaflet() %>%
@@ -68,10 +73,20 @@ shiny_server <- function(input, output, session) {
     display()
   })
 
+  ### Site data table tab logic
+
   # Create browseable site info table
-  output$siteDataTable <- DT::renderDT(
-    get_browseable_data(),
-    options = list(pageLength = 30)
+  output$siteDataTable <- DT::renderDT(get_browseable_data(),
+                                       options = list(pageLength = 30))
+
+  # Downlaod `siteDataTable`
+  output$site_data_download <- downloadHandler(
+    filename = function() {
+      paste("gdscn_soil_site_data-", Sys.Date(), ".csv", sep = "")
+    },
+    content = function(file) {
+      write.csv(get_browseable_data(), file, row.names = FALSE)
+    }
   )
 
 }

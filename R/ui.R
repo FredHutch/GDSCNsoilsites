@@ -59,6 +59,8 @@ shiny_ui <- function() {
 
           tabItem(tabName = "table",
 
+                  downloadButton('site_data_download', label = 'Download data'),
+                  HTML("<br><br>"),
                   DT::DTOutput("siteDataTable")
 
           )
