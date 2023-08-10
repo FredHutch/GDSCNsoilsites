@@ -144,6 +144,29 @@ retrieve_plot_data <- function() {
 }
 
 
+#' Produce data in a nice clean format for browsing on the app.
+#'
+#' @return a `data.frame`
+#' @export
+#'
+#' @examples
+#' get_browseable_data()
+get_browseable_data <- function() {
+  soil_data_to_browse <-
+    clean_gps_points(getdata())
+
+  soil_data_to_browse <-
+    soil_data_to_browse %>%
+    rename("type" = Which.best.describes.your.site.) %>%
+    separate("type", into = c("type", "type2"), sep = ":") %>%
+    mutate(timestamp = lubridate::as_datetime(Timestamp.x)) %>%
+    mutate(date = lubridate::date(timestamp)) %>%
+    select(site_id, site_name, type, date, latitude, longitude)
+
+  return(soil_data_to_browse)
+}
+
+
 #' Get and write soil spatial data so that soil type areas can be plotted on a
 #' map. These are analagous to GIS polygons.
 #'

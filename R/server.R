@@ -9,10 +9,8 @@
 #'
 #' @examples
 shiny_server <- function(input, output, session) {
-
   display <- reactive({
-    if (input$soil_geom_toggle){
-
+    if (input$soil_geom_toggle) {
       leaflet() %>%
         addProviderTiles(providers$Stamen.TonerLite,
                          options = providerTileOptions(noWrap = TRUE)) %>%
@@ -35,11 +33,19 @@ shiny_server <- function(input, output, session) {
           fillColor = "#563d2d",
           color = "#563d2d",
           weight = 1,
-          popup = ~paste0(MUNAME, "<br>CLAY: ", CLAY, "%<br>SAND: ", SAND, "%<br>SILT: ", SILT, "%")
+          popup = ~ paste0(
+            MUNAME,
+            "<br>CLAY: ",
+            CLAY,
+            "%<br>SAND: ",
+            SAND,
+            "%<br>SILT: ",
+            SILT,
+            "%"
+          )
         )
 
     } else {
-
       leaflet() %>%
         addProviderTiles(providers$Stamen.TonerLite,
                          options = providerTileOptions(noWrap = TRUE)) %>%
@@ -61,5 +67,11 @@ shiny_server <- function(input, output, session) {
   output$soilmap <- renderLeaflet({
     display()
   })
+
+  # Create browseable site info table
+  output$siteDataTable <- DT::renderDT(
+    get_browseable_data(),
+    options = list(pageLength = 30)
+  )
 
 }
