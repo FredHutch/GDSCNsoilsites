@@ -41,7 +41,7 @@ shiny_ui <- function() {
                     width = NULL
                   ),
                   # Sample map section
-                  leafletOutput("soilmap", height = 600)
+                  leafletOutput("soilmap", height = 800)
 
           )
 

@@ -17,13 +17,13 @@ shiny_server <- function(input, output, session) {
         addProviderTiles(providers$Stamen.TonerLite,
                          options = providerTileOptions(noWrap = TRUE)) %>%
         addMarkers(
-          data = getdata()$points,
+          data = retrieve_plot_data()$points,
           popup = ~ paste0(
             '<img src="',
-            as.character(getdata()$image_urls),
+            as.character(retrieve_plot_data()$image_urls),
             '" alt="image of the site" width="300" height="200">',
             '<br>',
-            as.character(getdata()$sitenames)
+            as.character(retrieve_plot_data()$sitenames)
           ),
           clusterOptions = markerClusterOptions()
         ) %>%
@@ -44,13 +44,13 @@ shiny_server <- function(input, output, session) {
         addProviderTiles(providers$Stamen.TonerLite,
                          options = providerTileOptions(noWrap = TRUE)) %>%
         addMarkers(
-          data = getdata()$points,
+          data = retrieve_plot_data()$points,
           popup = ~ paste0(
             '<img src="',
-            as.character(getdata()$image_urls),
+            as.character(retrieve_plot_data()$image_urls),
             '" alt="image of the site" width="300" height="200">',
             '<br>',
-            as.character(getdata()$sitenames)
+            as.character(retrieve_plot_data()$sitenames)
           ),
           clusterOptions = markerClusterOptions()
         )

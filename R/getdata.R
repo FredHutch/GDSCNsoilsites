@@ -17,15 +17,41 @@ do_gs4_auth <- function() {
 }
 
 
-#' Gets relevant data from Google Sheets.
+#' Cleans data from Google Sheets to make GPS coordinates consistent.
 #'
-#' @return a list containing GPS points and site names relevant for mapping. GPS
-#' points are class `data.frame`. Site names are class `character`.
+#' @param the_data
+#'
+#' @return Cleaned `data.frame`
 #' @export
 #'
 #' @examples
-#' getdata()$points
-#' getdata()$sitenames
+#' clean_gps_points(getdata())
+clean_gps_points <- function(the_data) {
+  # Clean up GPS points:
+  # Remove parentheses, split column, fix negatives, and make numeric
+  the_data <- the_data %>%
+    rename("coord" = 4) %>%
+    mutate(coord = str_replace_all(coord, "[//(,//)]*", "")) %>%
+    tidyr::separate(coord,
+                    into = c("latitude", "longitude"),
+                    sep = " ") %>%
+    mutate(longitude = case_when(
+      as.numeric(longitude) > 0 ~ as.numeric(longitude) * -1,
+      TRUE ~ as.numeric(longitude)
+    )) %>%
+    mutate(latitude = as.numeric(latitude))
+
+  return(the_data)
+}
+
+
+#' Gets relevant data from Google Sheets.
+#'
+#' @return an uncleaned `data.frame`
+#' @export
+#'
+#' @examples
+#' getdata()
 getdata <- function() {
   # Set filename and URLs
   google_sheet_url_1 <-
@@ -65,20 +91,31 @@ getdata <- function() {
     }
   }
 
-  # Clean up GPS points:
-  # Remove parentheses, split column, fix negatives, and make numeric
+  return(soil_data)
+
+}
+
+
+#' Partition out the data into a list for quick use in plots.
+#'
+#' @return a `list` of gps coordinates, site names, and image urls
+#' @export
+#'
+#' @examples
+#' # Get gps points as a dataframe:
+#' retrieve_plot_data()$points
+#'
+#' # Get site names as a vector:
+#' retrieve_plot_data()$sitenames
+#'
+#' # Get urls for images as a vector:
+#' retrieve_plot_data()$image_urls
+retrieve_plot_data <- function() {
+  # Read in from Google, clean GPS points
+  soil_data <- clean_gps_points(getdata())
+
   gps_points <-
     soil_data %>%
-    rename("coord" = 4) %>%
-    mutate(coord = str_replace_all(coord, "[//(,//)]*", "")) %>%
-    tidyr::separate(coord,
-                    into = c("latitude", "longitude"),
-                    sep = " ") %>%
-    mutate(longitude = case_when(
-      as.numeric(longitude) > 0 ~ as.numeric(longitude) * -1,
-      TRUE ~ as.numeric(longitude)
-    )) %>%
-    mutate(latitude = as.numeric(latitude)) %>%
     select(longitude, latitude) %>%
     na.omit() %>%
     as.data.frame()
@@ -92,11 +129,18 @@ getdata <- function() {
   # Adjust image urls
   image_urls <-
     soil_data %>%
-    dplyr::mutate(url = paste0('https://drive.google.com/uc?export=view&id=', google_img_id)) %>%
+    dplyr::mutate(url = paste0(
+      'https://drive.google.com/uc?export=view&id=',
+      google_img_id
+    )) %>%
     select(url) %>%
     pull()
 
-  return(list(points = gps_points, sitenames = sitenames, image_urls = image_urls))
+  return(list(
+    points = gps_points,
+    sitenames = sitenames,
+    image_urls = image_urls
+  ))
 }
 
 
