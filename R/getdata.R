@@ -160,8 +160,8 @@ get_browseable_data <- function() {
     rename("type" = Which.best.describes.your.site.) %>%
     separate("type", into = c("type", "type2"), sep = ":") %>%
     mutate(timestamp = lubridate::as_datetime(Timestamp.x)) %>%
-    mutate(date = lubridate::date(timestamp)) %>%
-    select(site_id, site_name, type, date, latitude, longitude)
+    mutate(date_sampled = lubridate::date(timestamp)) %>%
+    select(site_id, site_name, type, date_sampled, latitude, longitude)
 
   return(soil_data_to_browse)
 }
