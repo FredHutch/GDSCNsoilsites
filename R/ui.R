@@ -35,6 +35,11 @@ shiny_ui <- function() {
             "Browse Site Data",
             tabName = "table",
             icon = icon("table")
+          ),
+          menuItem(
+            "Get Materials",
+            tabName = "field_materials",
+            icon = icon("pencil")
           )
         )
 
@@ -62,6 +67,30 @@ shiny_ui <- function() {
                   downloadButton('site_data_download', label = 'Download data'),
                   HTML("<br><br>"),
                   DT::DTOutput("siteDataTable")
+
+          ),
+
+          tabItem(tabName = "field_materials",
+
+                  actionButton(inputId='ab1', label="Field Protocol (Google Doc)",
+                               icon = icon("flask"),
+                               onclick ="window.open('https://docs.google.com/document/d/1oyFaknksSQEpwN7yGEBuGZaDGN96rKGOaovGsbhlGic/edit?usp=sharing', '_blank')"),
+                  HTML("<br><br>"),
+                  actionButton(inputId='ab2', label="Field Protocol (pdf)",
+                               icon = icon("flask"),
+                               onclick ="window.open('https://docs.google.com/document/d/1oyFaknksSQEpwN7yGEBuGZaDGN96rKGOaovGsbhlGic/export?format=pdf', '_blank')"),
+                  HTML("<br><br>"),
+                  actionButton(inputId='ab1', label="Field Safety (Google Doc)",
+                               icon = icon("stethoscope"),
+                               onclick ="window.open('https://docs.google.com/document/d/1MOeyYVEFyGTxh7cXWhlwMh9FbLIJVr_-eie5FSFpnEs/edit?usp=sharing', '_blank')"),
+                  HTML("<br><br>"),
+                  actionButton(inputId='ab2', label="Field Safety (pdf)",
+                               icon = icon("stethoscope"),
+                               onclick ="window.open('https://docs.google.com/document/d/1MOeyYVEFyGTxh7cXWhlwMh9FbLIJVr_-eie5FSFpnEs/export?format=pdf', '_blank')"),
+                  HTML("<br><br>"),
+                  actionButton(inputId='ab2', label="Metadata Form (Google Form)",
+                               icon = icon("table"),
+                               onclick ="window.open('https://forms.gle/Z2yH2KBggEF1y4KY9', '_blank')")
 
           )
 
