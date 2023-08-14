@@ -37,6 +37,11 @@ shiny_ui <- function() {
             icon = icon("table")
           ),
           menuItem(
+            "DNA Concentration Data",
+            tabName = "conc_table",
+            icon = icon("table")
+          ),
+          menuItem(
             "Get Materials",
             tabName = "field_materials",
             icon = icon("pencil")
@@ -67,6 +72,20 @@ shiny_ui <- function() {
                   downloadButton('site_data_download', label = 'Download data'),
                   HTML("<br><br>"),
                   DT::DTOutput("siteDataTable")
+
+          ),
+
+          tabItem(tabName = "conc_table",
+
+                  uiOutput("dna_plot_box"),
+                  HTML("<br><br>"),
+                  radioButtons("dna_choice", "",
+                               c("Concentration" = "qubit_concentration_ng_ul",
+                                 "Total amount" = "total_ng")),
+                  HTML("<br>"),
+                  downloadButton('dnaconc_download', label = 'Download data'),
+                  HTML("<br><br>"),
+                  DT::DTOutput("dnaconcDataTable")
 
           ),
 

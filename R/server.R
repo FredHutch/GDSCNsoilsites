@@ -89,4 +89,39 @@ shiny_server <- function(input, output, session) {
     }
   )
 
+  ### DNA conc plot, data table tab logic
+
+  # Need to observe rendered plot because it's reactive inside a 'box' element
+  observe({
+    output$dna_plot <- renderPlot({
+      if (input$dna_choice == "total_ng") {
+        label_ <- "DNA total amount (ng)"
+      } else {
+        label_ <- "DNA concentration (Qubit, ng/uL)"
+      }
+      ggplot(data = get_dna_conc_data(), aes(x = get(input$dna_choice))) +
+        geom_histogram(fill = "#73b263") +
+        labs(title = label_, x = NULL, y = NULL) +
+        theme_classic()
+    })
+  })
+
+  # Create the box with the concentration plot
+  output$dna_plot_box <- renderUI({
+    box(plotOutput("dna_plot"))
+  })
+
+  # Create browseable site info table
+  output$dnaconcDataTable <- DT::renderDT(get_dna_conc_data(),
+                                       options = list(pageLength = 30))
+
+  # Downlaod `dnaconcDataTable`
+  output$dnaconc_download <- downloadHandler(
+    filename = function() {
+      paste("gdscn_soil_dna_conc_data-", Sys.Date(), ".csv", sep = "")
+    },
+    content = function(file) {
+      write.csv(get_dna_conc_data(), file, row.names = FALSE)
+    }
+  )
 }

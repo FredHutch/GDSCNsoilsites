@@ -21,6 +21,7 @@ RUN Rscript -e "install.packages('lubridate', dependencies=T)"
 RUN Rscript -e "install.packages('evaluate', dependencies=T)"
 RUN Rscript -e "install.packages('googlesheets4', dependencies=T)"
 RUN Rscript -e "install.packages('shinydashboard', dependencies=T)"
+RUN Rscript -e "install.packages('ggplot2', dependencies=T)"
 # RUN Rscript -e "library(devtools);install_github('FredHutch/GDSCNsoilsites')"
 
 # install the package

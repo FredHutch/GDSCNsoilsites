@@ -6,6 +6,7 @@ library(stringr)
 library(googlesheets4)
 library(dplyr)
 library(tidyr)
+library(ggplot2)
 library(GDSCNsoilsites)
 
 #devtools::document()

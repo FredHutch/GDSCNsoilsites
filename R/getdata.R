@@ -58,6 +58,8 @@ getdata <- function() {
     "https://docs.google.com/spreadsheets/d/1KrPJe9OOGuix2EAvcTfuspAe3kqN-y20Huyf5ImBEl4/edit#gid=804798874"
   google_sheet_url_2 <-
     "https://docs.google.com/spreadsheets/d/1l7wuOt0DZp0NHMAriedbG4EJkl06Mh-G01CrVh8ySJE/edit#gid=804798874"
+  google_sheet_url_3 <-
+    "https://docs.google.com/spreadsheets/d/1duPtC8L9KL51YQzQ1rZ5785iH3RjABZFCYu8SWjAPTU/edit#gid=1458650276"
   soil_file <- "soil_data.csv"
 
   # Check if the file is/has been written recently.
@@ -70,7 +72,8 @@ getdata <- function() {
         read_sheet(google_sheet_url_2),
         by = c(`What is your site name?` = 'site_name'),
         keep = TRUE
-      )
+      ) %>%
+      inner_join(read_sheet(google_sheet_url_3), by = "full_name")
     write.csv(soil_data, soil_file)
   } else {
     last_created <- file.info(soil_file)$ctime
@@ -84,10 +87,11 @@ getdata <- function() {
           read_sheet(google_sheet_url_2),
           by = c(`What is your site name?` = 'site_name'),
           keep = TRUE
-        )
+        ) %>%
+        inner_join(read_sheet(google_sheet_url_3), by = "full_name")
       write.csv(soil_data, soil_file)
     } else {
-      soil_data <- read.csv(soil_file)[, -1]
+      soil_data <- read.csv(soil_file)[,-1]
     }
   }
 
@@ -164,6 +168,32 @@ get_browseable_data <- function() {
     select(site_id, site_name, type, date_sampled, latitude, longitude)
 
   return(soil_data_to_browse)
+}
+
+
+#' Produce DNA concentration data in a clean format for browsing on the app.
+#'
+#' @return a `data.frame`
+#' @export
+#'
+#' @examples
+#' get_dna_conc_data()
+get_dna_conc_data <- function() {
+  # Read in from Google, clean GPS points
+  dna_data <- getdata()
+
+  dna_data_to_browse <-
+    dna_data %>%
+    rename("type" = `Which.best.describes.your.site.`) %>%
+    separate("type", into = c("type", "type2"), sep = ":") %>%
+    select(site_id,
+           site_name,
+           ul_hydration,
+           qubit_concentration_ng_ul,
+           total_ng,
+           type)
+
+  return(dna_data_to_browse)
 }
 
 
@@ -261,7 +291,7 @@ get_soil_data <- function() {
 
   # If there are data files younger than the composite file, remake it.
   if (file.exists(soil_type_data_file)) {
-    if (any(file_info$mtime > file_info[soil_type_data_file,]$mtime)) {
+    if (any(file_info$mtime > file_info[soil_type_data_file, ]$mtime)) {
       soil_type_data <- make_soil_data()
     } else {
       soil_type_data <- readRDS(soil_type_data_file)
