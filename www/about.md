@@ -2,13 +2,15 @@
 
 One critical aspect of an undergraduate STEM education is hands-on research. Undergraduate research experiences enhance what students learn in the classroom as well as increase a student's interest in pursuing STEM careers [Russell et al. 2007][1]. It can also lead to improved scientific reasoning and increased academic performance overall [Buffalari et al. 2020][2]. However, many students at underresourced institutions like community colleges, Historically Black Colleges and Universities (HBCUs), tribal colleges and universities, and Hispanic-serving institutions have limited access to research opportunities compared to their cohorts at larger four-year colleges and R1 institutions. These students are also more likely to belong to groups that are already under-represented in STEM disciplines, particularly genomics and data science [Canner et al. 2017][3],[GDSCN 2022][4]. 
 
-For this project, we're examining how the soil microbes vary based on soil characteristics and land use. We collect soil samples for both metagenomic and chemical analysis, and then use the data to look for patterns. This project offers students an opportunity to participate in a real research project (from sample collection to data analysis) as well as training in genomics methods, training in data science, and training in using cloud computing resources like AnVIL.
+This project aims to be at the intersection of genomics, data science, cloud computing, and education.
 
 ## What is genomics?
 
 Genomics broadly refers to the study of genomes, which are an organism's complete set of DNA. This includes both genes and non-coding regions of DNA. Traditional genomics involves sequencing and analyzing the genome of individual species.
 
 Metagenomics expands genomics to look at the collective genomes of entire communities of organisms in an environmental sample, like soil. It allows researchers to study not just the genes of culturable or isolated organisms, but the entirety of genetic material present in a given environment. By using genomic techniques to survey the soil microbes, we can identify everything in the soil, including microbes that no one has identified before.
+
+We are doing both traditional genomics and metagenomics in this project.
 
 ## What is data science?
 
@@ -20,7 +22,7 @@ Cloud computing just means using the internet to get access to powerful computer
 
 ## Why soil microbes?
 
-It can be challenging to include undergraduates in human genomic and health research, especially in a classroom context. Both human genetic data and human health data are protected data, which limits the sort of information students can access without undergoing specialized ethics training. However, the same sorts of data cleaning and analysis methods used for human genomic data are also used for microbial genomic data, which does not have the same sort of legal protections as human genetic data. This makes it ideal for training undergraduate students at the beginning of their careers and can be used to prepare students for future research in human genomics and health [Jurkowski et al. 2017][5]. Additionally, the microbes in the soil can have big impacts on our health [Brevik and Burgess 2004][6].
+It can be challenging to include undergraduates in human genomic and health research, especially in a classroom context. Both human genetic data and human health data are protected data, which limits the sort of information students can access without undergoing specialized ethics training. However, the same sorts of data cleaning and analysis methods used for human genomic data are also used for microbial genomic data, which does not have the same sort of legal protections as human genetic data. This makes it ideal for training undergraduate students at the beginning of their careers and can be used to prepare students for future research in human genomics and health [Jurkowski et al. 2007][5]. Additionally, the microbes in the soil can have big impacts on our health [Brevik and Burgess 2004][6].
 
 # Why are heavy metals important for human health?
 
