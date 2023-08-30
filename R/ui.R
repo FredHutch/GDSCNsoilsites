@@ -60,6 +60,7 @@ shiny_ui <- function() {
         tabItems(
 
           tabItem(tabName = "about",
+
                   includeMarkdown("www/about.md")
 
           ),
