@@ -27,6 +27,11 @@ shiny_ui <- function() {
             )
           ),
           menuItem(
+            "About",
+            tabName = "about",
+            icon = icon("lightbulb")
+          ),
+          menuItem(
             "Sample Map",
             tabName = "map",
             icon = icon("thumbtack")
@@ -53,6 +58,12 @@ shiny_ui <- function() {
       dashboardBody(
 
         tabItems(
+
+          tabItem(tabName = "about",
+
+                  includeMarkdown("www/about.md")
+
+          ),
 
           tabItem(tabName = "map",
 
