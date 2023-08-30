@@ -1,6 +1,6 @@
 # About the Project
 
-One critical aspect of an undergraduate STEM education is hands-on research. Undergraduate research experiences enhance what students learn in the classroom as well as increase a student's interest in pursuing STEM careers ^[Russell et al. 2007: https://doi.org/10.1126/science.1140384]. It can also lead to improved scientific reasoning and increased academic performance overall ^[2]. However, many students at underresourced institutions like community colleges, Historically Black Colleges and Universities (HBCUs), tribal colleges and universities, and Hispanic-serving institutions have limited access to research opportunities compared to their cohorts at larger four-year colleges and R1 institutions. These students are also more likely to belong to groups that are already under-represented in STEM disciplines, particularly genomics and data science [^3] [^4]. 
+One critical aspect of an undergraduate STEM education is hands-on research. Undergraduate research experiences enhance what students learn in the classroom as well as increase a student's interest in pursuing STEM careers ^1. It can also lead to improved scientific reasoning and increased academic performance overall ^2. However, many students at underresourced institutions like community colleges, Historically Black Colleges and Universities (HBCUs), tribal colleges and universities, and Hispanic-serving institutions have limited access to research opportunities compared to their cohorts at larger four-year colleges and R1 institutions. These students are also more likely to belong to groups that are already under-represented in STEM disciplines, particularly genomics and data science [^3] [^4]. 
 
 This project aims to be at the intersection of genomics, data science, cloud computing, and education.
 
@@ -44,8 +44,10 @@ Funding for this project is through Contract # 75N92022P00232 from the National 
 
 # References
 
+1: Russell et al. 2007: https://doi.org/10.1126/science.1140384
 
-[2]: Buffalari et al. 2020: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8040836/
+2: Buffalari et al. 2020: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8040836/
+
 [^3]: Canner et al. 2017: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5398168/
 [^4]: GDSCN 2022: https://doi.org/10.1101/gr.276496.121
 [^5]: Jurkowski et al. 2007: https://doi.org/10.1187/cbe.07-09-0075
