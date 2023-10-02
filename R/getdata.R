@@ -335,15 +335,14 @@ get_browseable_testing_data <- function() {
       Est_CEC,
       Base_Sat_pct,
       P_Sat_ratio
-    )
-  # %>%
-  #   mutate(As_EPA3051 = as.numeric(case_when(As_EPA3051 == "< 3.0" ~ "0",
-  #                                            TRUE ~ As_EPA3051))) %>% # As can't be detected lower than 3.0
-  #   mutate(Cd_EPA3051 = as.numeric(case_when(Cd_EPA3051 == "< 0.2" ~ "0",
-  #                                            TRUE ~ Cd_EPA3051))) %>% # Cd can't be detected lower than 0.2
-  #   mutate(region = case_when(startsWith(site_id, "M")~"Montgomery County",
-  #                             startsWith(site_id, "B")~"Baltimore City",
-  #                             startsWith(site_id, "S")~"Seattle"))
+    ) %>%
+    mutate(As_EPA3051 = as.numeric(case_when(As_EPA3051 == "< 3.0" ~ "0",
+                                             TRUE ~ As_EPA3051))) %>% # As can't be detected lower than 3.0
+    mutate(Cd_EPA3051 = as.numeric(case_when(Cd_EPA3051 == "< 0.2" ~ "0",
+                                             TRUE ~ Cd_EPA3051))) %>% # Cd can't be detected lower than 0.2
+    mutate(region = case_when(startsWith(site_id, "M")~"Montgomery County",
+                              startsWith(site_id, "B")~"Baltimore City",
+                              startsWith(site_id, "S")~"Seattle"))
 
   return(testing_data_to_browse)
 }
