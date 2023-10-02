@@ -77,7 +77,7 @@ shiny_server <- function(input, output, session) {
 
   # Create browseable site info table
   output$siteDataTable <- DT::renderDT(get_browseable_data(),
-                                       options = list(pageLength = 30))
+                                       options = list(pageLength = 30, scrollX = TRUE))
 
   # Downlaod `siteDataTable`
   output$site_data_download <- downloadHandler(
@@ -113,7 +113,7 @@ shiny_server <- function(input, output, session) {
 
   # Create browseable site info table
   output$dnaconcDataTable <- DT::renderDT(get_dna_conc_data(),
-                                       options = list(pageLength = 30))
+                                       options = list(pageLength = 30, scrollX = TRUE))
 
   # Downlaod `dnaconcDataTable`
   output$dnaconc_download <- downloadHandler(
@@ -188,7 +188,7 @@ shiny_server <- function(input, output, session) {
   # Create browseable table for soil testing
   output$soilDataTable <-
     DT::renderDT(get_browseable_testing_data(),
-                 options = list(pageLength = 30))
+                 options = list(pageLength = 30, scrollX = TRUE))
 
   # Downlaod `soilDataTable`
   output$soiltest_download <- downloadHandler(
