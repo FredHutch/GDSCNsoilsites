@@ -318,10 +318,10 @@ get_soil_data <- function() {
 get_browseable_testing_data <- function() {
   testing_data_to_browse <- getdata()
 
-  # testing_data_to_browse <-
-  #   testing_data_to_browse %>%
-  #   rename("type" = `Which.best.describes.your.site.`) %>%
-  #   separate("type", into = c("type", "type2"), sep = ":") %>%
+  testing_data_to_browse <-
+    testing_data_to_browse %>%
+    rename("type" = "Which.best.describes.your.site.") %>%
+    separate("type", into = c("type", "type2"), sep = ":")
   #   select(
   #     site_id,
   #     site_name,
