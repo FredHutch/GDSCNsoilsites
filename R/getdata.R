@@ -169,8 +169,6 @@ get_browseable_data <- function() {
 
   soil_data_to_browse <-
     soil_data_to_browse %>%
-    rename("type" = Which.best.describes.your.site.) %>%
-    separate("type", into = c("type", "type2"), sep = ":") %>%
     mutate(timestamp = lubridate::as_datetime(Timestamp.x)) %>%
     mutate(date_sampled = lubridate::date(timestamp)) %>%
     select(site_id, site_name, type, date_sampled, latitude, longitude)
@@ -192,8 +190,6 @@ get_dna_conc_data <- function() {
 
   dna_data_to_browse <-
     dna_data %>%
-    rename("type" = `Which.best.describes.your.site.`) %>%
-    separate("type", into = c("type", "type2"), sep = ":") %>%
     select(site_id,
            site_name,
            ul_hydration,

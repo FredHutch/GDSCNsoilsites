@@ -148,7 +148,7 @@ shiny_server <- function(input, output, session) {
         scale_fill_manual(values = c("#73b263", "#739999")) +
         labs(title = paste0(response_, " (mg/kg) by region"), x = NULL, y = NULL, colour = NULL, fill = NULL) +
         theme_classic() +
-        theme(legend.position = c(1,0.8)) # top right inset position
+        theme(legend.position = c(0.8,1)) # top right inset position
     })
   })
 
@@ -172,7 +172,7 @@ shiny_server <- function(input, output, session) {
         scale_fill_manual(values = c("#73b263", "#739999")) +
         labs(title = paste0(response_, " (mg/kg) by management type"), x = NULL, y = NULL, colour = NULL, fill = NULL) +
         theme_classic() +
-        theme(legend.position = c(1,0.8)) # top right inset position
+        theme(legend.position = c(0.8,1)) # top right inset position
     })
   })
 
