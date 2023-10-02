@@ -318,22 +318,22 @@ get_soil_data <- function() {
 get_browseable_testing_data <- function() {
   testing_data_to_browse <- getdata()
 
-  testing_data_to_browse <-
-    testing_data_to_browse %>%
-    rename("type" = `Which.best.describes.your.site.`) %>%
-    separate("type", into = c("type", "type2"), sep = ":") %>%
-    select(
-      site_id,
-      site_name,
-      type,
-      tidyr::ends_with("EPA3051"),
-      water_pH,
-      OM_by_LOI_pct,
-      tidyr::ends_with("Mehlich3"),
-      Est_CEC,
-      Base_Sat_pct,
-      P_Sat_ratio
-    )
+  # testing_data_to_browse <-
+  #   testing_data_to_browse %>%
+  #   rename("type" = `Which.best.describes.your.site.`) %>%
+  #   separate("type", into = c("type", "type2"), sep = ":") %>%
+  #   select(
+  #     site_id,
+  #     site_name,
+  #     type,
+  #     tidyr::ends_with("EPA3051"),
+  #     water_pH,
+  #     OM_by_LOI_pct,
+  #     tidyr::ends_with("Mehlich3"),
+  #     Est_CEC,
+  #     Base_Sat_pct,
+  #     P_Sat_ratio
+  #   )
   # %>%
   #   mutate(As_EPA3051 = as.numeric(case_when(As_EPA3051 == "< 3.0" ~ "0",
   #                                            TRUE ~ As_EPA3051))) %>% # As can't be detected lower than 3.0
