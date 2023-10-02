@@ -102,7 +102,7 @@ shiny_server <- function(input, output, session) {
       ggplot(data = get_dna_conc_data(), aes(x = get(input$dna_choice))) +
         geom_histogram(fill = "#73b263") +
         labs(title = label_, x = NULL, y = NULL) +
-        theme_classic()
+        theme_classic(base_size = 13)
     })
   })
 
@@ -147,7 +147,7 @@ shiny_server <- function(input, output, session) {
         scale_color_manual(values = c("#73b263", "#739999")) +
         scale_fill_manual(values = c("#73b263", "#739999")) +
         labs(title = paste0(response_, " (mg/kg) by region"), x = NULL, y = NULL, colour = NULL, fill = NULL) +
-        theme_classic() +
+        theme_classic(base_size = 13) +
         theme(legend.position = c(0.8,1)) # top right inset position
     })
   })
@@ -171,7 +171,7 @@ shiny_server <- function(input, output, session) {
         scale_color_manual(values = c("#73b263", "#739999")) +
         scale_fill_manual(values = c("#73b263", "#739999")) +
         labs(title = paste0(response_, " (mg/kg) by management type"), x = NULL, y = NULL, colour = NULL, fill = NULL) +
-        theme_classic() +
+        theme_classic(base_size = 13) +
         theme(legend.position = c(0.8,1)) # top right inset position
     })
   })
