@@ -187,7 +187,7 @@ shiny_server <- function(input, output, session) {
 
   # Create browseable table for soil testing
   output$soilDataTable <-
-    DT::renderDT(get_dna_conc_data(),
+    DT::renderDT(get_browseable_testing_data(),
                  options = list(pageLength = 30))
 
   # Downlaod `soilDataTable`
