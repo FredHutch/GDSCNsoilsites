@@ -3,6 +3,7 @@
 export(clean_gps_points)
 export(do_gs4_auth)
 export(get_browseable_data)
+export(get_browseable_testing_data)
 export(get_dna_conc_data)
 export(get_soil_data)
 export(getdata)

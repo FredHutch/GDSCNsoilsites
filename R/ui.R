@@ -37,8 +37,13 @@ shiny_ui <- function() {
             icon = icon("thumbtack")
           ),
           menuItem(
-            "Browse Site Data",
+            "Site Data",
             tabName = "table",
+            icon = icon("table")
+          ),
+          menuItem(
+            "Soil Testing Data",
+            tabName = "soil_table",
             icon = icon("table")
           ),
           menuItem(
@@ -83,6 +88,30 @@ shiny_ui <- function() {
                   downloadButton('site_data_download', label = 'Download data'),
                   HTML("<br><br>"),
                   DT::DTOutput("siteDataTable")
+
+          ),
+
+          tabItem(tabName = "soil_table",
+
+                  uiOutput("testing_plot_region_box"),
+                  uiOutput("testing_plot_management_box"),
+                  #HTML("<br><br>"),
+                  radioButtons("testing_response_choice", "",
+                               c("Arsenic" = "As_EPA3051",
+                                 "Cadmium" = "Cd_EPA3051",
+                                 "Chromium" = "Cr_EPA3051",
+                                 "Copper" = "Cu_EPA3051",
+                                 "Nickel" = "Ni_EPA3051",
+                                 "Lead" = "Pb_EPA3051",
+                                 "Zinc" = "Zn_EPA3051")),
+                  HTML("<br>"),
+                  downloadButton('soiltest_download', label = 'Download data'),
+                  actionButton(inputId='testing_data_dict', label="Data dictionary",
+                               icon = icon("th"),
+                               onclick ="window.open('https://docs.google.com/spreadsheets/d/109xYUM48rjj33B76hZ3bNlrm8u-_S6uyoE_3wSCp0r0/edit#gid=188448677', '_blank')"),
+                  HTML("<br><br>"),
+                  DT::DTOutput("soilDataTable"),
+                  HTML("<br><br><i>Note: Arsenic (As_EPA3051) is not detectable below 3.0 mg/kg. Cadmium (Cd_EPA3051) is not detectable below 0.2 mg/kg.</i>")
 
           ),
 

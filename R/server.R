@@ -125,7 +125,6 @@ shiny_server <- function(input, output, session) {
     }
   )
 
-
   ### Soil Testing Data
 
   # Need to observe rendered plot because it's reactive inside a 'box' element
