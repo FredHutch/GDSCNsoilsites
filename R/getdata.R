@@ -76,7 +76,9 @@ getdata <- function() {
         keep = TRUE
       ) %>%
       inner_join(read_sheet(google_sheet_url_3), by = "full_name") %>%
-      inner_join(read_sheet(google_sheet_url_4, col_types = "ccccnnnnnnnnnnnnnnnnnnnnnnn"), by = c("full_name","site_id")) # Special characters
+      inner_join(read_sheet(google_sheet_url_4, col_types = "ccccnnnnnnnnnnnnnnnnnnnnnnn"), by = c("full_name","site_id")) %>% # Special characters
+      rename("type" = `Which best describes your site?`) %>%
+      separate("type", into = c("type", "type2"), sep = ":")
     write.csv(soil_data, soil_file)
   } else {
     last_created <- file.info(soil_file)$ctime
@@ -92,7 +94,9 @@ getdata <- function() {
           keep = TRUE
         ) %>%
         inner_join(read_sheet(google_sheet_url_3), by = "full_name") %>%
-        inner_join(read_sheet(google_sheet_url_4, col_types = "ccccnnnnnnnnnnnnnnnnnnnnnnn"), by = "full_name") # Special characters
+        inner_join(read_sheet(google_sheet_url_4, col_types = "ccccnnnnnnnnnnnnnnnnnnnnnnn"), by = "full_name") %>% # Special characters
+        rename("type" = `Which best describes your site?`) %>%
+        separate("type", into = c("type", "type2"), sep = ":")
       write.csv(soil_data, soil_file)
     } else {
       soil_data <- read.csv(soil_file)[, -1]
@@ -320,20 +324,18 @@ get_browseable_testing_data <- function() {
 
   testing_data_to_browse <-
     testing_data_to_browse %>%
-    rename("type" = "Which.best.describes.your.site.") %>%
-    separate("type", into = c("type", "type2"), sep = ":")
-  #   select(
-  #     site_id,
-  #     site_name,
-  #     type,
-  #     tidyr::ends_with("EPA3051"),
-  #     water_pH,
-  #     OM_by_LOI_pct,
-  #     tidyr::ends_with("Mehlich3"),
-  #     Est_CEC,
-  #     Base_Sat_pct,
-  #     P_Sat_ratio
-  #   )
+    select(
+      site_id,
+      site_name,
+      type,
+      tidyr::ends_with("EPA3051"),
+      water_pH,
+      OM_by_LOI_pct,
+      tidyr::ends_with("Mehlich3"),
+      Est_CEC,
+      Base_Sat_pct,
+      P_Sat_ratio
+    )
   # %>%
   #   mutate(As_EPA3051 = as.numeric(case_when(As_EPA3051 == "< 3.0" ~ "0",
   #                                            TRUE ~ As_EPA3051))) %>% # As can't be detected lower than 3.0
