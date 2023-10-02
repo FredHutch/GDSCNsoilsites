@@ -60,6 +60,8 @@ getdata <- function() {
     "https://docs.google.com/spreadsheets/d/1l7wuOt0DZp0NHMAriedbG4EJkl06Mh-G01CrVh8ySJE/edit#gid=804798874"
   google_sheet_url_3 <-
     "https://docs.google.com/spreadsheets/d/1duPtC8L9KL51YQzQ1rZ5785iH3RjABZFCYu8SWjAPTU/edit#gid=1458650276"
+  google_sheet_url_4 <- # Soil data
+    "https://docs.google.com/spreadsheets/d/109xYUM48rjj33B76hZ3bNlrm8u-_S6uyoE_3wSCp0r0/edit#gid=1458650276"
   soil_file <- "soil_data.csv"
 
   # Check if the file is/has been written recently.
@@ -73,7 +75,8 @@ getdata <- function() {
         by = c(`What is your site name?` = 'site_name'),
         keep = TRUE
       ) %>%
-      inner_join(read_sheet(google_sheet_url_3), by = "full_name")
+      inner_join(read_sheet(google_sheet_url_3), by = "full_name") %>%
+      inner_join(read_sheet(google_sheet_url_4, col_types = "ccccnnnnnnnnnnnnnnnnnnnnnnn"), by = c("full_name","site_id")) # Special characters
     write.csv(soil_data, soil_file)
   } else {
     last_created <- file.info(soil_file)$ctime
@@ -88,10 +91,11 @@ getdata <- function() {
           by = c(`What is your site name?` = 'site_name'),
           keep = TRUE
         ) %>%
-        inner_join(read_sheet(google_sheet_url_3), by = "full_name")
+        inner_join(read_sheet(google_sheet_url_3), by = "full_name") %>%
+        inner_join(read_sheet(google_sheet_url_4, col_types = "ccccnnnnnnnnnnnnnnnnnnnnnnn"), by = "full_name") # Special characters
       write.csv(soil_data, soil_file)
     } else {
-      soil_data <- read.csv(soil_file)[,-1]
+      soil_data <- read.csv(soil_file)[, -1]
     }
   }
 
@@ -291,7 +295,7 @@ get_soil_data <- function() {
 
   # If there are data files younger than the composite file, remake it.
   if (file.exists(soil_type_data_file)) {
-    if (any(file_info$mtime > file_info[soil_type_data_file, ]$mtime)) {
+    if (any(file_info$mtime > file_info[soil_type_data_file,]$mtime)) {
       soil_type_data <- make_soil_data()
     } else {
       soil_type_data <- readRDS(soil_type_data_file)
@@ -301,4 +305,42 @@ get_soil_data <- function() {
   }
 
   return(soil_type_data)
+}
+
+
+#' Produce soil testing data in a nice clean format for browsing on the app.
+#'
+#' @return a `data.frame`
+#' @export
+#'
+#' @examples
+#' get_browseable_testing_data()
+get_browseable_testing_data <- function() {
+  testing_data_to_browse <- getdata()
+
+  testing_data_to_browse <-
+    testing_data_to_browse %>%
+    rename("type" = `Which.best.describes.your.site.`) %>%
+    separate("type", into = c("type", "type2"), sep = ":") %>%
+    select(
+      site_id,
+      site_name,
+      type,
+      ends_with("EPA3051"),
+      water_pH,
+      OM_by_LOI_pct,
+      ends_with("Mehlich3"),
+      Est_CEC,
+      Base_Sat_pct,
+      P_Sat_ratio
+    ) %>%
+    mutate(As_EPA3051 = as.numeric(case_when(As_EPA3051 == "< 3.0" ~ "0",
+                                             TRUE ~ As_EPA3051))) %>% # As can't be detected lower than 3.0
+    mutate(Cd_EPA3051 = as.numeric(case_when(Cd_EPA3051 == "< 0.2" ~ "0",
+                                             TRUE ~ Cd_EPA3051))) %>% # Cd can't be detected lower than 0.2
+    mutate(region = case_when(startsWith(site_id, "M")~"Montgomery County",
+                              startsWith(site_id, "B")~"Baltimore City",
+                              startsWith(site_id, "S")~"Seattle"))
+
+  return(testing_data_to_browse)
 }

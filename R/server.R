@@ -124,4 +124,77 @@ shiny_server <- function(input, output, session) {
       write.csv(get_dna_conc_data(), file, row.names = FALSE)
     }
   )
+
+  ### Soil Testing Data
+
+  # Need to observe rendered plot because it's reactive inside a 'box' element
+  observe({
+    output$testing_plot_region <- renderPlot({
+      if (input$testing_response_choice == "As_EPA3051") response_ <- "Arsenic"
+      if (input$testing_response_choice == "Cd_EPA3051") response_ <- "Cadmium"
+      if (input$testing_response_choice == "Cr_EPA3051") response_ <- "Chromium"
+      if (input$testing_response_choice == "Cu_EPA3051") response_ <- "Copper"
+      if (input$testing_response_choice == "Ni_EPA3051") response_ <- "Nickel"
+      if (input$testing_response_choice == "Pb_EPA3051") response_ <- "Lead"
+      if (input$testing_response_choice == "Zn_EPA3051")  response_ <- "Zinc"
+      ggplot(data = get_browseable_testing_data(), aes(
+        x = get(input$testing_response_choice),
+        group = region,
+        color = region,
+        fill = region
+      )) +
+        geom_density(alpha = 0.6) +
+        scale_color_manual(values = c("#73b263", "#739999")) +
+        scale_fill_manual(values = c("#73b263", "#739999")) +
+        labs(title = paste0(response_, " by region"), x = NULL, y = NULL, colour = NULL, fill = NULL) +
+        theme_classic()
+    })
+  })
+
+  observe({
+    output$testing_plot_management <- renderPlot({
+      if (input$testing_response_choice == "As_EPA3051") response_ <- "Arsenic"
+      if (input$testing_response_choice == "Cd_EPA3051") response_ <- "Cadmium"
+      if (input$testing_response_choice == "Cr_EPA3051") response_ <- "Chromium"
+      if (input$testing_response_choice == "Cu_EPA3051") response_ <- "Copper"
+      if (input$testing_response_choice == "Ni_EPA3051") response_ <- "Nickel"
+      if (input$testing_response_choice == "Pb_EPA3051") response_ <- "Lead"
+      if (input$testing_response_choice == "Zn_EPA3051")  response_ <- "Zinc"
+      ggplot(data = get_browseable_testing_data(), aes(
+        x = get(input$testing_response_choice),
+        group = type,
+        color = type,
+        fill = type
+      )) +
+        geom_density(alpha = 0.6) +
+        scale_color_manual(values = c("#73b263", "#739999")) +
+        scale_fill_manual(values = c("#73b263", "#739999")) +
+        labs(title = paste0(response_, " by management type"), x = NULL, y = NULL, colour = NULL, fill = NULL) +
+        theme_classic()
+    })
+  })
+
+  # Create the boxes with the plots
+  output$testing_plot_management_box <- renderUI({
+    box(plotOutput("testing_plot_management"))
+  })
+  output$testing_plot_region_box <- renderUI({
+    box(plotOutput("testing_plot_region"))
+  })
+
+
+  # Create browseable table for soil testing
+  output$soilDataTable <-
+    DT::renderDT(get_browseable_testing_data(),
+                 options = list(pageLength = 30))
+
+  # Downlaod `soilDataTable`
+  output$soiltest_download <- downloadHandler(
+    filename = function() {
+      paste("gdscn_soil_testing_data-", Sys.Date(), ".csv", sep = "")
+    },
+    content = function(file) {
+      write.csv(get_browseable_testing_data(), file, row.names = FALSE)
+    }
+  )
 }
