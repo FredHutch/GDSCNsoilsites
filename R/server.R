@@ -17,7 +17,7 @@ shiny_server <- function(input, output, session) {
   display <- reactive({
     if (input$soil_geom_toggle) {
       leaflet() %>%
-        addProviderTiles(providers$Stamen.TonerLite,
+        addProviderTiles(providers$CartoDB.Positron,
                          options = providerTileOptions(noWrap = TRUE)) %>%
         addMarkers(
           data = retrieve_plot_data()$points,
