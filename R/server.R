@@ -17,9 +17,8 @@ shiny_server <- function(input, output, session) {
   display <- reactive({
     if (input$soil_geom_toggle) {
       leaflet() %>%
-        addTiles() %>%
-        #addProviderTiles(providers$Esri.NatGeoWorldMap,
-                         #options = providerTileOptions(noWrap = TRUE)) %>%
+        addProviderTiles(providers$CartoDB.Positron,
+                         options = providerTileOptions(noWrap = TRUE)) %>%
         addMarkers(
           data = retrieve_plot_data()$points,
           popup = ~ paste0(
@@ -53,7 +52,7 @@ shiny_server <- function(input, output, session) {
 
     } else {
       leaflet() %>%
-        addProviderTiles(providers$Stamen.TonerLite,
+        addProviderTiles(providers$CartoDB.Positron,
                          options = providerTileOptions(noWrap = TRUE)) %>%
         addMarkers(
           data = retrieve_plot_data()$points,
