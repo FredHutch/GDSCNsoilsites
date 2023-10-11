@@ -89,7 +89,7 @@ shiny_ui <- function() {
           ),
 
           tabItem(tabName = "leadmap",
-                  leafletOutput("leadmap", height = 800)
+                  leafletOutput("leadmap", height = 600)
 
           ),
 
