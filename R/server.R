@@ -98,7 +98,7 @@ shiny_server <- function(input, output, session) {
       addLegend(
         'bottomright',
         pal = leadCol,
-        values = lead,
+        values = na.omit(retrieve_plot_data()$lead),
         title = 'Lead concentration (mg/kg)',
         opacity = 1
       )
