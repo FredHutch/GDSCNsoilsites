@@ -148,10 +148,24 @@ retrieve_plot_data <- function() {
     select(url) %>%
     pull()
 
+  # Get lead values
+  lead <-
+    soil_data %>%
+    select(Pb_EPA3051) %>%
+    pull()
+
+  lead <- cut(
+    lead,
+    c(0, 25, 50, 75, 100, 500),
+    include.lowest = T,
+    labels = c('<25ppm', '25-50ppm', '50-75ppm', '75-100ppm', '100ppm+')
+  )
+
   return(list(
     points = gps_points,
     sitenames = sitenames,
-    image_urls = image_urls
+    image_urls = image_urls,
+    lead = lead
   ))
 }
 

@@ -37,6 +37,11 @@ shiny_ui <- function() {
             icon = icon("thumbtack")
           ),
           menuItem(
+            "Soil Lead Map",
+            tabName = "leadmap",
+            icon = icon("thumbtack")
+          ),
+          menuItem(
             "Site Data",
             tabName = "table",
             icon = icon("table")
@@ -80,6 +85,11 @@ shiny_ui <- function() {
                   ),
                   # Sample map section
                   leafletOutput("soilmap", height = 800)
+
+          ),
+
+          tabItem(tabName = "leadmap",
+                  leafletOutput("leadmap", height = 800)
 
           ),
 

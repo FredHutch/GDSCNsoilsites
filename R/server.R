@@ -16,6 +16,11 @@ shiny_server <- function(input, output, session) {
   # Reactive leaflet plot that has the option to add soil spatial properties
   display <- reactive({
     if (input$soil_geom_toggle) {
+      leadCol <-
+        colorFactor(palette = 'RdYlGn',
+                    retrieve_plot_data()$lead,
+                    reverse = T)
+
       leaflet() %>%
         addProviderTiles(providers$CartoDB.Positron,
                          options = providerTileOptions(noWrap = TRUE)) %>%
@@ -73,6 +78,27 @@ shiny_server <- function(input, output, session) {
     display()
   })
 
+  # Reactive leaflet plot that has the option to add soil spatial properties
+  display <- reactive({
+    leadCol <-
+      colorFactor(palette = 'RdYlGn',
+                  retrieve_plot_data()$lead,
+                  reverse = T)
+
+    leaflet() %>%
+      addProviderTiles(providers$CartoDB.Positron,
+                       options = providerTileOptions(noWrap = TRUE)) %>%
+      addCircleMarkers(
+        data = retrieve_plot_data()$points[-c(49,50),],
+        color = ~ leadCol(retrieve_plot_data()$lead),
+        radius = ~ 7
+      )
+  })
+
+  output$leadmap <- renderLeaflet({
+    display()
+  })
+
   ### Site data table tab logic
 
   # Create browseable site info table
@@ -113,7 +139,7 @@ shiny_server <- function(input, output, session) {
 
   # Create browseable site info table
   output$dnaconcDataTable <- DT::renderDT(get_dna_conc_data(),
-                                       options = list(pageLength = 30, scrollX = TRUE))
+                                          options = list(pageLength = 30, scrollX = TRUE))
 
   # Downlaod `dnaconcDataTable`
   output$dnaconc_download <- downloadHandler(
@@ -130,37 +156,58 @@ shiny_server <- function(input, output, session) {
   # Need to observe rendered plot because it's reactive inside a 'box' element
   observe({
     output$testing_plot_region <- renderPlot({
-      if (input$testing_response_choice == "As_EPA3051") response_ <- "Arsenic"
-      if (input$testing_response_choice == "Cd_EPA3051") response_ <- "Cadmium"
-      if (input$testing_response_choice == "Cr_EPA3051") response_ <- "Chromium"
-      if (input$testing_response_choice == "Cu_EPA3051") response_ <- "Copper"
-      if (input$testing_response_choice == "Ni_EPA3051") response_ <- "Nickel"
-      if (input$testing_response_choice == "Pb_EPA3051") response_ <- "Lead"
-      if (input$testing_response_choice == "Zn_EPA3051")  response_ <- "Zinc"
-      ggplot(data = get_browseable_testing_data(), aes(
-        x = get(input$testing_response_choice),
-        group = region,
-        color = region,
-        fill = region
-      )) +
+      if (input$testing_response_choice == "As_EPA3051")
+        response_ <- "Arsenic"
+      if (input$testing_response_choice == "Cd_EPA3051")
+        response_ <- "Cadmium"
+      if (input$testing_response_choice == "Cr_EPA3051")
+        response_ <- "Chromium"
+      if (input$testing_response_choice == "Cu_EPA3051")
+        response_ <- "Copper"
+      if (input$testing_response_choice == "Ni_EPA3051")
+        response_ <- "Nickel"
+      if (input$testing_response_choice == "Pb_EPA3051")
+        response_ <- "Lead"
+      if (input$testing_response_choice == "Zn_EPA3051")
+        response_ <- "Zinc"
+      ggplot(data = get_browseable_testing_data(),
+             aes(
+               x = get(input$testing_response_choice),
+               group = region,
+               color = region,
+               fill = region
+             )) +
         geom_density(alpha = 0.6) +
         scale_color_manual(values = c("#73b263", "#739999")) +
         scale_fill_manual(values = c("#73b263", "#739999")) +
-        labs(title = paste0(response_, " (mg/kg) by region"), x = NULL, y = NULL, colour = NULL, fill = NULL) +
+        labs(
+          title = paste0(response_, " (mg/kg) by region"),
+          x = NULL,
+          y = NULL,
+          colour = NULL,
+          fill = NULL
+        ) +
         theme_classic(base_size = 14) +
-        theme(legend.position = c(0.8,1)) # top right inset position
+        theme(legend.position = c(0.8, 1)) # top right inset position
     })
   })
 
   observe({
     output$testing_plot_management <- renderPlot({
-      if (input$testing_response_choice == "As_EPA3051") response_ <- "Arsenic"
-      if (input$testing_response_choice == "Cd_EPA3051") response_ <- "Cadmium"
-      if (input$testing_response_choice == "Cr_EPA3051") response_ <- "Chromium"
-      if (input$testing_response_choice == "Cu_EPA3051") response_ <- "Copper"
-      if (input$testing_response_choice == "Ni_EPA3051") response_ <- "Nickel"
-      if (input$testing_response_choice == "Pb_EPA3051") response_ <- "Lead"
-      if (input$testing_response_choice == "Zn_EPA3051")  response_ <- "Zinc"
+      if (input$testing_response_choice == "As_EPA3051")
+        response_ <- "Arsenic"
+      if (input$testing_response_choice == "Cd_EPA3051")
+        response_ <- "Cadmium"
+      if (input$testing_response_choice == "Cr_EPA3051")
+        response_ <- "Chromium"
+      if (input$testing_response_choice == "Cu_EPA3051")
+        response_ <- "Copper"
+      if (input$testing_response_choice == "Ni_EPA3051")
+        response_ <- "Nickel"
+      if (input$testing_response_choice == "Pb_EPA3051")
+        response_ <- "Lead"
+      if (input$testing_response_choice == "Zn_EPA3051")
+        response_ <- "Zinc"
       ggplot(data = get_browseable_testing_data(), aes(
         x = get(input$testing_response_choice),
         group = type,
@@ -170,9 +217,15 @@ shiny_server <- function(input, output, session) {
         geom_density(alpha = 0.6) +
         scale_color_manual(values = c("#73b263", "#739999")) +
         scale_fill_manual(values = c("#73b263", "#739999")) +
-        labs(title = paste0(response_, " (mg/kg) by management type"), x = NULL, y = NULL, colour = NULL, fill = NULL) +
+        labs(
+          title = paste0(response_, " (mg/kg) by management type"),
+          x = NULL,
+          y = NULL,
+          colour = NULL,
+          fill = NULL
+        ) +
         theme_classic(base_size = 14) +
-        theme(legend.position = c(0.8,1)) # top right inset position
+        theme(legend.position = c(0.8, 1)) # top right inset position
     })
   })
 
