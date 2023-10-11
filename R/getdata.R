@@ -158,7 +158,7 @@ retrieve_plot_data <- function() {
     lead,
     c(0, 25, 50, 75, 100, 500),
     include.lowest = T,
-    labels = c('<25ppm', '25-50ppm', '50-75ppm', '75-100ppm', '100ppm+')
+    labels = c('<25', '25-50', '50-75', '75-100', '100+')
   )
 
   return(list(

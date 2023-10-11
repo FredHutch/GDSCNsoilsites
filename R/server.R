@@ -82,7 +82,7 @@ shiny_server <- function(input, output, session) {
   display <- reactive({
     leadCol <-
       colorFactor(palette = 'RdYlGn',
-                  retrieve_plot_data()$lead,
+                  retrieve_plot_data()$lead[-c(49,50)],
                   reverse = T)
 
     leaflet() %>%
@@ -90,9 +90,11 @@ shiny_server <- function(input, output, session) {
                        options = providerTileOptions(noWrap = TRUE)) %>%
       addCircleMarkers(
         data = retrieve_plot_data()$points[-c(49,50),],
-        color = ~ leadCol(retrieve_plot_data()$lead),
+        color = ~ leadCol(retrieve_plot_data()$lead[-c(49,50)]),
         radius = ~ 7
-      )
+      ) %>% addLegend('bottomright', pal = leadCol, values = lead[-c(49,50)],
+              title = 'Lead concentration (mg/kg)',
+              opacity = 1)
   })
 
   output$leadmap <- renderLeaflet({
