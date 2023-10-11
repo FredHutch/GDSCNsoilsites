@@ -82,19 +82,26 @@ shiny_server <- function(input, output, session) {
   display <- reactive({
     leadCol <-
       colorFactor(palette = 'RdYlGn',
-                  retrieve_plot_data()$lead[-c(49,50)],
+                  retrieve_plot_data()$lead,
                   reverse = T)
 
+
     leaflet() %>%
+      setView(-77, 39.1, zoom = 9) %>%
       addProviderTiles(providers$CartoDB.Positron,
                        options = providerTileOptions(noWrap = TRUE)) %>%
       addCircleMarkers(
-        data = retrieve_plot_data()$points[-c(49,50),],
-        color = ~ leadCol(retrieve_plot_data()$lead[-c(49,50)]),
+        data = retrieve_plot_data()$points,
+        color = ~ leadCol(retrieve_plot_data()$lead),
         radius = ~ 7
-      ) %>% addLegend('bottomright', pal = leadCol, values = lead[-c(49,50)],
-              title = 'Lead concentration (mg/kg)',
-              opacity = 1)
+      ) %>%
+      addLegend(
+        'bottomright',
+        pal = leadCol,
+        values = lead,
+        title = 'Lead concentration (mg/kg)',
+        opacity = 1
+      )
   })
 
   output$leadmap <- renderLeaflet({
