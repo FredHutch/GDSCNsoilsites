@@ -79,7 +79,7 @@ shiny_server <- function(input, output, session) {
   })
 
   # Reactive leaflet plot that has the option to add soil spatial properties
-  display <- reactive({
+  display2 <- reactive({
     leadCol <-
       colorFactor(palette = 'RdYlGn',
                   retrieve_plot_data()$lead,
@@ -105,7 +105,7 @@ shiny_server <- function(input, output, session) {
   })
 
   output$leadmap <- renderLeaflet({
-    display()
+    display2()
   })
 
   ### Site data table tab logic
