@@ -10,6 +10,23 @@ shiny_ui <- function() {
     # load custom stylesheet
     includeCSS("www/style.css"),
 
+    # Google Analytics
+    tags$head(
+      HTML(
+        "
+          <!-- Google tag (gtag.js) -->
+          <script async src='https://www.googletagmanager.com/gtag/js?id=G-Q0LZHVXB48'></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-Q0LZHVXB48');
+          </script>
+      "
+      )
+    ),
+
     dashboardPage(
 
       skin = "green",
@@ -148,6 +165,10 @@ shiny_ui <- function() {
                   actionButton(inputId='ab2', label="Field Protocol (pdf)",
                                icon = icon("flask"),
                                onclick ="window.open('https://docs.google.com/document/d/1oyFaknksSQEpwN7yGEBuGZaDGN96rKGOaovGsbhlGic/export?format=pdf', '_blank')"),
+                  HTML("<br><br>"),
+                  actionButton(inputId='ab2', label="Protocol Videos",
+                               icon = icon("video"),
+                               onclick ="window.open('https://www.youtube.com/playlist?list=PLzgm426KgvrhheloBdlSWshM9v2VvJEcX', '_blank')"),
                   HTML("<br><br>"),
                   actionButton(inputId='ab1', label="Field Safety (Google Doc)",
                                icon = icon("stethoscope"),
