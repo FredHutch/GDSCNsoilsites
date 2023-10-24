@@ -81,27 +81,27 @@ getdata <- function() {
       separate("type", into = c("type", "type2"), sep = ":")
     write.csv(soil_data, soil_file)
   } else {
-    last_created <- file.info(soil_file)$ctime
-    time_since <- lubridate::now() - last_created
-    # Check if the file was created in the last 24 hrs
-    if (time_since > lubridate::as.difftime(24, units = "hours")) {
-      do_gs4_auth()
-      soil_data <-
-        inner_join(
-          read_sheet(google_sheet_url_1),
-          read_sheet(google_sheet_url_2),
-          by = c(`What is your site name?` = 'site_name'),
-          keep = TRUE
-        ) %>%
-        inner_join(read_sheet(google_sheet_url_3), by = "full_name") %>%
-        inner_join(read_sheet(google_sheet_url_4, col_types = "ccccnnnnnnnnnnnnnnnnnnnnnnn"), by = "full_name") %>% # Special characters
-        rename("type" = `Which best describes your site?`) %>%
-        separate("type", into = c("type", "type2"), sep = ":")
-      write.csv(soil_data, soil_file)
-    } else {
+  #   last_created <- file.info(soil_file)$ctime
+  #   time_since <- lubridate::now() - last_created
+  #   # Check if the file was created in the last 24 hrs
+  #   if (time_since > lubridate::as.difftime(24, units = "hours")) {
+  #     do_gs4_auth()
+  #     soil_data <-
+  #       inner_join(
+  #         read_sheet(google_sheet_url_1),
+  #         read_sheet(google_sheet_url_2),
+  #         by = c(`What is your site name?` = 'site_name'),
+  #         keep = TRUE
+  #       ) %>%
+  #       inner_join(read_sheet(google_sheet_url_3), by = "full_name") %>%
+  #       inner_join(read_sheet(google_sheet_url_4, col_types = "ccccnnnnnnnnnnnnnnnnnnnnnnn"), by = "full_name") %>% # Special characters
+  #       rename("type" = `Which best describes your site?`) %>%
+  #       separate("type", into = c("type", "type2"), sep = ":")
+  #     write.csv(soil_data, soil_file)
+  #   } else {
       soil_data <- read.csv(soil_file)[, -1]
-    }
-  }
+  #   }
+   }
 
   return(soil_data)
 
