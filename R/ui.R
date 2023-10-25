@@ -77,6 +77,11 @@ shiny_ui <- function() {
             "Get Materials",
             tabName = "field_materials",
             icon = icon("pencil")
+          ),
+          menuItem(
+            "FAQs",
+            tabName = "faq",
+            icon = icon("lightbulb")
           )
         )
 
@@ -182,6 +187,11 @@ shiny_ui <- function() {
                                icon = icon("table"),
                                onclick ="window.open('https://forms.gle/Z2yH2KBggEF1y4KY9', '_blank')")
 
+          ),
+          tabItem(tabName = "faq",
+                  
+                  includeMarkdown("www/faq.md")
+                  
           )
 
         ) # end tabItems
