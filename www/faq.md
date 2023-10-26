@@ -31,7 +31,7 @@ We have prepared a protocol to make this easy! Check out the written protocol [h
 
 ## What information do I need to collect from students before we go into the field?
 * Make sure you have all participating students sign a liability waiver. Your school may have a specific one they want you to use; check with administration or student services. 
-*If you are taking pictures for the GDSCN archives, we ask that you also have students sign a photo release form giving us permission to use their image on the website or in future presentations.
+* If you are taking pictures for the GDSCN archives, we ask that you also have students sign a photo release form giving us permission to use their image on the website or in future presentations.
 * A standard liability waiver and photo release is provided [here](https://docs.google.com/document/d/1QattQqL5CadjMrIrRRz32zNZYbeT5p1sVr2l7RFQl9Y/edit)!
 
 
