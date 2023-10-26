@@ -20,7 +20,7 @@ _Tip 3:_ If they seem hesitant, assure them that you'll be taking very little so
 
 * For _college and university grounds_, you should contact the Facilities department. We have found email works best. You can follow the same [template email](https://docs.google.com/document/d/1C6bPBZFO2DhANMJHlNXqAMSAMBqpYjXlHl9JMxNAx6k/edit) and approach used for public land.
 
-* For _private land_, youll need to approach the owner. You may have to approach the owner in person or perhaps by phone. You can follow the same script as in the [template email](https://docs.google.com/document/d/1C6bPBZFO2DhANMJHlNXqAMSAMBqpYjXlHl9JMxNAx6k/edit).
+* For _private land_, you'll need to approach the owner. You may have to approach the owner in person or perhaps by phone. You can follow the same script as in the [template email](https://docs.google.com/document/d/1C6bPBZFO2DhANMJHlNXqAMSAMBqpYjXlHl9JMxNAx6k/edit).
 
 Please add a copy of the email or written permission in this [folder](https://drive.google.com/drive/folders/1g6zM45aHqtesIy3xc2QoZr_HPXa_NeKD?usp=share_link). If permission was given verbally, please add to [this sheet](https://docs.google.com/spreadsheets/d/1QAGvneJ8bbR3AHK6YUkv3xT3p3NeJ82K_5k3y7jswJI/edit?usp=sharing) with the details of who you spoke with and when. Please reach out to us if you need access to these files.
 
