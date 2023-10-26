@@ -1,6 +1,6 @@
 # FAQs
 
-If you don't find the answer to your question here, please contact Natalie Kucher at nkucher3@jhu.edu!
+If you don't find the answer to your question here, please contact Natalie Kucher (nkucher3 at jhu.edu)!
 
 ## What should I look for in a sampling site?
 * It needs to be big enough! We recommend a space 10 yards square (you can measure 10 yards by taking 10 big steps).
@@ -15,7 +15,9 @@ Land that you might want to sample will generally be one of three types: public 
 * For _public land_, the best approach is to email the appropriate contact person for permission. Public lands are generally managed by county, town, or city Park Services. Contact information can usually be found on the specific park websites. A template email is provided [here](https://docs.google.com/document/d/1C6bPBZFO2DhANMJHlNXqAMSAMBqpYjXlHl9JMxNAx6k/edit)!
 
 _Tip 1:_ Be specific about what sites you want to sample (they often will give a permit for just those sites).
+
 _Tip 2:_ Be prepared to be passed to several people, as the request is unusual and they don't always immediately know who the proper staff member to deal with the request is.
+
 _Tip 3:_ If they seem hesitant, assure them that you'll be taking very little soil and the grass cover will not be visually disturbed, since the samples will be taken from 5 inches below the ground.
 
 * For _college and university grounds_, you should contact the Facilities department. We have found email works best. You can follow the same [template email](https://docs.google.com/document/d/1C6bPBZFO2DhANMJHlNXqAMSAMBqpYjXlHl9JMxNAx6k/edit) and approach used for public land.
@@ -46,7 +48,7 @@ The soil can be dried at room temperature. Simply spread it out on the aluminum 
 
 
 ## Do I have to pay for shipping the samples back to you?
-Nope! All shipping costs will be paid for by the project. When you're ready to send your samples back, contact Natalie Kucher (nkucher3@jhu.edu) and she will send you a shipping label.
+Nope! All shipping costs will be paid for by the project. When you're ready to send your samples back, contact Natalie Kucher (nkucher3 at jhu.edu) and she will send you a shipping label.
 
 
 ## How long will it take for my samples to be analyzed?
