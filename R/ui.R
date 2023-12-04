@@ -31,7 +31,7 @@ shiny_ui <- function() {
 
       skin = "green",
 
-      dashboardHeader(title="Soil 🦠 Microbiomes", titleWidth = 300),
+      dashboardHeader(title="🧬 BioDIGS 🦠", titleWidth = 300),
 
       dashboardSidebar(
         width = 300,
