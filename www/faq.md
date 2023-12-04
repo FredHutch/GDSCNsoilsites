@@ -1,6 +1,6 @@
 # FAQs
 
-If you don't find the answer to your question here, please contact Natalie Kucher (nkucher3 at jhu.edu)!
+If you don't find the answer to your question here, please contact Natalie Kucher (nkucher3 at jhu.edu) and/or Ava Hoffman (ahoffma2 at fredhutch.org)!
 
 ## What should I look for in a sampling site?
 * It needs to be big enough! We recommend a space 10 yards square (you can measure 10 yards by taking 10 big steps).
@@ -48,7 +48,7 @@ The soil can be dried at room temperature. Simply spread it out on the aluminum 
 
 
 ## Do I have to pay for shipping the samples back to you?
-Nope! All shipping costs will be paid for by the project. When you're ready to send your samples back, contact Natalie Kucher (nkucher3 at jhu.edu) and she will send you a shipping label.
+Nope! All shipping costs will be paid for by BioDIGS. When you're ready to send your samples back, contact Natalie Kucher (nkucher3 at jhu.edu) and she will send you a shipping label.
 
 
 ## How long will it take for my samples to be analyzed?
