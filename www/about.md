@@ -1,8 +1,8 @@
-# About the Project
+# About the BioDIGS Project
 
 One critical aspect of an undergraduate STEM education is hands-on research. Undergraduate research experiences enhance what students learn in the classroom as well as increase a student's interest in pursuing STEM careers ^1. It can also lead to improved scientific reasoning and increased academic performance overall ^2. However, many students at underresourced institutions like community colleges, Historically Black Colleges and Universities (HBCUs), tribal colleges and universities, and Hispanic-serving institutions have limited access to research opportunities compared to their cohorts at larger four-year colleges and R1 institutions. These students are also more likely to belong to groups that are already under-represented in STEM disciplines, particularly genomics and data science ^3 ^4. 
 
-This project aims to be at the intersection of genomics, data science, cloud computing, and education.
+The BioDIGS (BioDiversity and Informatics for Genomics Scholars) Project aims to be at the intersection of genomics, data science, cloud computing, and education.
 
 ## What is genomics?
 
@@ -10,7 +10,7 @@ Genomics broadly refers to the study of genomes, which are an organism's complet
 
 Metagenomics expands genomics to look at the collective genomes of entire communities of organisms in an environmental sample, like soil. It allows researchers to study not just the genes of culturable or isolated organisms, but the entirety of genetic material present in a given environment. By using genomic techniques to survey the soil microbes, we can identify everything in the soil, including microbes that no one has identified before.
 
-We are doing both traditional genomics and metagenomics in this project.
+We are doing both traditional genomics and metagenomics as part of BioDIGS.
 
 ## What is data science?
 
@@ -32,15 +32,15 @@ Research suggests that increased heavy metal concentration in soils has major im
 
 # The Research Team
 
-This project is run by the Genomic Data Science Community Network (GDSCN). The GDSCN is a consortium of educators who are dedicated to expanding genomic data science and bioinformatics education to students at typically underresourced institutions including community colleges, HBCUs, tribal colleges and universities, and Hispanic-serving institutions. They are supported by Johns Hopkins University, the Fred Hutchinson Cancer Center, and the National Human Genome Research Institute. You can learn more about the GDSCN [here](https://www.gdscn.org/home).
+BioDIGS is run by the Genomic Data Science Community Network (GDSCN). The GDSCN is a consortium of educators who are dedicated to expanding genomic data science and bioinformatics education to students at typically underresourced institutions including community colleges, HBCUs, tribal colleges and universities, and Hispanic-serving institutions. They are supported by Johns Hopkins University, the Fred Hutchinson Cancer Center, and the National Human Genome Research Institute. You can learn more about the GDSCN [here](https://www.gdscn.org/home).
 
 ## Who did the soil sampling?
 
-Soil sampling for this project was done by both faculty and student volunteers from schools that aren't traditional R1 research institutions. Information about the schools and programs involved are on the map near each sampling area.
+Soil sampling for BioDIGS was done by both faculty and student volunteers from schools that aren't traditional R1 research institutions. Information about the schools and programs involved are on the map near each sampling area.
 
 ## Where is the funding from? 
 
-Funding for this project is through Contract # 75N92022P00232 from the National Human Genome Research Institute awarded to Johns Hopkins University.
+Funding for BioDIGS is through Contract # 75N92022P00232 from the National Human Genome Research Institute awarded to Johns Hopkins University.
 
 # References
 
