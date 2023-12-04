@@ -4,7 +4,7 @@ One critical aspect of an undergraduate STEM education is hands-on research. Und
 
 The BioDIGS (BioDiversity and Informatics for Genomics Scholars) Project aims to be at the intersection of genomics, data science, cloud computing, and education.
 
-## What is genomics? 🧬
+## What is genomics?
 
 Genomics broadly refers to the study of genomes, which are an organism's complete set of DNA. This includes both genes and non-coding regions of DNA. Traditional genomics involves sequencing and analyzing the genome of individual species.
 
@@ -12,19 +12,19 @@ Metagenomics expands genomics to look at the collective genomes of entire commun
 
 We are doing both traditional genomics and metagenomics as part of BioDIGS.
 
-## What is data science? 📈
+## What is data science?
 
 Data science is an interdisciplinary field that uses scientific methods, processes, algorithms and systems to extract knowledge and insights from structured and unstructured data. It includes collecting, cleaning, and combining data from multiple databases, exploring data and developing statistical and machine learning models to identify patterns in complex datasets, and creating tools to efficiently store, process, and access large amounts of data.
 
-## What is cloud computing? ☁️
+## What is cloud computing?
 
 Cloud computing just means using the internet to get access to powerful computer resources like storage, servers, databases, networking tools, and specialized software programs. Instead of having to buy and maintain their own powerful computers, storage servers, and other systems, users can pay to use them through an internet connection as needed. Users only pay for what they need, when they actually use it, and professionals update and maintain the systems in large data centers. It is a particularly useful tool for researchers and students at smaller institutions with limited computational services, especially when working with complex databases.
 
-## Why soil microbes? 🦠
+## Why soil microbes?
 
 It can be challenging to include undergraduates in human genomic and health research, especially in a classroom context. Both human genetic data and human health data are protected data, which limits the sort of information students can access without undergoing specialized ethics training. However, the same sorts of data cleaning and analysis methods used for human genomic data are also used for microbial genomic data, which does not have the same sort of legal protections as human genetic data. This makes it ideal for training undergraduate students at the beginning of their careers and can be used to prepare students for future research in human genomics and health ^5. Additionally, the microbes in the soil can have big impacts on our health ^6.
 
-## Why are heavy metals important for human health? 🩺
+## Why are heavy metals important for human health?
 
 Human activities that change the landscape can also change what sorts of inorganic and abiotic compounds we find in the soil, particularly increasing the amount of heavy metals ^7. When cars drive on roads, compounds from the exhaust, oil, and other fluids might settle onto the roads and be washed into the soil. When we put salt on roads, parking lots, and sidewalks, the salts themselves will eventually be washed away and enter the ecosystem through both water and soil. Chemicals from factories and other businesses also leech into our environment. Previous research has demonstrated that in areas with more human activity, like cities, soils include greater concentrations of heavy metals than found in rural areas with limited human populations ^8 ^9. Increased heavy metal concentrations also disproportionately affect lower-income and predominantly minority areas ^10.
 
