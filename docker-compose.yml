@@ -10,7 +10,7 @@ services:
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.gdscnsoil.rule=Host(`biodigs.org`)"
-        - "traefik.http.routers.gdscnsoil-secured.rule=Host(`gdscnsoil.fredhutch.org`)"
+        - "traefik.http.routers.gdscnsoil-secured.rule=Host(`biodigs.org`)"
         - "traefik.http.routers.gdscnsoil.entrypoints=web,web-secured"
         - "traefik.http.services.gdscnsoil.loadbalancer.server.port=3838" # it seems you always need to give traefik a port so it 'notices' the service
         - "traefik.http.routers.gdscnsoil.tls=true"
