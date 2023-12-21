@@ -9,11 +9,27 @@ services:
         condition: on-failure
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.gdscnsoil.rule=Host(`gdscnsoil.fredhutch.org`)"
-        - "traefik.http.routers.gdscnsoil-secured.rule=Host(`gdscnsoil.fredhutch.org`)"
+        - "traefik.http.routers.gdscnsoil.rule=Host(`biodigs.org`)"
+        - "traefik.http.routers.gdscnsoil-secured.rule=Host(`biodigs.org`)"
         - "traefik.http.routers.gdscnsoil.entrypoints=web,web-secured"
         - "traefik.http.services.gdscnsoil.loadbalancer.server.port=3838" # it seems you always need to give traefik a port so it 'notices' the service
         - "traefik.http.routers.gdscnsoil.tls=true"
+
+  redirect:
+    image: sc-registry.fredhutch.org/gdscnsoil-redirect:latest
+    networks:
+      - proxy
+    deploy:
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.biodigs_redirect.rule=Host(`gdscnsoil.fredhutch.org`)"
+        - "traefik.http.routers.biodigs_redirect-secured.rule=Host(`gdscnsoil.fredhutch.org`)"
+        - "traefik.http.routers.biodigs_redirect.entrypoints=web,web-secured"
+        - "traefik.http.services.biodigs_redirect.loadbalancer.server.port=80" # it seems you always need to give traefik a port so it 'notices' the service
+        - "traefik.http.routers.biodigs_redirect.tls=true"
+
 
 networks:
   proxy:
