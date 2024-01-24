@@ -54,7 +54,7 @@ shiny_server <- function(input, output, session) {
           popup = ~ paste0(
             '<img src="',
             as.character(retrieve_plot_data()$image_urls),
-            '" alt="image of the site" width="300" height="200">',
+            '" alt="image of the site" height="200px">',
             '<br>',
             as.character(retrieve_plot_data()$sitenames)
           ),
@@ -89,7 +89,7 @@ shiny_server <- function(input, output, session) {
           popup = ~ paste0(
             '<img src="',
             as.character(retrieve_plot_data()$image_urls),
-            '" alt="image of the site" width="300" height="200">',
+            '" alt="image of the site" height="200px">',
             '<br>',
             as.character(retrieve_plot_data()$sitenames)
           ),

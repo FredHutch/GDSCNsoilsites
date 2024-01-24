@@ -126,7 +126,7 @@ retrieve_plot_data <- function() {
   image_urls <-
     soil_data %>%
     dplyr::mutate(url = paste0(
-      'https://drive.google.com/uc?export=view&id=',
+      'https://lh3.googleusercontent.com/d/',
       google_img_id
     )) %>%
     select(url) %>%
