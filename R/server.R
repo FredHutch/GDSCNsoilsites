@@ -11,6 +11,23 @@
 shiny_server <- function(input, output, session) {
   ### Server logic
 
+  ### Go to specific tabs
+
+  observeEvent(input$sidebarID, {
+    # http://127.0.0.1:6172/#dashboard
+    # http://127.0.0.1:6172/#widgets
+    clientData <- reactiveValuesToList(session$clientData)
+    newURL <- with(clientData, paste0(url_protocol, "//", url_hostname, ":", url_port, url_pathname, "#", input$sidebarID))
+    updateQueryString(newURL, mode = "replace", session)
+  })
+
+  observe({
+    currentTab <- sub("#", "", session$clientData$url_hash)
+    if(!is.null(currentTab)){
+      updateTabItems(session, "sidebarID", selected = currentTab)
+    }
+  })
+
   ### Plot tab logic
 
   # Reactive leaflet plot that has the option to add soil spatial properties

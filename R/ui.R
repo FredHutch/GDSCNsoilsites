@@ -36,6 +36,7 @@ shiny_ui <- function() {
       dashboardSidebar(
         width = 300,
         sidebarMenu(
+          id = "sidebarID",
           HTML(
             paste0(
               "<br>",
