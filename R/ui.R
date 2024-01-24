@@ -139,7 +139,8 @@ shiny_ui <- function() {
                     , align = "center"
                     , style = "margin-bottom: 10px;"
                     , style = "margin-top: 10px;"
-                  )
+                  ),
+                  uiOutput("img")
           ),
 
           tabItem(tabName = "about",

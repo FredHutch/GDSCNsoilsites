@@ -30,6 +30,12 @@ shiny_server <- function(input, output, session) {
     }
   })
 
+  ### Imgs
+
+  output$img <- renderUI({
+    tags$img(src = "https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/students.png", height="100%", width="100%")
+  })
+
   ### Plot tab logic
 
   # Reactive leaflet plot that has the option to add soil spatial properties
