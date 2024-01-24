@@ -51,32 +51,32 @@ shiny_ui <- function() {
           ),
           menuItem(
             "Sample Map",
-            tabName = "map",
+            tabName = "sample_map",
             icon = icon("thumbtack")
           ),
           menuItem(
             "Soil Lead Map",
-            tabName = "leadmap",
+            tabName = "lead_map",
             icon = icon("thumbtack")
           ),
           menuItem(
             "Site Data",
-            tabName = "table",
+            tabName = "site_data",
             icon = icon("table")
           ),
           menuItem(
             "Soil Testing Data",
-            tabName = "soil_table",
+            tabName = "soil_data",
             icon = icon("table")
           ),
           menuItem(
             "DNA Concentration Data",
-            tabName = "conc_table",
+            tabName = "dna_conc_data",
             icon = icon("table")
           ),
           menuItem(
             "Get Materials",
-            tabName = "field_materials",
+            tabName = "materials",
             icon = icon("pencil")
           ),
           menuItem(
@@ -98,7 +98,7 @@ shiny_ui <- function() {
 
           ),
 
-          tabItem(tabName = "map",
+          tabItem(tabName = "sample_map",
 
                   checkboxInput(
                     "soil_geom_toggle",
@@ -111,12 +111,12 @@ shiny_ui <- function() {
 
           ),
 
-          tabItem(tabName = "leadmap",
+          tabItem(tabName = "lead_map",
                   leafletOutput("leadmap", height = 600)
 
           ),
 
-          tabItem(tabName = "table",
+          tabItem(tabName = "site_data",
 
                   downloadButton('site_data_download', label = 'Download data'),
                   HTML("<br><br>"),
@@ -124,7 +124,7 @@ shiny_ui <- function() {
 
           ),
 
-          tabItem(tabName = "soil_table",
+          tabItem(tabName = "soil_data",
 
                   uiOutput("testing_plot_region_box"),
                   uiOutput("testing_plot_management_box"),
@@ -148,7 +148,7 @@ shiny_ui <- function() {
 
           ),
 
-          tabItem(tabName = "conc_table",
+          tabItem(tabName = "dna_conc_data",
 
                   uiOutput("dna_plot_box"),
                   HTML("<br><br>"),
@@ -162,7 +162,7 @@ shiny_ui <- function() {
 
           ),
 
-          tabItem(tabName = "field_materials",
+          tabItem(tabName = "materials",
 
                   actionButton(inputId='ab1', label="Field Protocol (Google Doc)",
                                icon = icon("flask"),
