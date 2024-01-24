@@ -40,9 +40,14 @@ shiny_ui <- function() {
           HTML(
             paste0(
               "<br>",
-              "<a href='https://gdscn.org' target='_blank'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/jhudsl/AnVIL_Template/main/assets/GDSCN_style/logo-gdscn.png' width = '186'></a>",
+              "<a href='http://gdscn.org' target='_blank'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/jhudsl/AnVIL_Template/main/assets/GDSCN_style/logo-gdscn.png' width = '186'></a>",
               "<br>"
             )
+          ),
+          menuItem(
+            "Home",
+            tabName = "home",
+            icon = icon("house")
           ),
           menuItem(
             "About",
@@ -91,6 +96,51 @@ shiny_ui <- function() {
       dashboardBody(
 
         tabItems(
+
+          tabItem(tabName = "home",
+
+                  h1("BioDIGS", align = "center"),
+                  p("Unleash the Power of Soil Microbes to Advance STEM Education", align = "center"),
+                  HTML("<br>"),
+                  column(
+                    12,
+                    actionButton(inputId='ab2',
+                                 label="About Us",
+                                 onclick ="window.open('https://biodigs.org/#about')")
+                    , align = "center"
+                    , style = "margin-bottom: 10px;"
+                    , style = "margin-top: -10px;"
+                  ),
+                  HTML("<br>"),
+                  h2("Empowering underrepresented students in STEM through hands-on research", align = "center"),
+                  p("Dive into genomics & data science: Analyze real soil microbial data from diverse environments.", align = "center"),
+
+                  p("Uncover secrets of the soil: Learn how microbes impact our health & environment.", align = "center"),
+
+                  p("Gain cutting-edge skills: Master cloud computing, data analysis, and more.", align = "center"),
+
+                  p("Join a supportive community: Network with faculty & peers from across the country.", align = "center"),
+                  h2("Get Involved", align = "center"),
+                  HTML("<br>"),
+                  column(
+                    12,
+                    actionButton(inputId='ab2',
+                                 label="Get Your Kit!",
+                                 onclick ="window.open('http://gdscn.org')")
+                    , align = "center"
+                    , style = "margin-bottom: 10px;"
+                    , style = "margin-top: -10px;"
+                  ),
+                  column(
+                    12,
+                    actionButton(inputId='ab2',
+                                 label="Learn more about the Genomic Data Science Community Network",
+                                 onclick ="window.open('https://gdscn.org/')")
+                    , align = "center"
+                    , style = "margin-bottom: 10px;"
+                    , style = "margin-top: 10px;"
+                  )
+          ),
 
           tabItem(tabName = "about",
 

@@ -12,6 +12,8 @@ shiny_server <- function(input, output, session) {
   ### Server logic
 
   ### Go to specific tabs
+  # Helpful link:
+  # https://stackoverflow.com/questions/70080803/uri-routing-for-shinydashboard-using-shiny-router/70093686#70093686
 
   observeEvent(input$sidebarID, {
     # http://127.0.0.1:6172/#dashboard
