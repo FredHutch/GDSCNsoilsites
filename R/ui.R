@@ -55,29 +55,37 @@ shiny_ui <- function() {
             icon = icon("lightbulb")
           ),
           menuItem(
-            "Sample Map",
-            tabName = "sample_map",
-            icon = icon("thumbtack")
+            "Maps",
+            icon = icon("thumbtack"),
+            menuSubItem(
+              "Sample Map",
+              icon = icon("thumbtack"),
+              tabName = "sample_map"
+            ),
+            menuSubItem(
+              "Soil Lead Map",
+              icon = icon("thumbtack"),
+              tabName = "lead_map"
+            )
           ),
           menuItem(
-            "Soil Lead Map",
-            tabName = "lead_map",
-            icon = icon("thumbtack")
-          ),
-          menuItem(
-            "Site Data",
-            tabName = "site_data",
-            icon = icon("table")
-          ),
-          menuItem(
-            "Soil Testing Data",
-            tabName = "soil_data",
-            icon = icon("table")
-          ),
-          menuItem(
-            "DNA Concentration Data",
-            tabName = "dna_conc_data",
-            icon = icon("table")
+            "Data",
+            icon = icon("table"),
+            menuSubItem(
+              "Site Data",
+              icon = icon("table"),
+              tabName = "site_data"
+            ),
+            menuSubItem(
+              "Soil Testing Data",
+              tabName = "soil_data",
+              icon = icon("table")
+            ),
+            menuSubItem(
+              "DNA Concentration Data",
+              tabName = "dna_conc_data",
+              icon = icon("table")
+            )
           ),
           menuItem(
             "Get Materials",
