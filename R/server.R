@@ -234,6 +234,8 @@ shiny_server <- function(input, output, session) {
         response_ <- "Lead"
       if (input$testing_response_choice == "Zn_EPA3051")
         response_ <- "Zinc"
+      if (input$testing_response_choice == "Fe_Mehlich3")
+        response_ <- "Iron"
       ggplot(data = get_browseable_testing_data(),
              aes(
                x = get(input$testing_response_choice),
@@ -272,6 +274,8 @@ shiny_server <- function(input, output, session) {
         response_ <- "Lead"
       if (input$testing_response_choice == "Zn_EPA3051")
         response_ <- "Zinc"
+      if (input$testing_response_choice == "Fe_Mehlich3")
+        response_ <- "Iron"
       ggplot(data = get_browseable_testing_data(), aes(
         x = get(input$testing_response_choice),
         group = type,
