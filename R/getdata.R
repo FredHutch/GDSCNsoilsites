@@ -145,11 +145,25 @@ retrieve_plot_data <- function() {
     labels = c('<25', '25-50', '50-75', '75-100', '100+')
   )
 
+  # Get iron values
+  iron <-
+    soil_data %>%
+    select(Fe_Mehlich3) %>%
+    pull()
+
+  iron <- cut(
+    iron,
+    c(0, 100, 150, 200, 250, 1000),
+    include.lowest = T,
+    labels = c('<100', '100-150', '150-200', '200-250', '250+')
+  )
+
   return(list(
     points = gps_points,
     sitenames = sitenames,
     image_urls = image_urls,
-    lead = lead
+    lead = lead,
+    iron = iron
   ))
 }
 

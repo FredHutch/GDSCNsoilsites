@@ -133,6 +133,36 @@ shiny_server <- function(input, output, session) {
     display2()
   })
 
+  # Reactive leaflet plot that has the option to add soil spatial properties
+  display3 <- reactive({
+    ironCol <-
+      colorFactor(palette = 'RdYlGn',
+                  retrieve_plot_data()$iron,
+                  reverse = T)
+
+
+    leaflet() %>%
+      setView(-77, 39.1, zoom = 9) %>%
+      addProviderTiles(providers$CartoDB.Positron,
+                       options = providerTileOptions(noWrap = TRUE)) %>%
+      addCircleMarkers(
+        data = retrieve_plot_data()$points,
+        color = ~ ironCol(retrieve_plot_data()$iron),
+        radius = ~ 7
+      ) %>%
+      addLegend(
+        'bottomright',
+        pal = ironCol,
+        values = na.omit(retrieve_plot_data()$iron),
+        title = 'Iron concentration (mg/kg)',
+        opacity = 1
+      )
+  })
+
+  output$ironmap <- renderLeaflet({
+    display3()
+  })
+
   ### Site data table tab logic
 
   # Create browseable site info table
