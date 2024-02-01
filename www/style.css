@@ -210,3 +210,12 @@ body {
 .content-wrapper, .right-side {
 background-color: #ffffff;
 }
+
+/* links */
+a {
+  color: #73b263;
+}
+/* mouse over link */
+a:hover {
+  color: #517d45;
+}

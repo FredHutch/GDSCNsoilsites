@@ -30,18 +30,6 @@ Human activities that change the landscape can also change what sorts of inorgan
 
 Research suggests that increased heavy metal concentration in soils has major impacts on the soil microbial community. In particular, increased heavy metal concentration is associated with an increase in soil bacteria that have antibiotic resistance markers ^11 ^12 ^13.
 
-# The Research Team
-
-BioDIGS is run by the Genomic Data Science Community Network (GDSCN). The GDSCN is a consortium of educators who are dedicated to expanding genomic data science and bioinformatics education to students at typically underresourced institutions including community colleges, HBCUs, tribal colleges and universities, and Hispanic-serving institutions. They are supported by Johns Hopkins University, the Fred Hutchinson Cancer Center, and the National Human Genome Research Institute. You can learn more about the GDSCN [here](https://www.gdscn.org/home).
-
-## Who did the soil sampling?
-
-Soil sampling for BioDIGS was done by both faculty and student volunteers from schools that aren't traditional R1 research institutions. Information about the schools and programs involved are on the map near each sampling area.
-
-## Where is the funding from? 
-
-Funding for BioDIGS is through Contract # 75N92022P00232 from the National Human Genome Research Institute awarded to Johns Hopkins University.
-
 # References
 
 1: Russell et al. 2007: https://doi.org/10.1126/science.1140384

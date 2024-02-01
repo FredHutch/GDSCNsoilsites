@@ -40,16 +40,36 @@ shiny_ui <- function() {
         width = 300,
         sidebarMenu(
           id = "sidebarID",
+
+          # Home
           menuItem(
             "Home",
             tabName = "home",
             icon = icon("house")
           ),
+
+          # About tab
           menuItem(
             "About",
-            tabName = "about",
-            icon = icon("lightbulb")
+            icon = icon("lightbulb"),
+            menuSubItem(
+              "Why BioDIGS?",
+              icon = icon("lightbulb"),
+              tabName = "about"
+            ),
+            menuSubItem(
+              "Our Team",
+              tabName = "team",
+              icon = icon("lightbulb")
+            ),
+            menuSubItem(
+              "Sponsors",
+              tabName = "sponsors",
+              icon = icon("lightbulb")
+            )
           ),
+
+          # Maps tab
           menuItem(
             "Maps",
             icon = icon("thumbtack"),
@@ -69,6 +89,8 @@ shiny_ui <- function() {
               tabName = "iron_map"
             )
           ),
+
+          # Data tab
           menuItem(
             "Data",
             icon = icon("table"),
@@ -88,11 +110,15 @@ shiny_ui <- function() {
               icon = icon("table")
             )
           ),
+
+          # Materials
           menuItem(
             "Get Materials",
             tabName = "materials",
             icon = icon("pencil")
           ),
+
+          # FAQs
           menuItem(
             "FAQs",
             tabName = "faq",
@@ -161,8 +187,38 @@ shiny_ui <- function() {
           ),
 
           tabItem(tabName = "about",
-
+                  HTML(
+                    paste0(
+                      "<br>",
+                      "<img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/logo_BioDIGS_final.png' width = '300'>",
+                      "<br>"
+                    )
+                  ),
                   includeMarkdown("www/about.md")
+
+          ),
+
+          tabItem(tabName = "team",
+                  HTML(
+                    paste0(
+                      "<br>",
+                      "<img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/logo_BioDIGS_final.png' width = '300'>",
+                      "<br>"
+                    )
+                  ),
+                  includeMarkdown("www/team.md")
+
+          ),
+
+          tabItem(tabName = "sponsors",
+                  HTML(
+                    paste0(
+                      "<br>",
+                      "<img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/logo_BioDIGS_final.png' width = '300'>",
+                      "<br>"
+                    )
+                  ),
+                  includeMarkdown("www/sponsors.md")
 
           ),
 
