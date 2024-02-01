@@ -37,13 +37,6 @@ shiny_ui <- function() {
         width = 300,
         sidebarMenu(
           id = "sidebarID",
-          HTML(
-            paste0(
-              "<br>",
-              "<a href='http://gdscn.org' target='_blank'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/jhudsl/AnVIL_Template/main/assets/GDSCN_style/logo-gdscn.png' width = '186'></a>",
-              "<br>"
-            )
-          ),
           menuItem(
             "Home",
             tabName = "home",
@@ -112,19 +105,25 @@ shiny_ui <- function() {
 
           tabItem(tabName = "home",
 
-                  h1("BioDIGS", align = "center"),
+                  HTML(
+                    paste0(
+                      "<br>",
+                      "<a href='https://biodigs.org' target='_blank'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/logo_BioDIGS_final.png' width = '300'></a>",
+                      "<br>"
+                    )
+                  ),
                   p("Unleash the Power of Soil Microbes to Advance STEM Education", align = "center"),
                   HTML("<br>"),
                   column(
                     12,
                     actionButton(inputId='ab2',
-                                 label="About Us",
+                                 label="About BioDIGS",
                                  onclick ="window.open('https://biodigs.org/#about')")
                     , align = "center"
                     , style = "margin-bottom: 10px;"
                     , style = "margin-top: -10px;"
                   ),
-                  HTML("<br>"),
+                  HTML("<br><br>"),
                   h2("Empowering underrepresented students in STEM through hands-on research", align = "center"),
                   p("Dive into genomics & data science: Analyze real soil microbial data from diverse environments.", align = "center"),
 
