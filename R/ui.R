@@ -27,6 +27,9 @@ shiny_ui <- function() {
       )
     ),
 
+    # Favicon
+    tags$head(tags$link(rel="shortcut icon", href="https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/icon.png")),
+
     dashboardPage(
 
       skin = "green",
@@ -132,6 +135,7 @@ shiny_ui <- function() {
                   p("Gain cutting-edge skills: Master cloud computing, data analysis, and more.", align = "center"),
 
                   p("Join a supportive community: Network with faculty & peers from across the country.", align = "center"),
+                  HTML("<br>"),
                   h2("Get Involved", align = "center"),
                   HTML("<br>"),
                   column(
@@ -146,12 +150,13 @@ shiny_ui <- function() {
                   column(
                     12,
                     actionButton(inputId='ab2',
-                                 label="Learn more about the Genomic Data Science Community Network",
+                                 label=HTML(paste0(strwrap('Learn more about the Genomic Data Science Community Network', width=40), collapse="</br>")),
                                  onclick ="window.open('https://gdscn.org/')")
                     , align = "center"
                     , style = "margin-bottom: 10px;"
                     , style = "margin-top: 10px;"
                   ),
+                  HTML("&nbsp;"),
                   uiOutput("img")
           ),
 
