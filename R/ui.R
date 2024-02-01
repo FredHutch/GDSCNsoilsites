@@ -142,7 +142,7 @@ shiny_ui <- function() {
                     12,
                     actionButton(inputId='ab2',
                                  label="Get Your Kit!",
-                                 onclick ="window.open('http://gdscn.org')")
+                                 onclick ="window.open('https://forms.gle/PEe5Kh21GqKHvY7Z8')")
                     , align = "center"
                     , style = "margin-bottom: 10px;"
                     , style = "margin-top: -10px;"
