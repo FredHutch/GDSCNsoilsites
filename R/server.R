@@ -30,6 +30,11 @@ shiny_server <- function(input, output, session) {
     }
   })
 
+  # Button that goes to "About" tab
+  observeEvent(input$switch_to_about, {
+    updateTabItems(session, "sidebarID", "about")
+  })
+
   ### Imgs
 
   output$img <- renderUI({

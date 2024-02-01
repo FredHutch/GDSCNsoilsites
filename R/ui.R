@@ -137,7 +137,7 @@ shiny_ui <- function() {
                   HTML(
                     paste0(
                       "<br>",
-                      "<a href='https://biodigs.org' target='_blank'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/logo_BioDIGS_final.png' width = '300'></a>",
+                      "<a href='https://biodigs.org'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/logo_BioDIGS_final.png' width = '300'></a>",
                       "<br>"
                     )
                   ),
@@ -145,9 +145,7 @@ shiny_ui <- function() {
                   HTML("<br>"),
                   column(
                     12,
-                    actionButton(inputId='ab2',
-                                 label="About BioDIGS",
-                                 onclick ="window.open('https://biodigs.org/#about')")
+                    actionButton(inputId = 'switch_to_about', label = 'About BioDIGS')
                     , align = "center"
                     , style = "margin-bottom: 10px;"
                     , style = "margin-top: -10px;"
@@ -190,7 +188,7 @@ shiny_ui <- function() {
                   HTML(
                     paste0(
                       "<br>",
-                      "<img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/logo_BioDIGS_final.png' width = '300'>",
+                      "<a href='https://biodigs.org'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/logo_BioDIGS_final.png' width = '300'></a>",
                       "<br>"
                     )
                   ),
@@ -202,7 +200,7 @@ shiny_ui <- function() {
                   HTML(
                     paste0(
                       "<br>",
-                      "<img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/logo_BioDIGS_final.png' width = '300'>",
+                      "<a href='https://biodigs.org'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/logo_BioDIGS_final.png' width = '300'></a>",
                       "<br>"
                     )
                   ),
@@ -214,7 +212,7 @@ shiny_ui <- function() {
                   HTML(
                     paste0(
                       "<br>",
-                      "<img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/logo_BioDIGS_final.png' width = '300'>",
+                      "<a href='https://biodigs.org'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/logo_BioDIGS_final.png' width = '300'></a>",
                       "<br>"
                     )
                   ),
