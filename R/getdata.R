@@ -132,6 +132,7 @@ retrieve_plot_data <- function() {
     select(url) %>%
     pull()
 
+  # HEAVY METALS
   # Get lead values
   lead <-
     soil_data %>%
@@ -143,6 +144,20 @@ retrieve_plot_data <- function() {
     c(0, 25, 50, 75, 100, 500),
     include.lowest = T,
     labels = c('<25', '25-50', '50-75', '75-100', '100+')
+  )
+
+  # Get arsenic values
+  arsenic <-
+    soil_data %>%
+    select(As_EPA3051) %>%
+    mutate(As_EPA3051 = case_when(As_EPA3051 == "< 3.0" ~ 3.0, TRUE ~ as.numeric(As_EPA3051))) %>%
+    pull()
+
+  arsenic <- cut(
+    arsenic,
+    c(0, 3.0, 5, 10, 15, 1000),
+    include.lowest = T,
+    labels = c('< 3.0', '3.0-5.0', '5.0-10.0', '10.0-15.0', '15.0+')
   )
 
   # Get iron values
@@ -163,6 +178,7 @@ retrieve_plot_data <- function() {
     sitenames = sitenames,
     image_urls = image_urls,
     lead = lead,
+    arsenic = arsenic,
     iron = iron
   ))
 }

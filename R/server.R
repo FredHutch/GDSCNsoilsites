@@ -168,6 +168,36 @@ shiny_server <- function(input, output, session) {
     display3()
   })
 
+  # Reactive leaflet plot that has the option to add soil spatial properties
+  arsenicmap <- reactive({
+    AsCol <-
+      colorFactor(palette = 'RdYlGn',
+                  retrieve_plot_data()$arsenic,
+                  reverse = T)
+
+
+    leaflet() %>%
+      setView(-77, 39.1, zoom = 9) %>%
+      addProviderTiles(providers$CartoDB.Positron,
+                       options = providerTileOptions(noWrap = TRUE)) %>%
+      addCircleMarkers(
+        data = retrieve_plot_data()$points,
+        color = ~ AsCol(retrieve_plot_data()$arsenic),
+        radius = ~ 7
+      ) %>%
+      addLegend(
+        'bottomright',
+        pal = AsCol,
+        values = na.omit(retrieve_plot_data()$arsenic),
+        title = 'Arsenic concentration (mg/kg)',
+        opacity = 1
+      )
+  })
+
+  output$arsenicmap <- renderLeaflet({
+    arsenicmap()
+  })
+
   ### Site data table tab logic
 
   # Create browseable site info table

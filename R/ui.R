@@ -84,6 +84,11 @@ shiny_ui <- function() {
               tabName = "lead_map"
             ),
             menuSubItem(
+              "Soil Arsenic Map",
+              icon = icon("thumbtack"),
+              tabName = "arsenic_map"
+            ),
+            menuSubItem(
               "Soil Iron Map",
               icon = icon("thumbtack"),
               tabName = "iron_map"
@@ -235,6 +240,11 @@ shiny_ui <- function() {
 
           tabItem(tabName = "lead_map",
                   leafletOutput("leadmap", height = 600)
+
+          ),
+
+          tabItem(tabName = "arsenic_map",
+                  leafletOutput("arsenicmap", height = 600)
 
           ),
 
