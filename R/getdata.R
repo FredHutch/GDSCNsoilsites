@@ -150,7 +150,9 @@ retrieve_plot_data <- function() {
   arsenic <-
     soil_data %>%
     select(As_EPA3051) %>%
-    mutate(As_EPA3051 = case_when(As_EPA3051 == "< 3.0" ~ 3.0, TRUE ~ as.numeric(As_EPA3051))) %>%
+    mutate(As_EPA3051 = case_when(As_EPA3051 == "< 3.0" ~ "3.0", TRUE ~ As_EPA3051)) %>%
+    drop_na(As_EPA3051) %>%
+    mutate(As_EPA3051 = as.numeric(As_EPA3051)) %>%
     pull()
 
   arsenic <- cut(
