@@ -118,8 +118,15 @@ shiny_ui <- function() {
 
           # Materials
           menuItem(
-            "Get Materials",
-            tabName = "materials",
+            "Protocols",
+            tabName = "protocols",
+            icon = icon("flask")
+          ),
+
+          # Education
+          menuItem(
+            "Education",
+            tabName = "education",
             icon = icon("pencil")
           ),
 
@@ -300,8 +307,16 @@ shiny_ui <- function() {
 
           ),
 
-          tabItem(tabName = "materials",
-
+          tabItem(tabName = "protocols",
+                  HTML(
+                    paste0(
+                      "<br>",
+                      "<a href='https://biodigs.org'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/logo_BioDIGS_final.png' width = '300'></a>",
+                      "<br>"
+                    )
+                  ),
+                  h1("Protocols"),
+                  HTML("<br>"),
                   actionButton(inputId='ab1', label="Field Protocol (Google Doc)",
                                icon = icon("flask"),
                                onclick ="window.open('https://docs.google.com/document/d/1oyFaknksSQEpwN7yGEBuGZaDGN96rKGOaovGsbhlGic/edit?usp=sharing', '_blank')"),
@@ -327,6 +342,38 @@ shiny_ui <- function() {
                                onclick ="window.open('https://forms.gle/Z2yH2KBggEF1y4KY9', '_blank')")
 
           ),
+
+          tabItem(tabName = "education",
+                  HTML(
+                    paste0(
+                      "<br>",
+                      "<a href='https://biodigs.org'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/logo_BioDIGS_final.png' width = '300'></a>",
+                      "<br>"
+                    )
+                  ),
+
+                  includeMarkdown("www/education.md"),
+
+                  HTML("<br><br>"),
+                  column(
+                    12,
+                    actionButton(inputId='ab2',
+                                 label="Launch!",
+                                 onclick ="window.open('https://hutchdatascience.org/GDSCN_BioDIGS_Book/')")
+                    , align = "center"
+                    , style = "margin-bottom: 10px;"
+                    , style = "margin-top: -10px;"
+                  ),
+
+                  # Create some whitespace around the image
+                  HTML("&nbsp;"),
+                  uiOutput("classroom_img", align = "center"),
+                  HTML("&nbsp;"),
+                  HTML("&nbsp;"),
+                  HTML("&nbsp;")
+
+          ),
+
           tabItem(tabName = "faq",
 
                   includeMarkdown("www/faq.md")

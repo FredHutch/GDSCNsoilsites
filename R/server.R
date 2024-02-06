@@ -37,8 +37,14 @@ shiny_server <- function(input, output, session) {
 
   ### Imgs
 
+  # Student Image
   output$img <- renderUI({
     tags$img(src = "https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/students.png", height="100%", width="100%")
+  })
+
+  # Activity Image
+  output$classroom_img <- renderUI({
+    tags$img(src = "https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/classroom.png", height="80%", width="80%")
   })
 
   ### Plot tab logic
