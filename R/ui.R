@@ -97,7 +97,7 @@ shiny_ui <- function() {
 
           # Data tab
           menuItem(
-            "Data",
+            "Data & Packages",
             icon = icon("table"),
             menuSubItem(
               "Site Data",
@@ -113,6 +113,11 @@ shiny_ui <- function() {
               "DNA Concentration Data",
               tabName = "dna_conc_data",
               icon = icon("table")
+            ),
+            menuSubItem(
+              "BioDIGSData Package",
+              tabName = "biodigsdata",
+              icon = icon("code")
             )
           ),
 
@@ -304,6 +309,18 @@ shiny_ui <- function() {
                   downloadButton('dnaconc_download', label = 'Download data'),
                   HTML("<br><br>"),
                   DT::DTOutput("dnaconcDataTable")
+
+          ),
+
+          tabItem(tabName = "biodigsdata",
+                  HTML(
+                    paste0(
+                      "<br>",
+                      "<a href='https://biodigs.org'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/logo_BioDIGS_final.png' width = '300'></a>",
+                      "<br>"
+                    )
+                  ),
+                  includeMarkdown("www/biodigsdata.md")
 
           ),
 
