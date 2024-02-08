@@ -10,23 +10,6 @@ shiny_ui <- function() {
     # load custom stylesheet
     includeCSS("www/style.css"),
 
-    # Google Analytics
-    tags$head(
-      HTML(
-        "
-          <!-- Google tag (gtag.js) -->
-          <script async src='https://www.googletagmanager.com/gtag/js?id=G-Q0LZHVXB48'></script>
-          <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-Q0LZHVXB48');
-          </script>
-      "
-      )
-    ),
-
     # Favicon
     tags$head(tags$link(rel="shortcut icon", href="https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/icon.png")),
 
@@ -150,6 +133,8 @@ shiny_ui <- function() {
         tabItems(
 
           tabItem(tabName = "home",
+                  # Google Analytics
+                  includeHTML("www/google_analytics.html"),
 
                   HTML(
                     paste0(
@@ -158,6 +143,7 @@ shiny_ui <- function() {
                       "<br>"
                     )
                   ),
+
                   p("Unleash the Power of Soil Microbes to Advance STEM Education", align = "center"),
                   HTML("<br>"),
                   column(
@@ -202,6 +188,9 @@ shiny_ui <- function() {
           ),
 
           tabItem(tabName = "about",
+                  # Google Analytics
+                  includeHTML("www/google_analytics.html"),
+
                   HTML(
                     paste0(
                       "<br>",
@@ -214,6 +203,9 @@ shiny_ui <- function() {
           ),
 
           tabItem(tabName = "team",
+                  # Google Analytics
+                  includeHTML("www/google_analytics.html"),
+
                   HTML(
                     paste0(
                       "<br>",
@@ -226,6 +218,9 @@ shiny_ui <- function() {
           ),
 
           tabItem(tabName = "sponsors",
+                  # Google Analytics
+                  includeHTML("www/google_analytics.html"),
+
                   HTML(
                     paste0(
                       "<br>",
@@ -238,6 +233,8 @@ shiny_ui <- function() {
           ),
 
           tabItem(tabName = "sample_map",
+                  # Google Analytics
+                  includeHTML("www/google_analytics.html"),
 
                   checkboxInput(
                     "soil_geom_toggle",
@@ -251,21 +248,29 @@ shiny_ui <- function() {
           ),
 
           tabItem(tabName = "lead_map",
+                  # Google Analytics
+                  includeHTML("www/google_analytics.html"),
                   leafletOutput("leadmap", height = 600)
 
           ),
 
           tabItem(tabName = "arsenic_map",
+                  # Google Analytics
+                  includeHTML("www/google_analytics.html"),
                   leafletOutput("arsenicmap", height = 600)
 
           ),
 
           tabItem(tabName = "iron_map",
+                  # Google Analytics
+                  includeHTML("www/google_analytics.html"),
                   leafletOutput("ironmap", height = 600)
 
           ),
 
           tabItem(tabName = "site_data",
+                  # Google Analytics
+                  includeHTML("www/google_analytics.html"),
 
                   downloadButton('site_data_download', label = 'Download data'),
                   HTML("<br><br>"),
@@ -274,6 +279,8 @@ shiny_ui <- function() {
           ),
 
           tabItem(tabName = "soil_data",
+                  # Google Analytics
+                  includeHTML("www/google_analytics.html"),
 
                   uiOutput("testing_plot_region_box"),
                   uiOutput("testing_plot_management_box"),
@@ -299,6 +306,8 @@ shiny_ui <- function() {
           ),
 
           tabItem(tabName = "dna_conc_data",
+                  # Google Analytics
+                  includeHTML("www/google_analytics.html"),
 
                   uiOutput("dna_plot_box"),
                   HTML("<br><br>"),
@@ -313,6 +322,9 @@ shiny_ui <- function() {
           ),
 
           tabItem(tabName = "biodigsdata",
+                  # Google Analytics
+                  includeHTML("www/google_analytics.html"),
+
                   HTML(
                     paste0(
                       "<br>",
@@ -325,6 +337,9 @@ shiny_ui <- function() {
           ),
 
           tabItem(tabName = "protocols",
+                  # Google Analytics
+                  includeHTML("www/google_analytics.html"),
+
                   HTML(
                     paste0(
                       "<br>",
@@ -361,6 +376,9 @@ shiny_ui <- function() {
           ),
 
           tabItem(tabName = "education",
+                  # Google Analytics
+                  includeHTML("www/google_analytics.html"),
+
                   HTML(
                     paste0(
                       "<br>",
@@ -392,6 +410,8 @@ shiny_ui <- function() {
           ),
 
           tabItem(tabName = "faq",
+                  # Google Analytics
+                  includeHTML("www/google_analytics.html"),
 
                   includeMarkdown("www/faq.md")
 
