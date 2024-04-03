@@ -11,28 +11,21 @@
 shiny_server <- function(input, output, session) {
   ### Server logic
 
-  ### Go to specific tabs
+  ### Go to specific tabs and allow them to have their own url
   # Helpful link:
   # https://stackoverflow.com/questions/70080803/uri-routing-for-shinydashboard-using-shiny-router/70093686#70093686
 
-  observeEvent(input$sidebarID, {
-    # http://127.0.0.1:6172/#dashboard
-    # http://127.0.0.1:6172/#widgets
+  observeEvent(input$navBar, {
     clientData <- reactiveValuesToList(session$clientData)
-    newURL <- with(clientData, paste0(url_protocol, "//", url_hostname, ":", url_port, url_pathname, "#", input$sidebarID))
+    newURL <- with(clientData, paste0(url_protocol, "//", url_hostname, ":", url_port, url_pathname, "#", input$navBar))
     updateQueryString(newURL, mode = "replace", session)
   })
 
   observe({
     currentTab <- sub("#", "", session$clientData$url_hash)
     if(!is.null(currentTab)){
-      updateTabItems(session, "sidebarID", selected = currentTab)
+      updateTabItems(session, "navBar", selected = currentTab)
     }
-  })
-
-  # Button that goes to "About" tab
-  observeEvent(input$switch_to_about, {
-    updateTabItems(session, "sidebarID", "about")
   })
 
   ### Imgs

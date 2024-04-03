@@ -447,7 +447,8 @@ shiny_ui <- function() {
     # Home Page Tab
     #####
     tabPanel(
-      "HOME",
+      title = "HOME",
+      value = "home",
       # Google Analytics
       includeHTML("www/google_analytics.html"),
 
@@ -539,9 +540,10 @@ shiny_ui <- function() {
     # About Tab + Menu
     #####
     navbarMenu(
-      "ABOUT",
+      title = "ABOUT",
       tabPanel(
-        "Why BioDIGS?",
+        title = "Why BioDIGS?",
+        value = "about",
         # Google Analytics
         includeHTML("www/google_analytics.html"),
 
@@ -552,7 +554,8 @@ shiny_ui <- function() {
 
       # Closes About tab
       tabPanel(
-        "Team",
+        title = "Team",
+        value = "team",
         # Google Analytics
         includeHTML("www/google_analytics.html"),
 
@@ -563,7 +566,8 @@ shiny_ui <- function() {
       # Close Team Tab
 
       tabPanel(
-        "Sponsors",
+        title = "Sponsors",
+        value = "sponsors",
         # Google Analytics
         includeHTML("www/google_analytics.html"),
 
@@ -580,9 +584,10 @@ shiny_ui <- function() {
     # Maps Tab + Menu
     #####
     navbarMenu(
-      "MAPS",
+      title = "MAPS",
       tabPanel(
-        "Sample Map",
+        title = "Sample Map",
+        value = "sample_map",
         # Google Analytics
         includeHTML("www/google_analytics.html"),
         checkboxInput(
@@ -597,7 +602,8 @@ shiny_ui <- function() {
       # Closes Samples tab
 
       tabPanel(
-        "Soil Lead Map",
+        title = "Soil Lead Map",
+        value = "lead_map",
         # Google Analytics
         includeHTML("www/google_analytics.html"),
         leafletOutput("leadmap", height = 600)
@@ -605,7 +611,8 @@ shiny_ui <- function() {
       # Close Lead Map Tab
 
       tabPanel(
-        "Soil Arsenic Map",
+        title = "Soil Arsenic Map",
+        value = "arsenic_map",
         # Google Analytics
         includeHTML("www/google_analytics.html"),
         leafletOutput("arsenicmap", height = 600)
@@ -613,7 +620,8 @@ shiny_ui <- function() {
       # Close Arsenic Map Tab
 
       tabPanel(
-        "Soil Iron Map",
+        title = "Soil Iron Map",
+        value = "iron_map",
         # Google Analytics
         includeHTML("www/google_analytics.html"),
         leafletOutput("ironmap", height = 600)
@@ -627,9 +635,23 @@ shiny_ui <- function() {
     # Data & Packages Tab + Menu
     #####
     navbarMenu(
-      "DATA & PACKAGES",
+      title = "DATA & PACKAGES",
+
       tabPanel(
-        "Soil Data",
+        title = "Site Data",
+        value = "site_data",
+        # Google Analytics
+        includeHTML("www/google_analytics.html"),
+
+        downloadButton('site_data_download', label = 'Download data'),
+        HTML("<br><br>"),
+        DT::DTOutput("siteDataTable")
+      ),
+      # Close the Site data tab
+
+      tabPanel(
+        title = "Soil Data",
+        value = "soil_data",
         # Google Analytics
         includeHTML("www/google_analytics.html"),
 
@@ -667,7 +689,8 @@ shiny_ui <- function() {
       # Close the Soil data tab
 
       tabPanel(
-        "DNA Concentration",
+        title = "DNA Concentration",
+        value = "dna_conc_data",
         # Google Analytics
         includeHTML("www/google_analytics.html"),
 
@@ -687,7 +710,8 @@ shiny_ui <- function() {
       # Close the DNA conc tab
 
       tabPanel(
-        "biodigsdata",
+        title = "BioDIGSData Package",
+        value = "biodigsdata",
         # Google Analytics
         includeHTML("www/google_analytics.html"),
 
@@ -704,7 +728,8 @@ shiny_ui <- function() {
     # Protocols Tab
     #####
     tabPanel(
-      "PROTOCOLS",
+      title = "PROTOCOLS",
+      value = "protocols",
       # Google Analytics
       includeHTML("www/google_analytics.html"),
 
@@ -760,7 +785,8 @@ shiny_ui <- function() {
     # Education Tab
     #####
     tabPanel(
-      "EDUCATION",
+      title = "CURRICULA",
+      value = "curricula",
       # Google Analytics
       includeHTML("www/google_analytics.html"),
 
@@ -797,7 +823,8 @@ shiny_ui <- function() {
     # FAQ Tab
     #####
     tabPanel(
-      "FAQ",
+      title = "FAQ",
+      value = "faq",
       # Google Analytics
       includeHTML("www/google_analytics.html"),
 
