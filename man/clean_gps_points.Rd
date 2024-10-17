@@ -2,7 +2,7 @@
 % Please edit documentation in R/getdata.R
 \name{clean_gps_points}
 \alias{clean_gps_points}
-\title{Cleans data from Google Sheets to make GPS coordinates consistent.}
+\title{Cleans data to make GPS coordinates consistent.}
 \usage{
 clean_gps_points(the_data)
 }
@@ -13,7 +13,7 @@ clean_gps_points(the_data)
 Cleaned \code{data.frame}
 }
 \description{
-Cleans data from Google Sheets to make GPS coordinates consistent.
+Cleans data to make GPS coordinates consistent.
 }
 \examples{
 clean_gps_points(getdata())

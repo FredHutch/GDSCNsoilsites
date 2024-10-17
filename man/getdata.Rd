@@ -2,7 +2,7 @@
 % Please edit documentation in R/getdata.R
 \name{getdata}
 \alias{getdata}
-\title{Gets relevant data from Google Sheets.}
+\title{Gets relevant data from snapshot file.}
 \usage{
 getdata()
 }
@@ -10,7 +10,7 @@ getdata()
 an uncleaned \code{data.frame}
 }
 \description{
-Gets relevant data from Google Sheets.
+Gets relevant data from snapshot file.
 }
 \examples{
 getdata()
