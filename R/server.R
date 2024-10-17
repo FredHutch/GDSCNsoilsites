@@ -28,7 +28,7 @@ shiny_server <- function(input, output, session) {
     }
   })
 
-  ### Imgs
+  ### Images
 
   # Student Image
   output$img <- renderUI({
@@ -42,8 +42,8 @@ shiny_server <- function(input, output, session) {
 
   ### Plot tab logic
 
-  # Reactive leaflet plot that has the option to add soil spatial properties
-  display <- reactive({
+  # Reactive leaflet plot to map SITES. Option to add soil spatial properties
+  site_map_leaflet_display <- reactive({
     if (input$soil_geom_toggle) {
       leadCol <-
         colorFactor(palette = 'RdYlGn',
@@ -103,153 +103,26 @@ shiny_server <- function(input, output, session) {
     }
   })
 
-  output$soilmap <- renderLeaflet({
-    display()
+  # Display the SITES leaflet plot
+  output$sitemap <- renderLeaflet({
+    site_map_leaflet_display()
   })
 
-  # Reactive leaflet plot that has the option to add soil spatial properties
-  display2 <- reactive({
-    leadCol <-
-      colorFactor(palette = 'RdYlGn',
-                  retrieve_plot_data()$lead,
-                  reverse = T)
+  ### Data tab logic
 
-
-    leaflet() %>%
-      setView(-77, 39.1, zoom = 9) %>%
-      addProviderTiles(providers$CartoDB.Positron,
-                       options = providerTileOptions(noWrap = TRUE)) %>%
-      addCircleMarkers(
-        data = retrieve_plot_data()$points,
-        color = ~ leadCol(retrieve_plot_data()$lead),
-        radius = ~ 7
-      ) %>%
-      addLegend(
-        'bottomright',
-        pal = leadCol,
-        values = na.omit(retrieve_plot_data()$lead),
-        title = 'Lead concentration (mg/kg)',
-        opacity = 1
-      )
-  })
-
-  output$leadmap <- renderLeaflet({
-    display2()
-  })
-
-  # Reactive leaflet plot that has the option to add soil spatial properties
-  display3 <- reactive({
-    ironCol <-
-      colorFactor(palette = 'RdYlGn',
-                  retrieve_plot_data()$iron,
-                  reverse = T)
-
-
-    leaflet() %>%
-      setView(-77, 39.1, zoom = 9) %>%
-      addProviderTiles(providers$CartoDB.Positron,
-                       options = providerTileOptions(noWrap = TRUE)) %>%
-      addCircleMarkers(
-        data = retrieve_plot_data()$points,
-        color = ~ ironCol(retrieve_plot_data()$iron),
-        radius = ~ 7
-      ) %>%
-      addLegend(
-        'bottomright',
-        pal = ironCol,
-        values = na.omit(retrieve_plot_data()$iron),
-        title = 'Iron concentration (mg/kg)',
-        opacity = 1
-      )
-  })
-
-  output$ironmap <- renderLeaflet({
-    display3()
-  })
-
-  # Reactive leaflet plot that has the option to add soil spatial properties
-  arsenicmap <- reactive({
-    AsCol <-
-      colorFactor(palette = 'RdYlGn',
-                  retrieve_plot_data()$arsenic,
-                  reverse = T)
-
-
-    leaflet() %>%
-      setView(-77, 39.1, zoom = 9) %>%
-      addProviderTiles(providers$CartoDB.Positron,
-                       options = providerTileOptions(noWrap = TRUE)) %>%
-      addCircleMarkers(
-        data = retrieve_plot_data()$points,
-        color = ~ AsCol(retrieve_plot_data()$arsenic),
-        radius = ~ 7
-      ) %>%
-      addLegend(
-        'bottomright',
-        pal = AsCol,
-        values = na.omit(retrieve_plot_data()$arsenic),
-        title = 'Arsenic concentration (mg/kg)',
-        opacity = 1
-      )
-  })
-
-  output$arsenicmap <- renderLeaflet({
-    arsenicmap()
-  })
-
-  ### Site data table tab logic
-
-  # Create browseable site info table
-  output$siteDataTable <- DT::renderDT(get_browseable_data(),
+  # Create browseable "site data" table
+  output$siteDataTable <- DT::renderDT(get_browseable_site_data(),
                                        options = list(pageLength = 30, scrollX = TRUE))
 
-  # Downlaod `siteDataTable`
+  # Downlaod `siteDataTable` "site data" table
   output$site_data_download <- downloadHandler(
     filename = function() {
       paste("gdscn_soil_site_data-", Sys.Date(), ".csv", sep = "")
     },
     content = function(file) {
-      write.csv(get_browseable_data(), file, row.names = FALSE)
+      write.csv(get_browseable_site_data(), file, row.names = FALSE)
     }
   )
-
-  ### DNA conc plot, data table tab logic
-
-  # Need to observe rendered plot because it's reactive inside a 'box' element
-  observe({
-    output$dna_plot <- renderPlot({
-      if (input$dna_choice == "total_ng") {
-        label_ <- "DNA total amount (ng)"
-      } else {
-        label_ <- "DNA concentration (Qubit, ng/uL)"
-      }
-      ggplot(data = get_dna_conc_data(), aes(x = get(input$dna_choice))) +
-        geom_histogram(fill = "#73b263") +
-        labs(title = label_, x = NULL, y = NULL) +
-        theme_classic(base_size = 14)
-    })
-  })
-
-  # Create the box with the concentration plot
-  output$dna_plot_box <- renderUI({
-    box(plotOutput("dna_plot"))
-  })
-
-  # Create browseable site info table
-  output$dnaconcDataTable <- DT::renderDT(get_dna_conc_data(),
-                                          options = list(pageLength = 30, scrollX = TRUE))
-
-  # Downlaod `dnaconcDataTable`
-  output$dnaconc_download <- downloadHandler(
-    filename = function() {
-      paste("gdscn_soil_dna_conc_data-", Sys.Date(), ".csv", sep = "")
-    },
-    content = function(file) {
-      write.csv(get_dna_conc_data(), file, row.names = FALSE)
-    }
-  )
-
-  ### Soil Testing Data
 
   # Need to observe rendered plot because it's reactive inside a 'box' element
   observe({
@@ -340,12 +213,12 @@ shiny_server <- function(input, output, session) {
   })
 
 
-  # Create browseable table for soil testing
+  # Create browseable table for soil testing data
   output$soilDataTable <-
     DT::renderDT(get_browseable_testing_data(),
                  options = list(pageLength = 30, scrollX = TRUE))
 
-  # Downlaod `soilDataTable`
+  # Downlaod `soilDataTable` table for soil testing data
   output$soiltest_download <- downloadHandler(
     filename = function() {
       paste("gdscn_soil_testing_data-", Sys.Date(), ".csv", sep = "")
@@ -354,4 +227,5 @@ shiny_server <- function(input, output, session) {
       write.csv(get_browseable_testing_data(), file, row.names = FALSE)
     }
   )
+
 }
