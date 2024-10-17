@@ -15,3 +15,6 @@ Cleaned \code{data.frame}
 \description{
 Clean the site name details in case we don't want "rep 1" or "rep 2" included
 }
+\examples{
+clean_site_name_rep_detail(getdata())
+}

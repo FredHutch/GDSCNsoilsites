@@ -1,9 +1,5 @@
-#' Title
+#' Shiny App, UI side
 #'
-#' @return
-#' @export
-#'
-#' @examples
 shiny_ui <- function() {
   biodigs_logo_header <-
     "<br><a href='https://biodigs.org'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/logo_BioDIGS_final.png' width = '300'></a><br>"

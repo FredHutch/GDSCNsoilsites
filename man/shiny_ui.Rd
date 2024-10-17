@@ -2,10 +2,10 @@
 % Please edit documentation in R/ui.R
 \name{shiny_ui}
 \alias{shiny_ui}
-\title{Title}
+\title{Shiny App, UI side}
 \usage{
 shiny_ui()
 }
 \description{
-Title
+Shiny App, UI side
 }

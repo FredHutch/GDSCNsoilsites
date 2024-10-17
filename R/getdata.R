@@ -60,7 +60,7 @@ clean_gps_points <- function(the_data) {
 #' @return Cleaned `data.frame`
 #' @export
 #'
-#' @examples
+#' @examples clean_site_name_rep_detail(getdata())
 clean_site_name_rep_detail <- function(the_data) {
   # Clean up site_name_rep_detail column
   # Keep only unique sites, and clean site details so no rep information is included.

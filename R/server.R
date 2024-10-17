@@ -1,13 +1,9 @@
-#' Title
+#' Shiny App, server side
 #'
-#' @param input
-#' @param output
-#' @param session
+#' @param input inputs from UI
+#' @param output outputs to UI
+#' @param session the individual app session
 #'
-#' @return
-#' @export
-#'
-#' @examples
 shiny_server <- function(input, output, session) {
   ### Server logic
 

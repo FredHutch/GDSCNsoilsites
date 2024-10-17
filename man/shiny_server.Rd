@@ -2,13 +2,17 @@
 % Please edit documentation in R/server.R
 \name{shiny_server}
 \alias{shiny_server}
-\title{Title}
+\title{Shiny App, server side}
 \usage{
 shiny_server(input, output, session)
 }
 \arguments{
-\item{session}{}
+\item{input}{inputs from UI}
+
+\item{output}{outputs to UI}
+
+\item{session}{the individual app session}
 }
 \description{
-Title
+Shiny App, server side
 }
