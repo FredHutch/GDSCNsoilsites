@@ -1,23 +1,31 @@
-#' Does Google Sheets authentication using a Google Service Account. It looks
-#' for a `.json` service account key in the ".secrets" directory.
+
+#' Gets relevant data from snapshot file.
 #'
-#' @return Provides authentication analagous to gs4_auth()
+#' @return an uncleaned `data.frame`
 #' @export
 #'
 #' @examples
-#' # Run before read_sheet() functions
-#' do_gs4_auth()
-do_gs4_auth <- function() {
-  gs4_auth(
-    token = gargle::credentials_service_account(path = paste0(
-      ".secrets/", grep(".json$", list.files(".secrets"), value = TRUE)
-    ),
-    scopes = "https://www.googleapis.com/auth/spreadsheets")
-  )
+#' getdata()
+getdata <- function() {
+  # Set filename
+  soil_file <- "soil_data.csv"
+
+  # Check if the file is/has been written.
+  # If not, read it in, save as `soil_data`
+  if (!(file.exists(soil_file))) {
+    soil_data <-
+      read.csv("data/snapshots/BioDIGS_20241016.csv")
+    write.csv(soil_data, soil_file)
+  } else {
+    soil_data <- read.csv(soil_file)[,-1]
+  }
+
+  return(soil_data)
+
 }
 
 
-#' Cleans data from Google Sheets to make GPS coordinates consistent.
+#' Cleans data to make GPS coordinates consistent.
 #'
 #' @param the_data
 #'
@@ -65,31 +73,6 @@ clean_site_name_rep_detail <- function(the_data) {
 }
 
 
-#' Gets relevant data from Google Sheets.
-#'
-#' @return an uncleaned `data.frame`
-#' @export
-#'
-#' @examples
-#' getdata()
-getdata <- function() {
-  # Set filename
-  soil_file <- "soil_data.csv"
-
-  # Check if the file is/has been written.
-  # If not, read it in, save as `soil_data`
-  if (!(file.exists(soil_file))) {
-    soil_data <-
-      read.csv("data/snapshots/BioDIGS_20241016.csv")
-    write.csv(soil_data, soil_file)
-  } else {
-    soil_data <- read.csv(soil_file)[,-1]
-  }
-
-  return(soil_data)
-
-}
-
 #' Partition out the data into a list for quick use in plots.
 #'
 #' @return a `list` of gps coordinates, site names, and image urls
@@ -105,9 +88,13 @@ getdata <- function() {
 #' # Get urls for images as a vector:
 #' retrieve_plot_data()$image_urls
 retrieve_plot_data <- function() {
-  # Read in from Google, clean GPS points
-  soil_data <- clean_gps_points(getdata())
+  # Read in, clean GPS points / clean reps from site descriptions
+  soil_data <-
+    getdata() %>%
+    clean_gps_points() %>%
+    clean_site_name_rep_detail()
 
+  # Extract gps coordinates
   gps_points <-
     soil_data %>%
     clean_site_name_rep_detail() %>%
@@ -164,30 +151,6 @@ get_browseable_site_data <- function() {
            longitude)
 
   return(soil_data_to_browse)
-}
-
-
-#' Produce DNA concentration data in a clean format for browsing on the app.
-#'
-#' @return a `data.frame`
-#' @export
-#'
-#' @examples
-#' get_dna_conc_data()
-get_dna_conc_data <- function() {
-  # Read in from Google, clean GPS points
-  dna_data <- getdata()
-
-  dna_data_to_browse <-
-    dna_data %>%
-    select(site_id,
-           site_name,
-           ul_hydration,
-           qubit_concentration_ng_ul,
-           total_ng,
-           type)
-
-  return(dna_data_to_browse)
 }
 
 
@@ -304,16 +267,22 @@ get_soil_data <- function() {
 #' @export
 #'
 #' @examples
-#' get_browseable_testing_data()
-get_browseable_testing_data <- function() {
-  testing_data_to_browse <- getdata()
+#' get_browseable_soil_testing_data()
+get_browseable_soil_testing_data <- function() {
+  testing_data_to_browse <-
+    getdata() %>%
+    filter(bulk_type == "Soil") %>%
+    clean_gps_points() %>%
+    clean_site_name_rep_detail()
 
   testing_data_to_browse <-
     testing_data_to_browse %>%
     select(
       site_id,
-      site_name,
-      type,
+      site_name_rep_detail,
+      sample_id,
+      origin,
+      mgmt_type,
       tidyr::ends_with("EPA3051"),
       water_pH,
       OM_by_LOI_pct,
@@ -322,17 +291,10 @@ get_browseable_testing_data <- function() {
       Base_Sat_pct,
       P_Sat_ratio
     ) %>%
-    mutate(As_EPA3051 = as.numeric(case_when(As_EPA3051 == "< 3.0" ~ "0",
-                                             TRUE ~ As_EPA3051))) %>%      # As can't be detected lower than 3.0
-    mutate(Cd_EPA3051 = as.numeric(case_when(Cd_EPA3051 == "< 0.2" ~ "0",
-                                             TRUE ~ Cd_EPA3051))) %>%      # Cd can't be detected lower than 0.2
-    mutate(
-      region = case_when(
-        startsWith(site_id, "M") ~ "Montgomery County",
-        startsWith(site_id, "B") ~ "Baltimore City",
-        startsWith(site_id, "S") ~ "Seattle"
-      )
-    )
+    # As can't be detected lower than 3.0
+    mutate(As_EPA3051 = case_when(As_EPA3051 == "< 3.0" ~ "0", TRUE ~ As_EPA3051)) %>%
+    # Cd can't be detected lower than 0.2
+    mutate(Cd_EPA3051 = case_when(Cd_EPA3051 == "< 0.2" ~ "0", TRUE ~ Cd_EPA3051))
 
   return(testing_data_to_browse)
 }
