@@ -143,7 +143,7 @@ shiny_server <- function(input, output, session) {
         response_ <- "Zinc"
       if (input$testing_response_choice == "Fe_Mehlich3")
         response_ <- "Iron"
-      ggplot(data = get_browseable_testing_data(),
+      ggplot(data = get_browseable_soil_testing_data(),
              aes(
                x = get(input$testing_response_choice),
                group = region,
@@ -183,7 +183,7 @@ shiny_server <- function(input, output, session) {
         response_ <- "Zinc"
       if (input$testing_response_choice == "Fe_Mehlich3")
         response_ <- "Iron"
-      ggplot(data = get_browseable_testing_data(), aes(
+      ggplot(data = get_browseable_soil_testing_data(), aes(
         x = get(input$testing_response_choice),
         group = type,
         color = type,
@@ -215,7 +215,7 @@ shiny_server <- function(input, output, session) {
 
   # Create browseable table for soil testing data
   output$soilDataTable <-
-    DT::renderDT(get_browseable_testing_data(),
+    DT::renderDT(get_browseable_soil_testing_data(),
                  options = list(pageLength = 30, scrollX = TRUE))
 
   # Downlaod `soilDataTable` table for soil testing data
@@ -224,7 +224,7 @@ shiny_server <- function(input, output, session) {
       paste("gdscn_soil_testing_data-", Sys.Date(), ".csv", sep = "")
     },
     content = function(file) {
-      write.csv(get_browseable_testing_data(), file, row.names = FALSE)
+      write.csv(get_browseable_soil_testing_data(), file, row.names = FALSE)
     }
   )
 
