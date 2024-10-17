@@ -30,9 +30,9 @@ clean_gps_points <- function(the_data) {
   # Clean up GPS points:
   # Remove parentheses, split column, fix negatives, and make numeric
   the_data <- the_data %>%
-    rename("coord" = 4) %>%
-    mutate(coord = str_replace_all(coord, "[//(,//)]*", "")) %>%
-    tidyr::separate(coord,
+    filter(gps != "Not yet provided") %>%
+    mutate(gps = str_replace_all(gps, "[//(,//)]*", "")) %>%
+    tidyr::separate(gps,
                     into = c("latitude", "longitude"),
                     sep = " ") %>%
     mutate(longitude = case_when(
@@ -40,6 +40,26 @@ clean_gps_points <- function(the_data) {
       TRUE ~ as.numeric(longitude)
     )) %>%
     mutate(latitude = as.numeric(latitude))
+
+  return(the_data)
+}
+
+
+#' Clean the site name details in case we don't want "rep 1" or "rep 2" included
+#'
+#' @param the_data
+#'
+#' @return Cleaned `data.frame`
+#' @export
+#'
+#' @examples
+clean_site_name_rep_detail <- function(the_data) {
+  # Clean up site_name_rep_detail column
+  # Keep only unique sites, and clean site details so no rep information is included.
+  the_data <-
+    the_data[match(unique(the_data$site_id), the_data$site_id), ] %>%
+    mutate(site_name_rep_detail = str_remove(site_name_rep_detail, "( rep 1| Rep 1| rep #1| Rep #1)$")) %>%
+    mutate(site_name_rep_detail = str_remove(site_name_rep_detail, "( rep 2| Rep 2| rep #2| Rep #2)$"))
 
   return(the_data)
 }
@@ -53,35 +73,14 @@ clean_gps_points <- function(the_data) {
 #' @examples
 #' getdata()
 getdata <- function() {
-  # Set filename and URLs
-  google_sheet_url_1 <-
-    "https://docs.google.com/spreadsheets/d/1KrPJe9OOGuix2EAvcTfuspAe3kqN-y20Huyf5ImBEl4/edit#gid=804798874"
-  google_sheet_url_2 <-
-    "https://docs.google.com/spreadsheets/d/1l7wuOt0DZp0NHMAriedbG4EJkl06Mh-G01CrVh8ySJE/edit#gid=804798874"
-  google_sheet_url_3 <-
-    "https://docs.google.com/spreadsheets/d/1duPtC8L9KL51YQzQ1rZ5785iH3RjABZFCYu8SWjAPTU/edit#gid=1458650276"
-  google_sheet_url_4 <- # Soil data
-    "https://docs.google.com/spreadsheets/d/109xYUM48rjj33B76hZ3bNlrm8u-_S6uyoE_3wSCp0r0/edit#gid=1458650276"
+  # Set filename
   soil_file <- "soil_data.csv"
 
   # Check if the file is/has been written.
-  # If not, read it in from google sheets, save as `soil_data`
+  # If not, read it in, save as `soil_data`
   if (!(file.exists(soil_file))) {
-    do_gs4_auth()
     soil_data <-
-      inner_join(
-        read_sheet(google_sheet_url_1),
-        read_sheet(google_sheet_url_2),
-        by = c(`What is your site name?` = 'site_name'),
-        keep = TRUE
-      ) %>%
-      inner_join(read_sheet(google_sheet_url_3), by = "full_name") %>%
-      inner_join(
-        read_sheet(google_sheet_url_4, col_types = "ccccnnnnnnnnnnnnnnnnnnnnnnn"),
-        by = c("full_name", "site_id")
-      ) %>% # Special characters
-      rename("type" = `Which best describes your site?`) %>%
-      separate("type", into = c("type", "type2"), sep = ":")
+      read.csv("data/snapshots/BioDIGS_20241016.csv")
     write.csv(soil_data, soil_file)
   } else {
     soil_data <- read.csv(soil_file)[,-1]
@@ -90,7 +89,6 @@ getdata <- function() {
   return(soil_data)
 
 }
-
 
 #' Partition out the data into a list for quick use in plots.
 #'
@@ -112,81 +110,37 @@ retrieve_plot_data <- function() {
 
   gps_points <-
     soil_data %>%
+    clean_site_name_rep_detail() %>%
     select(longitude, latitude) %>%
-    na.omit() %>%
     as.data.frame()
 
   # Pull out metadata site names separately
   sitenames <-
     soil_data %>%
-    select(2) %>%
+    clean_site_name_rep_detail() %>%
+    mutate(site_name = paste(site_id, "-", site_name_rep_detail)) %>%
+    select(site_name) %>%
     pull()
 
   # Adjust image urls
   image_urls <-
     soil_data %>%
+    clean_site_name_rep_detail() %>%
     dplyr::mutate(url = paste0(
       'https://lh3.googleusercontent.com/d/',
       google_img_id
     )) %>%
-    select(url) %>%
-    pull()
-
-  # HEAVY METALS
-  # Get lead values
-  lead <-
-    soil_data %>%
-    select(Pb_EPA3051) %>%
-    pull()
-
-  lead <- cut(
-    lead,
-    c(0, 25, 50, 75, 100, 500),
-    include.lowest = T,
-    labels = c('<25', '25-50', '50-75', '75-100', '100+')
-  )
-
-  # Get arsenic values
-  arsenic <-
-    soil_data %>%
-    select(As_EPA3051) %>%
-    mutate(As_EPA3051 = case_when(As_EPA3051 == "< 3.0" ~ "3.0", TRUE ~ As_EPA3051)) %>%
-    drop_na(As_EPA3051) %>%
-    mutate(As_EPA3051 = as.numeric(As_EPA3051)) %>%
-    pull()
-
-  arsenic <- cut(
-    arsenic,
-    c(0, 3.0, 5, 10, 15, 1000),
-    include.lowest = T,
-    labels = c('< 3.0', '3.0-5.0', '5.0-10.0', '10.0-15.0', '15.0+')
-  )
-
-  # Get iron values
-  iron <-
-    soil_data %>%
-    select(Fe_Mehlich3) %>%
-    pull()
-
-  iron <- cut(
-    iron,
-    c(0, 100, 150, 200, 250, 1000),
-    include.lowest = T,
-    labels = c('<100', '100-150', '150-200', '200-250', '250+')
-  )
+    pull(url)
 
   return(list(
     points = gps_points,
     sitenames = sitenames,
-    image_urls = image_urls,
-    lead = lead,
-    arsenic = arsenic,
-    iron = iron
+    image_urls = image_urls
   ))
 }
 
 
-#' Produce data in a nice clean format for browsing on the app.
+#' Produce data in a nice clean format for browsing & downloading
 #'
 #' @return a `data.frame`
 #' @export
@@ -198,10 +152,16 @@ get_browseable_data <- function() {
     clean_gps_points(getdata())
 
   soil_data_to_browse <-
-    soil_data_to_browse %>%
-    mutate(timestamp = lubridate::as_datetime(Timestamp.x)) %>%
-    mutate(date_sampled = lubridate::date(timestamp)) %>%
-    select(site_id, site_name, type, date_sampled, latitude, longitude)
+    soil_data_to_browse[match(unique(soil_data_to_browse$site_id),
+                              soil_data_to_browse$site_id), ] %>%
+    rename(site_description = site_name_rep_detail) %>%
+    mutate(date_sampled = lubridate::mdy(collection_date)) %>%
+    select(site_id,
+           site_description,
+           mgmt_type,
+           date_sampled,
+           latitude,
+           longitude)
 
   return(soil_data_to_browse)
 }
