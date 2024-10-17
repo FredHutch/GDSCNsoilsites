@@ -146,8 +146,8 @@ retrieve_plot_data <- function() {
 #' @export
 #'
 #' @examples
-#' get_browseable_data()
-get_browseable_data <- function() {
+#' get_browseable_site_data()
+get_browseable_site_data <- function() {
   soil_data_to_browse <-
     clean_gps_points(getdata())
 
