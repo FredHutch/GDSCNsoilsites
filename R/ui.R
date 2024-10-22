@@ -162,14 +162,14 @@ shiny_ui <- function() {
         value = "sample_map",
         # Google Analytics
         includeHTML("www/google_analytics.html"),
-        checkboxInput(
-          "soil_geom_toggle",
-          label = 'Show soil survey properties',
-          value = FALSE,
-          width = NULL
-        ),
-        # Sample map section
-        leafletOutput("sitemap", height = 800)
+        # checkboxInput(
+        #   "soil_geom_toggle",
+        #   label = 'Show soil survey properties',
+        #   value = FALSE,
+        #   width = NULL
+        # ),
+        # # Sample map section
+        # leafletOutput("sitemap", height = 800)
       ),
       # Closes tabPanel "sample_map"
     ),
@@ -187,9 +187,9 @@ shiny_ui <- function() {
         # Google Analytics
         includeHTML("www/google_analytics.html"),
 
-        downloadButton('site_data_download', label = 'Download data'),
-        HTML("<br><br>"),
-        DT::DTOutput("siteDataTable")
+        # downloadButton('site_data_download', label = 'Download data'),
+        # HTML("<br><br>"),
+        # DT::DTOutput("siteDataTable")
       ),
       # Close the Site data tab
 
@@ -218,18 +218,18 @@ shiny_ui <- function() {
         #   )
         # ),
         HTML("<br>"),
-        downloadButton('soiltest_download', label = 'Download data'),
-        actionButton(
-          inputId = 'testing_data_dict',
-          label = "Data dictionary",
-          icon = icon("th"),
-          onclick = "window.open('https://docs.google.com/spreadsheets/d/109xYUM48rjj33B76hZ3bNlrm8u-_S6uyoE_3wSCp0r0/edit#gid=188448677', '_blank')"
-        ),
-        HTML("<br><br>"),
-        DT::DTOutput("soilDataTable"),
-        HTML(
-          "<br><br><i>Note: Arsenic (As_EPA3051) is not detectable below 3.0 mg/kg. Cadmium (Cd_EPA3051) is not detectable below 0.2 mg/kg.</i>"
-        )
+        # downloadButton('soiltest_download', label = 'Download data'),
+        # actionButton(
+        #   inputId = 'testing_data_dict',
+        #   label = "Data dictionary",
+        #   icon = icon("th"),
+        #   onclick = "window.open('https://docs.google.com/spreadsheets/d/109xYUM48rjj33B76hZ3bNlrm8u-_S6uyoE_3wSCp0r0/edit#gid=188448677', '_blank')"
+        # ),
+        # HTML("<br><br>"),
+        # DT::DTOutput("soilDataTable"),
+        # HTML(
+        #   "<br><br><i>Note: Arsenic (As_EPA3051) is not detectable below 3.0 mg/kg. Cadmium (Cd_EPA3051) is not detectable below 0.2 mg/kg.</i>"
+        # )
       ),
       # Close the Soil data tab
 
