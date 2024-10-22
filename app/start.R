@@ -12,4 +12,4 @@ library(GDSCNsoilsites)
 #devtools::document()
 #devtools::load_all()
 
-shinyApp(shiny_ui, shiny_server)
+shinyApp(GDSCNsoilsites:::shiny_ui, GDSCNsoilsites:::shiny_server)
