@@ -13,7 +13,6 @@ RUN apt-get install -y gdal-bin proj-bin libgdal-dev libproj-dev
 # Load devtools and custom package
 RUN Rscript -e "install.packages('devtools', dependencies=T)"
 RUN Rscript -e "install.packages('leaflet', dependencies=T)"
-RUN Rscript -e "install.packages('rgdal', dependencies=T)"
 RUN Rscript -e "install.packages('stringr', dependencies=T)"
 RUN Rscript -e "install.packages('dplyr', dependencies=T)"
 RUN Rscript -e "install.packages('tidyr', dependencies=T)"
