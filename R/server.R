@@ -40,47 +40,6 @@ shiny_server <- function(input, output, session) {
 
   # Reactive leaflet plot to map SITES. Option to add soil spatial properties
   site_map_leaflet_display <- reactive({
-    if (input$soil_geom_toggle) {
-      leadCol <-
-        colorFactor(palette = 'RdYlGn',
-                    retrieve_plot_data()$lead,
-                    reverse = T)
-
-      leaflet() %>%
-        addProviderTiles(providers$CartoDB.Positron,
-                         options = providerTileOptions(noWrap = TRUE)) %>%
-        addMarkers(
-          data = retrieve_plot_data()$points,
-          popup = ~ paste0(
-            '<img src="',
-            as.character(retrieve_plot_data()$image_urls),
-            '" alt="image of the site" height="200px">',
-            '<br>',
-            as.character(retrieve_plot_data()$sitenames)
-          ),
-          clusterOptions = markerClusterOptions()
-        ) %>%
-        addPolygons(
-          data = get_soil_data(),
-          stroke = TRUE,
-          smoothFactor = 0.3,
-          fillOpacity = 0.3,
-          fillColor = "#563d2d",
-          color = "#563d2d",
-          weight = 1,
-          popup = ~ paste0(
-            MUNAME,
-            "<br>CLAY: ",
-            CLAY,
-            "%<br>SAND: ",
-            SAND,
-            "%<br>SILT: ",
-            SILT,
-            "%"
-          )
-        )
-
-    } else {
       leaflet() %>%
         addProviderTiles(providers$CartoDB.Positron,
                          options = providerTileOptions(noWrap = TRUE)) %>%
@@ -95,8 +54,6 @@ shiny_server <- function(input, output, session) {
           ),
           clusterOptions = markerClusterOptions()
         )
-
-    }
   })
 
   # Display the SITES leaflet plot

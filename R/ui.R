@@ -162,12 +162,6 @@ shiny_ui <- function() {
         value = "sample_map",
         # Google Analytics
         includeHTML("www/google_analytics.html"),
-        checkboxInput(
-          "soil_geom_toggle",
-          label = 'Show soil survey properties',
-          value = FALSE,
-          width = NULL
-        ),
         # Sample map section
         leafletOutput("sitemap", height = 800)
       ),
