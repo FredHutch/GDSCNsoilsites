@@ -22,6 +22,7 @@ RUN Rscript -e "install.packages('evaluate', dependencies=T)"
 RUN Rscript -e "install.packages('googlesheets4', dependencies=T)"
 RUN Rscript -e "install.packages('shinydashboard', dependencies=T)"
 RUN Rscript -e "install.packages('ggplot2', dependencies=T)"
+RUN Rscript -e "install.packages('rgdal', dependencies=T)"
 # RUN Rscript -e "library(devtools);install_github('FredHutch/GDSCNsoilsites')"
 
 # install the package
@@ -29,6 +30,7 @@ ADD . /src/GDSCNsoilsites
 WORKDIR /src/GDSCNsoilsites
 RUN R CMD INSTALL .
 WORKDIR /srv/shiny-server/
+
 RUN rm -rf /src/GDSCNsoilsites
 
 RUN rm -rf /srv/shiny-server/
