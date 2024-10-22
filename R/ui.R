@@ -1,8 +1,10 @@
 #' Shiny App, UI side
 #'
 shiny_ui <- function() {
+
+  # Logo used frequently, so make a shorthand here.
   biodigs_logo_header <-
-    "<br><a href='https://biodigs.org'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/logo_BioDIGS_final.png' width = '300'></a><br>"
+    "<br><a href='https://biodigs.org'><img style = 'display: block; margin-left: auto; margin-right: auto; width: 100%; max-width:500px;' src='https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/logo_BioDIGS_final.png'></a><br>"
 
   #####
   navbarPage(
@@ -30,16 +32,8 @@ shiny_ui <- function() {
       # Google Analytics
       includeHTML("www/google_analytics.html"),
 
-      HTML(
-        paste0(
-          "<br>",
-          "<div class='container'>
-            <img src='https://raw.githubusercontent.com/FredHutch/GDSCNsoilsites/main/www/brano-Mm1VIPqd0OA-unsplash.jpg' alt='DNA Background Image' style='width:100%;'>
-            <div class='centered'>BioDIGS<br>a GDSCN Project</div>
-           </div>"
-        )
-      ),
-      HTML("<br><br>"),
+      HTML(paste0(biodigs_logo_header)),
+      HTML("<br>"),
       h2(
         "Empowering underrepresented students in STEM through hands-on research",
         align = "center"
@@ -73,8 +67,8 @@ shiny_ui <- function() {
       ),
       HTML("<br>"),
 
-      HTML(paste0(biodigs_logo_header)),
 
+      # Chunk 2
       HTML("<br>"),
       h2("Get Involved", align = "center"),
       HTML("<br>"),
