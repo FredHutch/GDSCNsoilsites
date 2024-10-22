@@ -8,16 +8,19 @@ Soil sampling for BioDIGS was done by both faculty and student volunteers from s
 
 Many of the faculty are also members of the GDSCN.
 
-- **Annandale, VA**: Northern Virginia Community College
+- **Alexandria, VA**: Northern Virginia Community College
+- **Anoka, MN**: Anoka Ramsey Community College
 - **Atlanta, GA**: Spelman College
 - **Baltimore, MD**: College of Southern Maryland, Notre Dame College of Maryland, Towson University
 - **Bismark, ND**: United Tribes Technical College
+- **Durango, CO**: Fort Lewis College
 - **El Paso, TX**: El Paso Community College, The University of Texas at El Paso
 - **Fresno, CA**: Clovis Community College
 - **Greensboro, NC**: North Carolina A&T State University
 - **Harrisonburg, VA**: James Madison University
-- **Honolulu, Hawai'i**: University of Hawai'i at M&amacr;noa
+- **Honolulu, HI**: University of Hawai'i at M&amacr;noa
 - **Las Cruces, NM**: Do&ntilde;a Ana Community College
+- **Merced, CA**: University of California, Merced
 - **Montgomery County, MD**: Montgomery College, Towson University
 - **Nashville, TN**: Meharry Medical College
 - **New York, NY**: Guttman Community College CUNY
