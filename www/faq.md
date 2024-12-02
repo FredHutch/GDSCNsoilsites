@@ -30,6 +30,8 @@ Please add a copy of the email or written permission in this [folder](https://dr
 ## How do I collect samples?
 We have prepared a protocol to make this easy! Check out the written protocol [here](https://docs.google.com/document/d/1oyFaknksSQEpwN7yGEBuGZaDGN96rKGOaovGsbhlGic/edit#heading=h.rlfcx57l2u2o). We have also created [YouTube videos](https://www.youtube.com/playlist?list=PLzgm426KgvrhheloBdlSWshM9v2VvJEcX) for you to reference.
 
+## How can I get students involved?
+It might be a good idea to distribute a flyer. [Here's an example](https://drive.google.com/file/d/1gj58gA_SRgz_sw_ILecsa2MSOSTyWCW5/view?usp=sharing) used by one of our faculty.
 
 ## What information do I need to collect from students before we go into the field?
 * Make sure you have all participating students sign a liability waiver. Your school may have a specific one they want you to use; check with administration or student services. 
