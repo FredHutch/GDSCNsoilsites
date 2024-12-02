@@ -271,6 +271,13 @@ shiny_ui <- function() {
       HTML("<br><br>"),
       actionButton(
         inputId = 'ab2',
+        label = "Metadata Form (Google Form)",
+        icon = icon("table"),
+        onclick = "window.open('https://forms.gle/Z2yH2KBggEF1y4KY9', '_blank')"
+      ),
+      HTML("<br><br>"),
+      actionButton(
+        inputId = 'ab2',
         label = "Protocol Videos",
         icon = icon("video"),
         onclick = "window.open('https://www.youtube.com/playlist?list=PLzgm426KgvrhheloBdlSWshM9v2VvJEcX', '_blank')"
@@ -292,10 +299,11 @@ shiny_ui <- function() {
       HTML("<br><br>"),
       actionButton(
         inputId = 'ab2',
-        label = "Metadata Form (Google Form)",
-        icon = icon("table"),
-        onclick = "window.open('https://forms.gle/Z2yH2KBggEF1y4KY9', '_blank')"
-      )
+        label = "DNA Extraction (Google Doc)",
+        icon = icon("dna"),
+        onclick = "window.open('https://docs.google.com/document/d/1FZ0bXw_JB1KAyyB8BimiZInPEMFFqO1p4NcOhdJyekI/edit?usp=sharing', '_blank')"
+      ),
+
     ),
     #####
     #  Closes the tabPanel called "Protocols"

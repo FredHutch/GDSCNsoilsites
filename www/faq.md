@@ -53,3 +53,6 @@ Nope! All shipping costs will be paid for by BioDIGS. When you're ready to send 
 
 ## How long will it take for my samples to be analyzed?
 We expect the process to take several weeks, depending on when we receive the samples and how many we need to process at once.
+
+## Can I extract my own DNA?
+Sure! While we are happy to handle this, protocols can be found [here](https://docs.google.com/document/d/1FZ0bXw_JB1KAyyB8BimiZInPEMFFqO1p4NcOhdJyekI/edit?usp=sharing).
