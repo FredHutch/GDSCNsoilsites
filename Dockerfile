@@ -46,4 +46,6 @@ RUN chown -R shiny:shiny .secrets
 ENV APPLICATION_LOGS_TO_STDOUT=true
 ENV SHINY_LOG_STDERR=1
 
-CMD /usr/bin/shiny-server
+#CMD /usr/bin/shiny-server
+CMD R -f app.R
+
