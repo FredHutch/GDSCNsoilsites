@@ -50,9 +50,12 @@ shiny_server <- function(input, output, session) {
             as.character(retrieve_plot_data()$image_urls),
             '" alt="image of the site" height="200px">',
             '<br>',
-            as.character(retrieve_plot_data()$sitenames)
+            as.character(retrieve_plot_data()$sitenames),
+            '<br>',
+            "Lead: ", as.character(retrieve_plot_data()$partner_faculty)
           ),
-          clusterOptions = markerClusterOptions()
+          clusterOptions = markerClusterOptions(),
+          popupOptions = popupOptions(maxWidth = "200px")
         )
   })
 

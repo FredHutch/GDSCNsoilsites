@@ -7,9 +7,9 @@ library(googlesheets4)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
-library(GDSCNsoilsites)
+#library(GDSCNsoilsites)
 
-#devtools::document()
-#devtools::load_all()
+devtools::document()
+devtools::load_all()
 
 shinyApp(GDSCNsoilsites:::shiny_ui, GDSCNsoilsites:::shiny_server)

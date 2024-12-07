@@ -12,9 +12,11 @@ getdata <- function() {
 
   # Check if the file is/has been written.
   # If not, read it in, save as `soil_data`
+  # https://docs.google.com/spreadsheets/d/1Mbuym6GgG2B3VFCbjhYy4vaPCx1_tIOBlBOlT1iIHZE/edit?usp=sharing
   if (!(file.exists(soil_file))) {
     soil_data <-
-      read.csv("data/snapshots/BioDIGS_20241016.csv")
+      read.csv("data/snapshots/BioDIGS_20241207.csv")
+    soil_data <- soil_data %>% filter(public_ok == "TRUE")
     write.csv(soil_data, soil_file)
   } else {
     soil_data <- read.csv(soil_file)[,-1]
@@ -101,6 +103,13 @@ retrieve_plot_data <- function() {
     select(longitude, latitude) %>%
     as.data.frame()
 
+  # Extract faculty names
+  partner_faculty <-
+    soil_data %>%
+    clean_site_name_rep_detail() %>%
+    select(partner_faculty) %>%
+    pull()
+
   # Pull out metadata site names separately
   sitenames <-
     soil_data %>%
@@ -122,6 +131,7 @@ retrieve_plot_data <- function() {
   return(list(
     points = gps_points,
     sitenames = sitenames,
+    partner_faculty = partner_faculty,
     image_urls = image_urls
   ))
 }
@@ -145,6 +155,7 @@ get_browseable_site_data <- function() {
     mutate(date_sampled = lubridate::mdy(collection_date)) %>%
     select(site_id,
            site_description,
+           partner_faculty,
            mgmt_type,
            date_sampled,
            latitude,
