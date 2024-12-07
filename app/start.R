@@ -12,4 +12,13 @@ library(ggplot2)
 devtools::document()
 devtools::load_all()
 
-shinyApp(GDSCNsoilsites:::shiny_ui, GDSCNsoilsites:::shiny_server)
+options <- list()
+if (!interactive()) {
+  options$port = 3838
+  options$launch.browser = FALSE
+  options$host = "0.0.0.0"
+
+}
+
+shinyApp(GDSCNsoilsites:::shiny_ui, GDSCNsoilsites:::shiny_server, options = options)
+
