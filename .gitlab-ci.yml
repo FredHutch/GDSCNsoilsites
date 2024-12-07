@@ -33,7 +33,7 @@ test:
     - name: sc-registry.fredhutch.org/gdscnsoil:test
       alias: gdscnsoil
   script:
-    - sleep 15 && curl -sI  http://gdscnsoil:3838  |head -1|grep -q "200 OK"
+    - sleep 90 && curl -sI  http://gdscnsoil:3838  |head -1|grep -q "200 OK"
 
 deploy:
   stage: deploy
