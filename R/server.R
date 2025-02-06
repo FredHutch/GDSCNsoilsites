@@ -70,15 +70,30 @@ shiny_server <- function(input, output, session) {
   output$siteDataTable <- DT::renderDT(get_browseable_site_data(),
                                        options = list(pageLength = 30, scrollX = TRUE))
 
-  # Downlaod `siteDataTable` "site data" table
+  # Download `siteDataTable` "site data" table
   output$site_data_download <- downloadHandler(
     filename = function() {
-      paste("gdscn_soil_site_data-", Sys.Date(), ".csv", sep = "")
+      paste("BioDIGS_site_data-", Sys.Date(), ".csv", sep = "")
     },
     content = function(file) {
       write.csv(get_browseable_site_data(), file, row.names = FALSE)
     }
   )
+
+  # Create browseable "seq data" table
+  output$seqDataTable <- DT::renderDT(get_browseable_seq_data(),
+                                       options = list(pageLength = 30, scrollX = TRUE))
+
+  # Download `seqDataTable` "seq data" table
+  output$seq_data_download <- downloadHandler(
+    filename = function() {
+      paste("BioDIGS_sequencing_metadata-", Sys.Date(), ".csv", sep = "")
+    },
+    content = function(file) {
+      write.csv(get_browseable_seq_data(), file, row.names = FALSE)
+    }
+  )
+
 
   # Need to observe rendered plot because it's reactive inside a 'box' element
   observe({
@@ -177,7 +192,7 @@ shiny_server <- function(input, output, session) {
   # Downlaod `soilDataTable` table for soil testing data
   output$soiltest_download <- downloadHandler(
     filename = function() {
-      paste("gdscn_soil_testing_data-", Sys.Date(), ".csv", sep = "")
+      paste("BioDIGS_soil_testing_data-", Sys.Date(), ".csv", sep = "")
     },
     content = function(file) {
       write.csv(get_browseable_soil_testing_data(), file, row.names = FALSE)

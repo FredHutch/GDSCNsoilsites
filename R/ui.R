@@ -213,12 +213,12 @@ shiny_ui <- function() {
         # ),
         HTML("<br>"),
         downloadButton('soiltest_download', label = 'Download data'),
-        actionButton(
-          inputId = 'testing_data_dict',
-          label = "Data dictionary",
-          icon = icon("th"),
-          onclick = "window.open('https://docs.google.com/spreadsheets/d/109xYUM48rjj33B76hZ3bNlrm8u-_S6uyoE_3wSCp0r0/edit#gid=188448677', '_blank')"
-        ),
+        # actionButton(
+        #   inputId = 'testing_data_dict',
+        #   label = "Data dictionary",
+        #   icon = icon("th"),
+        #   onclick = "window.open('https://docs.google.com/spreadsheets/d/109xYUM48rjj33B76hZ3bNlrm8u-_S6uyoE_3wSCp0r0/edit#gid=188448677', '_blank')"
+        # ),
         HTML("<br><br>"),
         DT::DTOutput("soilDataTable"),
         HTML(
@@ -226,6 +226,18 @@ shiny_ui <- function() {
         )
       ),
       # Close the Soil data tab
+
+      tabPanel(
+        title = "Sequencing Metadata",
+        value = "seq_data",
+        # Google Analytics
+        includeHTML("www/google_analytics.html"),
+
+        downloadButton('seq_data_download', label = 'Download data'),
+        HTML("<br><br>"),
+        DT::DTOutput("seqDataTable")
+      ),
+      # Close the Sequencing data tab
 
       tabPanel(
         title = "BioDIGSData Package",

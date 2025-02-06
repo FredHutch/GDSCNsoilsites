@@ -15,7 +15,7 @@ getdata <- function() {
   # https://docs.google.com/spreadsheets/d/1Mbuym6GgG2B3VFCbjhYy4vaPCx1_tIOBlBOlT1iIHZE/edit?usp=sharing
   if (!(file.exists(soil_file))) {
     soil_data <-
-      read.csv("data/snapshots/BioDIGS_20241207.csv")
+      read.csv("data/snapshots/BioDIGS_20250206.csv")
     soil_data <- soil_data %>% filter(public_ok == "TRUE")
     write.csv(soil_data, soil_file)
   } else {
@@ -201,6 +201,36 @@ get_browseable_soil_testing_data <- function() {
     mutate(Cd_EPA3051 = case_when(Cd_EPA3051 == "< 0.2" ~ "0", TRUE ~ Cd_EPA3051))
 
   return(testing_data_to_browse)
+}
+
+
+#' Produce data in a nice clean format for browsing & downloading
+#'
+#' @return a `data.frame`
+#' @export
+#'
+#' @examples
+#' get_browseable_seq_data()
+get_browseable_seq_data <- function() {
+  soil_data_to_browse <-
+    clean_gps_points(getdata())
+
+  soil_data_to_browse <-
+    soil_data_to_browse %>%
+    filter(bulk_type == "Molecular", sequencing_instrument != FALSE) %>%
+    rename(site_description = site_name_rep_detail) %>%
+    mutate(date_sampled = lubridate::mdy(collection_date)) %>%
+    select(site_id,
+           sample_id,
+           sequencing_facility,
+           sequencing_instrument,
+           Qubit_conc_ng_ul,
+           seq_date,
+           reads,
+           size,
+           filename)
+
+  return(soil_data_to_browse)
 }
 
 # Comment here to trigger rebuild

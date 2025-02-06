@@ -2,6 +2,7 @@
 
 export(clean_gps_points)
 export(clean_site_name_rep_detail)
+export(get_browseable_seq_data)
 export(get_browseable_site_data)
 export(get_browseable_soil_testing_data)
 export(getdata)
