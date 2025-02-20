@@ -40,11 +40,21 @@ shiny_server <- function(input, output, session) {
 
   # Reactive leaflet plot to map SITES. Option to add soil spatial properties
   site_map_leaflet_display <- reactive({
+      if (input$cluster_site_toggle) {
+        toggled_clusterOptions <- markerClusterOptions()
+        toggled_pointsdata <- retrieve_plot_data()$points
+      } else {
+        toggled_clusterOptions <- markerClusterOptions(disableClusteringAtZoom = 1)
+        toggled_pointsdata <- retrieve_plot_data()$points
+        toggled_pointsdata$longitude <- jitter(toggled_pointsdata$longitude, factor = 200)
+        toggled_pointsdata$latitude <- jitter(toggled_pointsdata$latitude, factor = 200)
+      }
+
       leaflet() %>%
         addProviderTiles(providers$CartoDB.Positron,
                          options = providerTileOptions(noWrap = TRUE)) %>%
         addMarkers(
-          data = retrieve_plot_data()$points,
+          data = toggled_pointsdata,
           popup = ~ paste0(
             '<img src="',
             as.character(retrieve_plot_data()$image_urls),
@@ -54,7 +64,7 @@ shiny_server <- function(input, output, session) {
             '<br>',
             "Lead: ", as.character(retrieve_plot_data()$partner_faculty)
           ),
-          clusterOptions = markerClusterOptions(),
+          clusterOptions = toggled_clusterOptions,
           popupOptions = popupOptions(maxWidth = "200px")
         )
   })

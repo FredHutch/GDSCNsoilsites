@@ -162,6 +162,12 @@ shiny_ui <- function() {
         value = "sample_map",
         # Google Analytics
         includeHTML("www/google_analytics.html"),
+        # Cluster sites? Checkbox
+        checkboxInput(
+          "cluster_site_toggle",
+          label = 'Cluster sites',
+          value = TRUE
+        ),
         # Sample map section
         leafletOutput("sitemap", height = 800)
       ),
