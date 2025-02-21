@@ -159,7 +159,7 @@ get_browseable_site_data <- function() {
                               soil_data_to_browse$site_id), ] %>%
     mutate(date_sampled = lubridate::mdy(collection_date)) %>%
     select(site_id,
-           site_description,
+           site_name_rep_detail,
            partner_faculty,
            mgmt_type,
            date_sampled,
@@ -224,7 +224,6 @@ get_browseable_seq_data <- function() {
   soil_data_to_browse <-
     soil_data_to_browse %>%
     filter(bulk_type == "Molecular", sequencing_instrument != FALSE) %>%
-    rename(site_description = site_name_rep_detail) %>%
     mutate(date_sampled = lubridate::mdy(collection_date)) %>%
     select(site_id,
            sample_id,

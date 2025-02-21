@@ -188,6 +188,7 @@ shiny_ui <- function() {
         includeHTML("www/google_analytics.html"),
 
         downloadButton('site_data_download', label = 'Download data'),
+        downloadButton('site_data_dict_download', label = 'Data dictionary', icon = icon("th")),
         HTML("<br><br>"),
         DT::DTOutput("siteDataTable")
       ),
@@ -219,6 +220,7 @@ shiny_ui <- function() {
         # ),
         HTML("<br>"),
         downloadButton('soiltest_download', label = 'Download data'),
+        downloadButton('soil_data_dict_download', label = 'Data dictionary', icon = icon("th")),
         HTML(
           "<br><br><i>Note: Arsenic (As_EPA3051) is not detectable below 3.0 mg/kg. Cadmium (Cd_EPA3051) is not detectable below 0.2 mg/kg.</i>"
         ),
@@ -240,6 +242,7 @@ shiny_ui <- function() {
         includeHTML("www/google_analytics.html"),
 
         downloadButton('seq_data_download', label = 'Download data'),
+        downloadButton('seq_data_dict_download', label = 'Data dictionary', icon = icon("th")),
         HTML("<br><br>"),
         DT::DTOutput("seqDataTable")
       ),

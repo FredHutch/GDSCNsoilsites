@@ -90,6 +90,16 @@ shiny_server <- function(input, output, session) {
     }
   )
 
+  # Download "site data" dictionary
+  output$site_data_dict_download <- downloadHandler(
+    filename = function() {
+      paste("BioDIGS_site_data_dictionary-", Sys.Date(), ".csv", sep = "")
+    },
+    content = function(file) {
+      file.copy('data/data_dictionaries/site_data_dictionary.csv', file)
+    }
+  )
+
   # Create browseable "seq data" table
   output$seqDataTable <- DT::renderDT(get_browseable_seq_data(),
                                        options = list(pageLength = 30, scrollX = TRUE))
@@ -101,6 +111,16 @@ shiny_server <- function(input, output, session) {
     },
     content = function(file) {
       write.csv(get_browseable_seq_data(), file, row.names = FALSE)
+    }
+  )
+
+  # Download "seq data" dictionary
+  output$seq_data_dict_download <- downloadHandler(
+    filename = function() {
+      paste("BioDIGS_sequencing_data_dictionary-", Sys.Date(), ".csv", sep = "")
+    },
+    content = function(file) {
+      file.copy('data/data_dictionaries/sequencing_data_dictionary.csv', file)
     }
   )
 
@@ -206,6 +226,16 @@ shiny_server <- function(input, output, session) {
     },
     content = function(file) {
       write.csv(get_browseable_soil_testing_data(), file, row.names = FALSE)
+    }
+  )
+
+  # Download "soil data" dictionary
+  output$soil_data_dict_download <- downloadHandler(
+    filename = function() {
+      paste("BioDIGS_soil_data_dictionary-", Sys.Date(), ".csv", sep = "")
+    },
+    content = function(file) {
+      file.copy('data/data_dictionaries/soil_data_dictionary.csv', file)
     }
   )
 
