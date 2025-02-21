@@ -1,0 +1,10 @@
+Field,Description
+site_id,A unique ID for each site consisting of letter(s) followed by a number*
+sample_id,"A unique combination of bulk_type, site_id, and replicate"
+sequencing_facility,Facility where sample was sent for molecular/metagenomic analysis
+sequencing_instrument,"The kind of sequencer that was used: Nova-seq, PacBio Revio etc."
+Qubit_conc_ng_ul,"Concentration of DNA as measured by Qubit instrument, in nanograms per microliter"
+seq_date,Date the sample was sequenced
+reads,The number of reads resulting from the sequencing
+size,Size of the sequencing file
+filename,Name of the sequencing file received from the sequencing facility

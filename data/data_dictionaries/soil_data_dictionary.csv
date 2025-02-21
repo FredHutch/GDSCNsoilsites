@@ -1,0 +1,30 @@
+Field,Description
+site_id,A unique ID for each site consisting of letter(s) followed by a number*
+site_name_rep_detail,Descriptive sample and/or site detail provided by the collector
+sample_id,"A unique combination of bulk_type, site_id, and replicate"
+origin,"Location (city, state in the USA) where the sample was removed from the ground"
+mgmt_type,Managed or Unmanaged - describes the human intervention of the sampling location
+As_EPA3051,"Arsenic (mg/kg), EPA Method 3051A. Quantities < 3.0 are not detectable."
+Cd_EPA3051,"Cadmium (mg/kg), EPA Method 3051A. Quantities < 0.2 are not detectable."
+Cr_EPA3051,"Chromium (mg/kg), EPA Method 3051A"
+Cu_EPA3051,"Copper (mg/kg), EPA Method 3051A"
+Ni_EPA3051,"Nickel (mg/kg), EPA Method 3051A"
+Pb_EPA3051,"Lead (mg/kg), EPA Method 3051A"
+Zn_EPA3051,"Zinc (mg/kg), EPA Method 3051A"
+water_pH,pH
+OM_by_LOI_pct,Organic Matter by Loss on Ignition
+P_Mehlich3,"Phosphorus (mg/kg), using the Mehlich 3 soil test extractant"
+K_Mehlich3,"Potassium (mg/kg), using the Mehlich 3 soil test extractant"
+Ca_Mehlich3,"Calcium (mg/kg), using the Mehlich 3 soil test extractant"
+Mg_Mehlich3,"Magnesium (mg/kg), using the Mehlich 3 soil test extractant"
+Mn_Mehlich3,"Manganese (mg/kg), using the Mehlich 3 soil test extractant"
+Zn_Mehlich3,"Zinc (mg/kg), using the Mehlich 3 soil test extractant"
+Cu_Mehlich3,"Copper (mg/kg), using the Mehlich 3 soil test extractant"
+Fe_Mehlich3,"Iron (mg/kg), using the Mehlich 3 soil test extractant"
+B_Mehlich3,"Boron (mg/kg), using the Mehlich 3 soil test extractant"
+S_Mehlich3,"Sulfur (mg/kg), using the Mehlich 3 soil test extractant"
+Na_Mehlich3,"Sodium (mg/kg), using the Mehlich 3 soil test extractant"
+Al_Mehlich3,"Aluminum (mg/kg), using the Mehlich 3 soil test extractant"
+Est_CEC,Cation Exchange Capacity (meq/100g) at pH 7.0 (CEC)
+Base_Sat_pct,"Base saturation (BS). This represents the percentage of CEC occupied by bases (Ca2+, Mg2+, K+, and Na+). The %BS increases with increasing soil pH. The availability of Ca2+, Mg2+, and K+ increases with increasing %BS."
+P_Sat_ratio,Phosphorus saturation ratio. This is the ratio between the amount of phosphorus present in the soil and the total capacity of that soil to retain phosphorus. The ability of phosphorus to be bound in the soil is primary a function of iron (Fe) and aluminum (Al) content in that soil.

@@ -157,7 +157,6 @@ get_browseable_site_data <- function() {
   soil_data_to_browse <-
     soil_data_to_browse[match(unique(soil_data_to_browse$site_id),
                               soil_data_to_browse$site_id), ] %>%
-    rename(site_description = site_name_rep_detail) %>%
     mutate(date_sampled = lubridate::mdy(collection_date)) %>%
     select(site_id,
            site_description,

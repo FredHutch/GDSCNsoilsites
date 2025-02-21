@@ -1,0 +1,12 @@
+Field,Description,
+site_id,A unique ID for each site consisting of letter(s) followed by a number*,
+site_name_rep_detail,Descriptive sample and/or site detail provided by the collector,
+partner_faculty,"Faculty parter responsible for collecting the sample and mailing it to JHU, if applicable",
+mgmt_type,Managed or Unmanaged - describes the human intervention of the sampling location,
+date_sampled,Date sample was removed from the ground,
+latitude,Latitude coordinate of the site where soil was sampled in decimal degrees,
+longitude,Longitude coordinate of the site where soil was sampled in decimal degrees,
+pct_impervious,"Percent impervious surface of the collection site, as a measure of urbanness, as measured by satellite at a 30 m resolution**",
+,,
+,,*A site is a specific geographic location and may have multiple samples collected there at different time points.
+,,"**Higher values indicate concrete, roads, or other hard surfaces nearby. Data were extracted from the NLCD 2016 snapshot: https://www.mrlc.gov/data/nlcd-2016-percent-developed-imperviousness-conus. See also https://doi.org/10.1016/j.isprsjprs.2020.02.019"
