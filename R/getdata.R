@@ -15,11 +15,11 @@ getdata <- function() {
   # https://docs.google.com/spreadsheets/d/1Mbuym6GgG2B3VFCbjhYy4vaPCx1_tIOBlBOlT1iIHZE/edit?usp=sharing
   if (!(file.exists(soil_file))) {
     soil_data <-
-      read.csv("data/snapshots/BioDIGS_20250220.csv")
-    soil_data <- soil_data %>% filter(public_ok != "not yet provided")
-    soil_data <- soil_data %>%
+      read.csv("data/snapshots/BioDIGS_20250220.csv") %>%
+      filter(public_ok != "not yet provided") %>%
       mutate(across(
-        ends_with("EPA3051") | ends_with("Mehlich3") | water_pH | A.E_Buffer_pH | OM_by_LOI_pct,
+        ends_with("EPA3051") |
+          ends_with("Mehlich3") | water_pH | A.E_Buffer_pH | OM_by_LOI_pct,
         ~ case_when(public_ok == "GPS OK ; NO SOIL DATA" ~ NA, TRUE ~ .)
       ))
     write.csv(soil_data, soil_file)
