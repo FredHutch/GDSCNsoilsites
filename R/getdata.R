@@ -151,7 +151,8 @@ retrieve_plot_data <- function() {
 #' get_browseable_site_data()
 get_browseable_site_data <- function() {
   soil_data_to_browse <-
-    clean_gps_points(getdata())
+    clean_gps_points(getdata()) %>%
+    clean_site_name_rep_detail()
 
   soil_data_to_browse <-
     soil_data_to_browse[match(unique(soil_data_to_browse$site_id),
@@ -164,7 +165,8 @@ get_browseable_site_data <- function() {
            mgmt_type,
            date_sampled,
            latitude,
-           longitude)
+           longitude,
+           pct_impervious)
 
   return(soil_data_to_browse)
 }
@@ -201,9 +203,9 @@ get_browseable_soil_testing_data <- function() {
       P_Sat_ratio
     ) %>%
     # As can't be detected lower than 3.0
-    mutate(As_EPA3051 = case_when(As_EPA3051 == "< 3.0" ~ "0", TRUE ~ As_EPA3051)) %>%
+    mutate(As_EPA3051 = case_when(As_EPA3051 == "< 3.0" ~ "0", As_EPA3051 == "<3.0" ~ "0", TRUE ~ As_EPA3051)) %>%
     # Cd can't be detected lower than 0.2
-    mutate(Cd_EPA3051 = case_when(Cd_EPA3051 == "< 0.2" ~ "0", TRUE ~ Cd_EPA3051))
+    mutate(Cd_EPA3051 = case_when(Cd_EPA3051 == "< 0.2" ~ "0", Cd_EPA3051 == "<0.2" ~ "0", TRUE ~ Cd_EPA3051))
 
   return(testing_data_to_browse)
 }
