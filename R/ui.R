@@ -357,10 +357,7 @@ shiny_ui <- function() {
         style = "margin-top: -10px;"
       ),
 
-      # Create some whitespace around the image
-      HTML("&nbsp;"),
-      uiOutput("classroom_img", align = "center"),
-      HTML("&nbsp;"),
+      # Create some whitespace - image removed for now
       HTML("&nbsp;"),
       HTML("&nbsp;")
     ),
