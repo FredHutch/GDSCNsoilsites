@@ -339,14 +339,15 @@ shiny_ui <- function() {
 
       HTML(paste0(biodigs_logo_header)),
 
-      includeMarkdown("www/education.md"),
+      includeMarkdown("www/education_1.md"),
 
-      HTML("<br><br>"),
+      HTML("<br>"),
+
       column(
         12,
         actionButton(
           inputId = 'ab2',
-          label = "Launch!",
+          label = "Launch Exploring Soil Data",
           onclick = "window.open('https://hutchdatascience.org/GDSCN_BioDIGS_Soil/')"
         )
         ,
@@ -356,6 +357,12 @@ shiny_ui <- function() {
         ,
         style = "margin-top: -10px;"
       ),
+
+      HTML("<br><br>"),
+
+      includeMarkdown("www/education_2.md"),
+
+      HTML("<br><br>"),
 
       # Create some whitespace - image removed for now
       HTML("&nbsp;"),
