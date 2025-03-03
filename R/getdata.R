@@ -191,7 +191,6 @@ get_browseable_soil_testing_data <- function() {
       site_id,
       replicate,
       site_name_rep_detail,
-      origin,
       tidyr::ends_with("EPA3051"),
       water_pH,
       OM_by_LOI_pct,
