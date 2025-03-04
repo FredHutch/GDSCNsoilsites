@@ -182,17 +182,15 @@ get_browseable_soil_testing_data <- function() {
   testing_data_to_browse <-
     getdata() %>%
     filter(bulk_type == "Soil") %>%
-    clean_gps_points() %>%
-    clean_site_name_rep_detail()
+    clean_gps_points()
 
   testing_data_to_browse <-
     testing_data_to_browse %>%
     select(
-      site_id,
-      site_name_rep_detail,
       sample_id,
-      origin,
-      mgmt_type,
+      site_id,
+      replicate,
+      site_name_rep_detail,
       tidyr::ends_with("EPA3051"),
       water_pH,
       OM_by_LOI_pct,
@@ -204,7 +202,11 @@ get_browseable_soil_testing_data <- function() {
     # As can't be detected lower than 3.0
     mutate(As_EPA3051 = case_when(As_EPA3051 == "< 3.0" ~ "0", As_EPA3051 == "<3.0" ~ "0", TRUE ~ As_EPA3051)) %>%
     # Cd can't be detected lower than 0.2
-    mutate(Cd_EPA3051 = case_when(Cd_EPA3051 == "< 0.2" ~ "0", Cd_EPA3051 == "<0.2" ~ "0", TRUE ~ Cd_EPA3051))
+    mutate(Cd_EPA3051 = case_when(Cd_EPA3051 == "< 0.2" ~ "0", Cd_EPA3051 == "<0.2" ~ "0", TRUE ~ Cd_EPA3051)) %>%
+    mutate(across(
+      everything(),
+      ~ case_when(. == "Not yet tested" ~ NA, TRUE ~ .)
+    ))
 
   return(testing_data_to_browse)
 }
