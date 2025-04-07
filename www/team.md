@@ -60,6 +60,9 @@ Many of the faculty are also members of the GDSCN.
 - Nareh Azizian
 - Rachael Gutierrez
 
+**College of Southern Maryland**: La Plata, MD
+- Tyler Smith
+
 **College of the Desert**: Palm Desert, CA
 - Alexa Sawa
 
@@ -144,6 +147,9 @@ Many of the faculty are also members of the GDSCN.
 - Nicole Brown
 - Jennifer Vessio
 
+**Loyola University Maryland**: Baltimore, MD
+- Emily Grob
+
 **Meharry Medical College**: Nashville, TN
 - Siddharth Pratap
 - Arjun P. Pratap
@@ -191,6 +197,9 @@ Many of the faculty are also members of the GDSCN.
 - Nia R. Davis
 - Natajha Graham
 - Tobias Hoffmann
+
+**Towson University**: Towson, MD
+- Madeline E. Graham
 
 **University of California Merced**: Merced, CA
 - Michele Nishiguchi
@@ -253,8 +262,4 @@ Many of the faculty are also members of the GDSCN.
 - Michael Marone
 - Alani M Horton
 - Arinzechukwu C Egwu
-  
-**Baltimore, MD**: College of Southern Maryland, Notre Dame College of Maryland, Towson University
-- Tyler Smith, College of Southern Maryland
-- Emily Grob, Loyola University Maryland
-- Madeline E. Graham, Towson University
+
