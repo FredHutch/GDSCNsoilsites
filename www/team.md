@@ -205,7 +205,7 @@ Many of the faculty are also members of the GDSCN.
 - Michele Nishiguchi
 - Perla Gonzalez-Moreno
 
-**United Tribes Technical College**: Bismark, ND
+**United Tribes Technical College**: Bismarck, ND
 - Emily Biggane
 - Karliegh Wattier
 - Megan Clark-Lowell
@@ -234,7 +234,7 @@ Many of the faculty are also members of the GDSCN.
 - Mohammadamin Mahmanzar
 - Yu Chen
 
-**University of Mary**: Bismark, ND
+**University of Mary**: Bismarck, ND
 - Joseph Biggane
 - Wendy Larson
 - Brennan Roche
