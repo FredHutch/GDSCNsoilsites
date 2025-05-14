@@ -1,6 +1,6 @@
 # The Research Team
 
-BioDIGS is run by the Genomic Data Science Community Network (GDSCN). The GDSCN is a consortium of educators who are dedicated to expanding genomic data science and bioinformatics education to students at typically underresourced institutions including community colleges, HBCUs, tribal colleges and universities, and Hispanic-serving institutions. They are supported by Johns Hopkins University, the Fred Hutchinson Cancer Center, and the National Human Genome Research Institute. You can learn more about the GDSCN [here](https://www.gdscn.org/home).
+BioDIGS is run by the Genomic Data Science Community Network (GDSCN). The GDSCN is a consortium of educators who are dedicated to expanding genomic data science and bioinformatics education to students at typically underresourced institutions including community colleges, HBCUs, tribal colleges and universities, and Hispanic-serving institutions. They are supported by Johns Hopkins University, the Fred Hutchinson Cancer Center, and the National Human Genome Research Institute. You can learn more about the GDSCN [here](https://www.gdscn.org/).
 
 ## Who did the soil sampling?
 
