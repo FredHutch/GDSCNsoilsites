@@ -2,16 +2,25 @@
 % Please edit documentation in R/getdata.R
 \name{getdata}
 \alias{getdata}
-\title{Gets relevant data from snapshot file.}
+\title{Loads soil data from snapshot with local caching.}
 \usage{
-getdata()
+getdata(
+  snapshot_path = "data/snapshots/BioDIGS_20250514.csv",
+  cache_path = "soil_data.csv"
+)
+}
+\arguments{
+\item{snapshot_path}{Path to snapshot file}
+
+\item{cache_path}{Where to store cached data (changing not recommended)}
 }
 \value{
-an uncleaned \code{data.frame}
+Soil data \code{data.frame}
 }
 \description{
-Gets relevant data from snapshot file.
+Loads soil data from snapshot with local caching.
 }
 \examples{
 getdata()
+getdata(snapshot_path = "data/snapshots/BioDIGS_20250514.csv")
 }
