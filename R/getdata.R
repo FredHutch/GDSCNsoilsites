@@ -1,34 +1,77 @@
 
-#' Gets relevant data from snapshot file.
+
+#' Scrubs data according to faculty requests. This is an interactive process that
+#' could likely be automated using a GitHub Action Google Sheet pull at some point.
 #'
-#' @return an uncleaned `data.frame`
-#' @export
+#' @param infile Character string specifying the path to the input CSV file containing raw data
+#' @param outfile Character string specifying the path where the scrubbed data will be saved
+#'
+#' @return A `data.frame` containing the processed data with:
+#'   - Filtered rows based on public sharing permissions
+#'   - Masked EPA3051, Mehlich3, pH, buffer pH, OM_by_LOI_pct, and GPS measurements
+#'   - Preserved data structure and column names
 #'
 #' @examples
-#' getdata()
-getdata <- function() {
-  # Set filename
-  soil_file <- "soil_data.csv"
-
-  # Check if the file is/has been written.
-  # If not, read it in, save as `soil_data`
-  # https://docs.google.com/spreadsheets/d/1Mbuym6GgG2B3VFCbjhYy4vaPCx1_tIOBlBOlT1iIHZE/edit?usp=sharing
-  if (!(file.exists(soil_file))) {
-    soil_data <-
-      read.csv("data/snapshots/BioDIGS_20250220.csv") %>%
-      filter(public_ok != "not yet provided") %>%
-      mutate(across(
+#' scrubdata(infile = "BioDIGS Sample Data and Kit Request MASTER - ALL_SAMPLES.csv", outfile = "data/snapshots/BioDIGS_20250514.csv")
+scrubdata <- function(infile, outfile) {
+  scrubbed_data <-
+    read.csv(infile) %>%
+    # Remove records not cleared for public sharing
+    filter(public_ok != "not yet provided") %>%
+    # Mask soil measurements for NO SOIL DATA records (as NA)
+    mutate(
+      across(
         ends_with("EPA3051") |
-          ends_with("Mehlich3") | water_pH | A.E_Buffer_pH | OM_by_LOI_pct,
+          ends_with("Mehlich3") |
+          water_pH | A.E_Buffer_pH | OM_by_LOI_pct,
         ~ case_when(public_ok == "GPS OK ; NO SOIL DATA" ~ NA, TRUE ~ .)
-      ))
-    write.csv(soil_data, soil_file)
-  } else {
-    soil_data <- read.csv(soil_file)[,-1]
+      )
+    )  %>%
+    # Mask all measurements including GPS for records without GPS approval
+    mutate(
+      across(
+        ends_with("EPA3051") |
+          ends_with("Mehlich3") |
+          water_pH | A.E_Buffer_pH | OM_by_LOI_pct | gps,
+        ~ case_when(public_ok == "NO GPS ; NO SOIL DATA" ~ NA, TRUE ~ .)
+      )
+    )
+
+  # Save processed data
+  write.csv(scrubbed_data, outfile)
+
+  # Notify if overwriting existing file
+  if (file.exists(outfile)) {
+    message(paste0("Overwriting existing file ", outfile))
+  }
+}
+
+
+#' Loads soil data from snapshot with local caching.
+#'
+#' @param snapshot_path Path to snapshot file
+#' @param cache_path Where to store cached data (changing not recommended)
+#' @return Soil data `data.frame`
+#'
+#' @export
+#' @examples
+#' getdata()
+#' getdata(snapshot_path = "data/snapshots/BioDIGS_20250514.csv")
+getdata <- function(snapshot_path = "data/snapshots/BioDIGS_20250514.csv",
+                    cache_path = "soil_data.csv") {
+  # Try cached version first
+  if (file.exists(cache_path)) {
+    soil_data <- read.csv(cache_path)[, -1]  # Remove first column
+    return(soil_data)
   }
 
-  return(soil_data)
+  # Load from snapshot if cache missing
+  if (!file.exists(snapshot_path))
+    stop("Snapshot file not found")
 
+  soil_data <- read.csv(snapshot_path)
+  write.csv(soil_data, cache_path)
+  return(soil_data)
 }
 
 
@@ -45,7 +88,7 @@ clean_gps_points <- function(the_data) {
   # Clean up GPS points:
   # Remove parentheses, split column, fix negatives, and make numeric
   the_data <- the_data %>%
-    filter(gps != "Not yet provided") %>%
+    filter(gps != "Not yet provided", gps != "not yet provided") %>%
     mutate(gps = str_replace_all(gps, "[//(,//)]*", "")) %>%
     tidyr::separate(gps,
                     into = c("latitude", "longitude"),

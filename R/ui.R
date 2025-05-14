@@ -9,7 +9,7 @@ shiny_ui <- function() {
   #####
   navbarPage(
     title = HTML(
-      "<a href='http://gdscn.org'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/jhudsl/GDSCN_Book_SARS_Galaxy_on_AnVIL/main/assets/GDSCN_style/logo-gdscn.png' height = '100%'></a>"
+      "<a href='https://www.gdscn.org/'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='https://raw.githubusercontent.com/jhudsl/GDSCN_Book_SARS_Galaxy_on_AnVIL/main/assets/GDSCN_style/logo-gdscn.png' height = '100%'></a>"
     ),
     id = "navBar",
     collapsible = TRUE,
@@ -94,7 +94,7 @@ shiny_ui <- function() {
             ),
             collapse = "</br>"
           )),
-          onclick = "window.open('https://gdscn.org/')"
+          onclick = "window.open('https://www.gdscn.org/')"
         )
         ,
         align = "center"

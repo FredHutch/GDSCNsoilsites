@@ -2,7 +2,7 @@
 
 The following are materials designed to help you dive into BioDIGS. This could be for your own learning, or for you to implement in your classrooms!
 
-Activities leverage NHGRI's [AnVIL](https://anvilproject.org/) cloud computing platform. AnVIL is the preferred computing platform for the [GDSCN](https://www.gdscn.org/home). However, all of the activities can be done using personal installations of R or using the online [Galaxy](usegalaxy.org) portal.
+Activities leverage NHGRI's [AnVIL](https://anvilproject.org/) cloud computing platform. AnVIL is the preferred computing platform for the [GDSCN](https://www.gdscn.org/). However, all of the activities can be done using personal installations of R or using the online [Galaxy](usegalaxy.org) portal.
 
 ## BioDIGS: Exploring Soil Data
 
