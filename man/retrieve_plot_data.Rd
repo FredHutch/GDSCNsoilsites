@@ -2,7 +2,28 @@
 % Please edit documentation in R/getdata.R
 \name{retrieve_plot_data}
 \alias{retrieve_plot_data}
-\title{Partition out the data into a list for quick use in plots.}
+\title{#' Cleans data to make GPS coordinates consistent.
+#'
+#' @param the_data
+#'
+#' @return Cleaned \code{data.frame}
+#' @export
+#'
+#' @examples
+#' clean_gps_points(getdata())
+clean_gps_points <- function(the_data) {Clean up GPS points:Remove parentheses, split column, fix negatives, and make numeric
+
+the_data <- the_data \%>\%
+filter(gps != "Not yet provided", gps != "not yet provided") \%>\%
+mutate(gps = str_replace_all(gps, "\link{//(,//)}*", "")) \%>\%
+tidyr::separate(gps,
+into = c("latitude", "longitude"),
+sep = " ") \%>\%
+mutate(longitude = case_when(
+as.numeric(longitude) > 0 ~ as.numeric(longitude) * -1,
+TRUE ~ as.numeric(longitude)
+)) \%>\%
+mutate(latitude = as.numeric(latitude))}
 \usage{
 retrieve_plot_data()
 }
@@ -10,8 +31,16 @@ retrieve_plot_data()
 a \code{list} of gps coordinates, site names, and image urls
 }
 \description{
-Partition out the data into a list for quick use in plots.
+
 }
+\section{Clean up site_name_rep_detail column}{
+
+}
+
+\section{Keep only unique sites, and clean site details so no rep information is included.}{
+
+}
+
 \examples{
 # Get gps points as a dataframe:
 retrieve_plot_data()$points
