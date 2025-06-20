@@ -1,9 +1,17 @@
 Field,Description
-site_id,A unique ID for each site consisting of letter(s) followed by a number*
+bulk_type,"Describes the testing that will be performed. ""Soil"" indicates this sample will be sent to a soil testing facility."
+purpose,Describes whether the sample was intended to be part of the Project or part of Troubleshooting sample processing.
+vessel,Describes what the sample was stored in by collector prior to being processed at the soil testing facility.
+collection_date,The date the sample was removed from the ground by the collector at the site.
 site_name_rep_detail,Descriptive sample and/or site detail provided by the collector
+partner_faculty,"Faculty parter responsible for collecting the sample and mailing it to JHU, if applicable"
+team,"Names of sample collectors who assisted the partner_faculty, if applicable"
+site_id,A unique ID for each site consisting of letter(s) followed by a number. A site is a specific geographic location and may have multiple samples collected there at different time points.
+replicate,"A replicate ID. Replicates are identical at the site_id, partner_faculty, team, and collection_date level, and represent the same sample but a different physical vessel to be processed."
 sample_id,"A unique combination of bulk_type, site_id, and replicate"
-origin,"Location (city, state in the USA) where the sample was removed from the ground"
-mgmt_type,Managed or Unmanaged - describes the human intervention of the sampling location
+date_arrival_at_jhu,Date on which the sample was received at JHU.
+status,"Current physical status of the sample, indicating whether it has been sent for processing from JHU."
+date_sent_soil_analysis,Date on which the sample was delivered to the soil testing facility.
 As_EPA3051,"Arsenic (mg/kg), EPA Method 3051A. Quantities < 3.0 are not detectable."
 Cd_EPA3051,"Cadmium (mg/kg), EPA Method 3051A. Quantities < 0.2 are not detectable."
 Cr_EPA3051,"Chromium (mg/kg), EPA Method 3051A"
@@ -28,3 +36,5 @@ Al_Mehlich3,"Aluminum (mg/kg), using the Mehlich 3 soil test extractant"
 Est_CEC,Cation Exchange Capacity (meq/100g) at pH 7.0 (CEC)
 Base_Sat_pct,"Base saturation (BS). This represents the percentage of CEC occupied by bases (Ca2+, Mg2+, K+, and Na+). The %BS increases with increasing soil pH. The availability of Ca2+, Mg2+, and K+ increases with increasing %BS."
 P_Sat_ratio,Phosphorus saturation ratio. This is the ratio between the amount of phosphorus present in the soil and the total capacity of that soil to retain phosphorus. The ability of phosphorus to be bound in the soil is primary a function of iron (Fe) and aluminum (Al) content in that soil.
+Note,"Additional information about the sample collection or processing, if applicable"
+public_ok,Internal field indicating if the collector has provided public sharing permissions. Value is TRUE if there are no restrictions on sharing.

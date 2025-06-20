@@ -215,6 +215,7 @@ get_browseable_soil_testing_data <- function() {
   testing_data_to_browse <-
     getdata(dataset = "soil") %>%
     relocate(public_ok, .after = P_Sat_ratio) %>%
+    relocate(Note, .before = public_ok) %>%
     mutate(date_sent_soil_analysis = na_if(date_sent_soil_analysis, "FALSE")) %>%
     mutate(
       across(
