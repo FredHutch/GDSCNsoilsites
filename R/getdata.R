@@ -183,116 +183,6 @@ getdata <- function(dataset = "sites") {
 }
 
 
-#' #' Cleans data to make GPS coordinates consistent.
-#' #'
-#' #' @param the_data
-#' #'
-#' #' @return Cleaned `data.frame`
-#' #' @export
-#' #'
-#' #' @examples
-#' #' clean_gps_points(getdata())
-#' clean_gps_points <- function(the_data) {
-#'   # Clean up GPS points:
-#'   # Remove parentheses, split column, fix negatives, and make numeric
-#'   the_data <- the_data %>%
-#'     filter(gps != "Not yet provided", gps != "not yet provided") %>%
-#'     mutate(gps = str_replace_all(gps, "[//(,//)]*", "")) %>%
-#'     tidyr::separate(gps,
-#'                     into = c("latitude", "longitude"),
-#'                     sep = " ") %>%
-#'     mutate(longitude = case_when(
-#'       as.numeric(longitude) > 0 ~ as.numeric(longitude) * -1,
-#'       TRUE ~ as.numeric(longitude)
-#'     )) %>%
-#'     mutate(latitude = as.numeric(latitude))
-#'
-#'   return(the_data)
-#' }
-#'
-#'
-#' #' Clean the site name details in case we don't want "rep 1" or "rep 2" included
-#' #'
-#' #' @param the_data
-#' #'
-#' #' @return Cleaned `data.frame`
-#' #' @export
-#' #'
-#' #' @examples clean_site_name_rep_detail(getdata())
-#' clean_site_name_rep_detail <- function(the_data) {
-#'   # Clean up site_name_rep_detail column
-#'   # Keep only unique sites, and clean site details so no rep information is included.
-#'   the_data <-
-#'     the_data[match(unique(the_data$site_id), the_data$site_id), ] %>%
-#'     mutate(site_name_rep_detail = str_remove(site_name_rep_detail, "( rep 1| Rep 1| rep #1| Rep #1)$")) %>%
-#'     mutate(site_name_rep_detail = str_remove(site_name_rep_detail, "( rep 2| Rep 2| rep #2| Rep #2)$"))
-#'
-#'   return(the_data)
-#' }
-
-
-#' Partition out the data into a list for quick use in plots.
-#'
-#' @return a `list` of gps coordinates, site names, and image urls
-#' @export
-#'
-#' @examples
-#' # Get gps points as a dataframe:
-#' retrieve_plot_data()$points
-#'
-#' # Get site names as a vector:
-#' retrieve_plot_data()$sitenames
-#'
-#' # Get urls for images as a vector:
-#' retrieve_plot_data()$image_urls
-retrieve_plot_data <- function() {
-  # Read in, clean GPS points / clean reps from site descriptions
-  soil_data <-
-    getdata() %>%
-    clean_gps_points() %>%
-    clean_site_name_rep_detail()
-
-  # Extract gps coordinates
-  gps_points <-
-    soil_data %>%
-    clean_site_name_rep_detail() %>%
-    select(longitude, latitude) %>%
-    as.data.frame()
-
-  # Extract faculty names
-  partner_faculty <-
-    soil_data %>%
-    clean_site_name_rep_detail() %>%
-    select(partner_faculty) %>%
-    pull()
-
-  # Pull out metadata site names separately
-  sitenames <-
-    soil_data %>%
-    clean_site_name_rep_detail() %>%
-    mutate(site_name = paste(site_id, "-", site_name_rep_detail)) %>%
-    select(site_name) %>%
-    pull()
-
-  # Adjust image urls
-  image_urls <-
-    soil_data %>%
-    clean_site_name_rep_detail() %>%
-    dplyr::mutate(url = paste0(
-      'https://lh3.googleusercontent.com/d/',
-      google_img_id
-    )) %>%
-    pull(url)
-
-  return(list(
-    points = gps_points,
-    sitenames = sitenames,
-    partner_faculty = partner_faculty,
-    image_urls = image_urls
-  ))
-}
-
-
 #' Produce data in a nice clean format for browsing & downloading
 #'
 #' @return a `data.frame`
@@ -361,4 +251,54 @@ get_browseable_seq_data <- function() {
   return(seq_data_to_browse)
 }
 
-# Comment here to trigger rebuild
+
+#' Partition out the data into a list for quick use in plots.
+#'
+#' @return a `list` of gps coordinates, site names, faculty partner names,
+#' and image urls
+#' @export
+#'
+#' @examples
+#' # Get gps points as a dataframe:
+#' retrieve_plot_data()$points
+#'
+#' # Get site names as a vector:
+#' retrieve_plot_data()$sitenames
+#'
+#' # Get urls for images as a vector:
+#' retrieve_plot_data()$image_urls
+retrieve_plot_data <- function() {
+  # Extract gps coordinates
+  gps_points <-
+    get_browseable_site_data() %>%
+    select(longitude, latitude) %>%
+    as.data.frame()
+
+  # Extract faculty names
+  partner_faculty <-
+    get_browseable_site_data() %>%
+    select(partner_faculty) %>%
+    pull()
+
+  # Pull out metadata site names separately
+  sitenames <-
+    get_browseable_site_data() %>%
+    select(site_name) %>%
+    pull()
+
+  # Adjust image urls
+  image_urls <-
+    getdata() %>%
+    dplyr::mutate(url = paste0(
+      'https://lh3.googleusercontent.com/d/',
+      google_img_id
+    )) %>%
+    pull(url)
+
+  return(list(
+    points = gps_points,
+    sitenames = sitenames,
+    partner_faculty = partner_faculty,
+    image_urls = image_urls
+  ))
+}
