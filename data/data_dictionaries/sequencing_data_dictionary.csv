@@ -1,10 +1,24 @@
 Field,Description
-site_id,A unique ID for each site consisting of letter(s) followed by a number*
+bulk_type,"Describes the testing that will be performed. ""Molecular"" indicates this sample will be sent to a DNA sequencing facility."
+purpose,Describes whether the sample was intended to be part of the Project or part of Troubleshooting sample processing.
+vessel,Describes what the sample was stored in by collector prior to being prepared for sequencing.
+collection_date,The date the sample was removed from the ground by the collector at the site.
+site_name_rep_detail,Descriptive sample and/or site detail provided by the collector
+partner_faculty,"Faculty parter responsible for collecting the sample and mailing it to JHU, if applicable"
+team,"Names of sample collectors who assisted the partner_faculty, if applicable"
+site_id,A unique ID for each site consisting of letter(s) followed by a number. A site is a specific geographic location and may have multiple samples collected there at different time points.
+replicate,"A replicate ID. Replicates are identical at the site_id, partner_faculty, team, and collection_date level, and represent the same sample but a different physical vessel to be processed."
 sample_id,"A unique combination of bulk_type, site_id, and replicate"
+date_arrival_at_jhu,Date on which the sample was received at JHU.
+status,"Current physical status of the sample, indicating whether it has been sent for processing from JHU."
+date_sent_seq,Date on which the sample was sent or delivered to the sequencing facility.
 sequencing_facility,Facility where sample was sent for molecular/metagenomic analysis
 sequencing_instrument,"The kind of sequencer that was used: Nova-seq, PacBio Revio etc."
+DNA_OK,TRUE if DNA was successfully extracted. FALSE if no DNA was available or it was too degraded to perform sequencing.
 Qubit_conc_ng_ul,"Concentration of DNA as measured by Qubit instrument, in nanograms per microliter"
 seq_date,Date the sample was sequenced
-reads,The number of reads resulting from the sequencing
-size,Size of the sequencing file
-filename,Name of the sequencing file received from the sequencing facility
+filename,"Name and path of the sequencing file that is available to BioDIGS partners, either on AnVIL or Galaxy."
+md5sum,"A file checksum, specifically one generated using the MD5 hashing algorithm.ÊIt's a 128-bit fingerprint of a file, used to verify its integrity by ensuring no changes have been made to the file since the checksum was generated"
+raw_id,File naming convention used to help disambiguate samples received from the sequencing facility. Often the sequencing facility will have random file naming.
+Note,"Additional information about the sample collection or processing, if applicable"
+public_ok,Internal field indicating if the collector has provided public sharing permissions. Value is TRUE if there are no restrictions on sharing.
