@@ -6,5 +6,5 @@ partner_faculty,"Faculty parter responsible for collecting the sample and mailin
 latitude,Latitude coordinate of the site where soil was sampled in decimal degrees
 longitude,Longitude coordinate of the site where soil was sampled in decimal degrees
 mgmt_type,Managed or Unmanaged - describes the human intervention of the sampling location
-pct_impervious,"Percent impervious surface of the collection site, a measure of urbanness, as measured by satellite at a 30 m resolution. **Higher values indicate concrete, roads, or other hard surfaces nearby. Data were extracted from the NLCD 2016 snapshot: https://www.mrlc.gov/data/nlcd-2016-percent-developed-imperviousness-conus. See also https://doi.org/10.1016/j.isprsjprs.2020.02.019"
+pct_impervious,"Percent impervious surface of the collection site, a measure of urbanness, as measured by satellite at a 30 m resolution. **Higher values indicate concrete, roads, or other hard surfaces nearby. Data were extracted from the NLCD 2024 snapshot using urbanr (https://github.com/BioDIGS/site_metadata_environment/blob/main/R/Percent_impervious.Rmd; https://github.com/avahoffman/urbanr). See also https://doi.org/10.1016/j.isprsjprs.2020.02.019"
 public_ok,Internal field indicating if the collector has provided public sharing permissions. Value is TRUE if there are no restrictions on sharing.
