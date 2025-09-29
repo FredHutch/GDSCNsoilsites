@@ -110,53 +110,6 @@ scrubseqdata <- function(infile, outfile) {
 }
 
 
-#' #' Scrubs data according to faculty requests. This is an interactive process that
-#' #' could likely be automated using a GitHub Action Google Sheet pull at some point.
-#' #'
-#' #' @param infile Character string specifying the path to the input CSV file containing raw data
-#' #' @param outfile Character string specifying the path where the scrubbed data will be saved
-#' #'
-#' #' @return A `data.frame` containing the processed data with:
-#' #'   - Filtered rows based on public sharing permissions
-#' #'   - Masked EPA3051, Mehlich3, pH, buffer pH, OM_by_LOI_pct, and GPS measurements
-#' #'   - Preserved data structure and column names
-#' #'
-#' #' @examples
-#' #' scrubdata(infile = "BioDIGS Sample Data and Kit Request MASTER - ALL_SAMPLES.csv", outfile = "data/snapshots/BioDIGS_20250514.csv")
-#' scrubdata <- function(infile, outfile) {
-#'   scrubbed_data <-
-#'     read.csv(infile) %>%
-#'     # Remove records not cleared for public sharing
-#'     filter(public_ok != "not yet provided") %>%
-#'     # Mask soil measurements for NO SOIL DATA records (as NA)
-#'     mutate(
-#'       across(
-#'         ends_with("EPA3051") |
-#'           ends_with("Mehlich3") |
-#'           water_pH | A.E_Buffer_pH | OM_by_LOI_pct,
-#'         ~ case_when(public_ok == "GPS OK ; NO SOIL DATA" ~ NA, TRUE ~ .)
-#'       )
-#'     )  %>%
-#'     # Mask all measurements including GPS for records without GPS approval
-#'     mutate(
-#'       across(
-#'         ends_with("EPA3051") |
-#'           ends_with("Mehlich3") |
-#'           water_pH | A.E_Buffer_pH | OM_by_LOI_pct | gps,
-#'         ~ case_when(public_ok == "NO GPS ; NO SOIL DATA" ~ NA, TRUE ~ .)
-#'       )
-#'     )
-#'
-#'   # Save processed data
-#'   write.csv(scrubbed_data, outfile)
-#'
-#'   # Notify if overwriting existing file
-#'   if (file.exists(outfile)) {
-#'     message(paste0("Overwriting existing file ", outfile))
-#'   }
-#' }
-
-
 #' Loads soil data from snapshot with local caching.
 #'
 #' @param measure Which dataset? Can be `sites`, `soil`, or `seq` data.
@@ -166,14 +119,14 @@ scrubseqdata <- function(infile, outfile) {
 #' @examples
 #' getdata()
 #' getdata(dataset = "soil")
-getdata <- function(dataset = "sites") {
+getdata <- function(dataset = "sites", snapshot = "20250929") {
 
   if(dataset == "sites") {
-    snapshot_path <- "data/snapshots/BioDIGS_sites_20250616.csv"
+    snapshot_path <- paste0("data/snapshots/BioDIGS_sites_", snapshot,".csv")
   } else if (dataset == "soil") {
-    snapshot_path <- "data/snapshots/BioDIGS_soil_20250616.csv"
+    snapshot_path <- paste0("data/snapshots/BioDIGS_soil_", snapshot,".csv")
   } else {
-    snapshot_path <- "data/snapshots/BioDIGS_seq_20250616.csv"
+    snapshot_path <- paste0("data/snapshots/BioDIGS_seq_", snapshot,".csv")
   }
 
   if (file.exists(snapshot_path)) {
