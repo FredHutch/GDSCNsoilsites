@@ -24,13 +24,13 @@ scrubsitedata <- function(infile, outfile) {
     # Remove Tuba City names for anonymity
     mutate(site_name = case_when(str_detect(site_id, "TC0") ~ NA, TRUE ~ site_name))
 
-  # Save processed data
-  write.csv(scrubbed_data, outfile)
-
   # Notify if overwriting existing file
   if (file.exists(outfile)) {
     message(paste0("Overwriting existing file ", outfile))
   }
+
+  # Save processed data
+  write.csv(scrubbed_data, outfile)
 }
 
 
@@ -68,13 +68,13 @@ scrubsoildata <- function(infile, outfile) {
     # Remove Tuba City names for anonymity
     mutate(site_name_rep_detail = case_when(str_detect(site_id, "TC0") ~ NA, TRUE ~ site_name_rep_detail))
 
-  # Save processed data
-  write.csv(scrubbed_data, outfile)
-
   # Notify if overwriting existing file
   if (file.exists(outfile)) {
     message(paste0("Overwriting existing file ", outfile))
   }
+
+  # Save processed data
+  write.csv(scrubbed_data, outfile)
 }
 
 
@@ -100,13 +100,13 @@ scrubseqdata <- function(infile, outfile) {
     # Remove Tuba City names for anonymity
     mutate(site_name_rep_detail = case_when(str_detect(site_id, "TC0") ~ NA, TRUE ~ site_name_rep_detail))
 
-  # Save processed data
-  write.csv(scrubbed_data, outfile)
-
   # Notify if overwriting existing file
   if (file.exists(outfile)) {
     message(paste0("Overwriting existing file ", outfile))
   }
+
+  # Save processed data
+  write.csv(scrubbed_data, outfile)
 }
 
 
