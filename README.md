@@ -12,3 +12,7 @@ Check out our companion resource, [BioDIGSData](https://github.com/fhdsl/BioDIGS
 - Added closest known ZIP code, as this is often used to look up other variables
 - Added USDA Hardiness Zone
 - Updated data dictionary accordingly
+
+### 2025-09-29
+
+- Add Palm Desert, CA samples
