@@ -19,6 +19,8 @@ scrubsitedata <- function(infile, outfile) {
     filter(public_ok != "not yet provided") %>%
     # Mask GPS for records without GPS approval
     mutate(gps = case_when(str_detect(public_ok, "NO GPS") ~ NA, TRUE ~ gps)) %>%
+    # Mask zip codes without GPS approval
+    mutate(closest_zip = case_when(str_detect(public_ok, "NO GPS") ~ NA, TRUE ~ closest_zip)) %>%
     mutate(across(gps |
                     mgmt_type | google_img_id, ~ na_if(., "not yet provided"))) %>%
     # Remove Tuba City names for anonymity
@@ -119,7 +121,7 @@ scrubseqdata <- function(infile, outfile) {
 #' @examples
 #' getdata()
 #' getdata(dataset = "soil")
-getdata <- function(dataset = "sites", snapshot = "20250929") {
+getdata <- function(dataset = "sites", snapshot = "20251103") {
 
   if(dataset == "sites") {
     snapshot_path <- paste0("data/snapshots/BioDIGS_sites_", snapshot,".csv")
