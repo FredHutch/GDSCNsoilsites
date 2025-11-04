@@ -10,8 +10,9 @@ Check out our companion resource, [BioDIGSData](https://github.com/fhdsl/BioDIGS
 
 - Fixed GPS coordinates for the UC Merced site, which was pointing to an uninhabited location
 - Added closest known ZIP code, as this is often used to look up other variables
-- Added USDA Hardiness Zone
-- Updated data dictionary accordingly
+- Added [USDA Hardiness Zone](https://planthardiness.ars.usda.gov/)
+- Added tree canopy cover (%), CEC cover type, and NLCD cover type from [NLCD](https://www.usgs.gov/centers/eros/science/national-land-cover-database) (more info on how these were calculated [here](https://github.com/BioDIGS/site_metadata_environment))
+- Updated site data dictionary accordingly
 
 ### 2025-09-29
 
