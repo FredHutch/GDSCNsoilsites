@@ -6,6 +6,12 @@ Check out our companion resource, [BioDIGSData](https://github.com/fhdsl/BioDIGS
 
 ## Data Snapshot Change Log
 
+### 2025-11-11
+
+- Received GPS information for Tuba City sites and was able to add environmental features to sites data (GPS still anonymous)
+- Made a small correction to the Tuba City sites T01 and T02. These did not actually have replicates, as the replicates had distinct GPS coordinates. Soil and DNA samples correction: T01_2 became T07_1; T02_2 became T08_1.
+- Remove extra column (Science tree cover) from the displayed data to correctly match the metadata. We should go with the NLCD method as it is averaged and more accurate across multiple models.
+
 ### 2025-11-03
 
 - Fixed GPS coordinates for the UC Merced site, which was pointing to an uninhabited location
