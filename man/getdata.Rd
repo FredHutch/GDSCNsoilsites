@@ -4,7 +4,7 @@
 \alias{getdata}
 \title{Loads soil data from snapshot with local caching.}
 \usage{
-getdata(dataset = "sites", snapshot = "20251111")
+getdata(dataset = "sites", snapshot = "20260108")
 }
 \arguments{
 \item{measure}{Which dataset? Can be \code{sites}, \code{soil}, or \code{seq} data.}
