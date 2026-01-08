@@ -20,6 +20,7 @@ Ni_EPA3051,"Nickel (mg/kg), EPA Method 3051A"
 Pb_EPA3051,"Lead (mg/kg), EPA Method 3051A"
 Zn_EPA3051,"Zinc (mg/kg), EPA Method 3051A"
 water_pH,pH
+A.E_Buffer_pH,Buffer pH
 OM_by_LOI_pct,Organic Matter by Loss on Ignition
 P_Mehlich3,"Phosphorus (mg/kg), using the Mehlich 3 soil test extractant"
 K_Mehlich3,"Potassium (mg/kg), using the Mehlich 3 soil test extractant"
@@ -38,3 +39,11 @@ Base_Sat_pct,"Base saturation (BS). This represents the percentage of CEC occupi
 P_Sat_ratio,Phosphorus saturation ratio. This is the ratio between the amount of phosphorus present in the soil and the total capacity of that soil to retain phosphorus. The ability of phosphorus to be bound in the soil is primary a function of iron (Fe) and aluminum (Al) content in that soil.
 Note,"Additional information about the sample collection or processing, if applicable"
 public_ok,Internal field indicating if the collector has provided public sharing permissions. Value is TRUE if there are no restrictions on sharing.
+vap,Vapor pressure (hPa) - vap: https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/cruts.2503051245.v4.09/vap/
+pre,Precipication (mm/month) - pre: https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/cruts.2503051245.v4.09/pre/
+cld,Cloud cover (percent) - cld: https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/cruts.2503051245.v4.09/cld/
+tmp,Mean near-surface temperature (Celcius) - tmp: https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/cruts.2503051245.v4.09/tmp/
+frs,Wet day frequency (days) - wet: https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/cruts.2503051245.v4.09/wet/
+dtr,Diurnal Temperature Range (Celcius) - dtr: https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/cruts.2503051245.v4.09/dtr/
+pet,potential evapotranspiration (mm/day) - pet: https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/cruts.2503051245.v4.09/pet/
+wet,Wet day frequency (days) - wet: https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/cruts.2503051245.v4.09/wet/
