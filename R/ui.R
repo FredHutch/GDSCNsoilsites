@@ -67,8 +67,38 @@ shiny_ui <- function() {
       ),
       HTML("<br>"),
 
-
       # Chunk 2
+      HTML("<br>"),
+      h2("Learn More", align = "center"),
+      HTML(
+        '<p align="center">Read our article in <a href="https://www.nature.com/articles/s41588-025-02442-5">Nature Genetics</a></p>'
+      ),
+      HTML(
+        '<p align="center">Read about us in the <a href="https://hub.jhu.edu/2026/01/06/researchers-map-us-soil-microbiome/">JHU Hub</a></p>'
+      ),
+      column(
+        12,
+        actionButton(
+          inputId = 'ab2',
+          label = HTML(paste0(
+            strwrap(
+              'Genomic Data Science Community Network',
+              width = 40
+            ),
+            collapse = "</br>"
+          )),
+          onclick = "window.open('https://www.gdscn.org/')"
+        )
+        ,
+        align = "center"
+        ,
+        style = "margin-bottom: 10px;"
+        ,
+        style = "margin-top: 10px;"
+      ),
+      HTML("&nbsp;"),
+
+      # Chunk 3
       HTML("<br>"),
       h2("Get Involved", align = "center"),
       HTML("<br>"),
@@ -82,26 +112,6 @@ shiny_ui <- function() {
         align = "center",
         style = "margin-bottom: 10px;",
         style = "margin-top: -10px;"
-      ),
-      column(
-        12,
-        actionButton(
-          inputId = 'ab2',
-          label = HTML(paste0(
-            strwrap(
-              'Learn more about the Genomic Data Science Community Network',
-              width = 40
-            ),
-            collapse = "</br>"
-          )),
-          onclick = "window.open('https://www.gdscn.org/')"
-        )
-        ,
-        align = "center"
-        ,
-        style = "margin-bottom: 10px;"
-        ,
-        style = "margin-top: 10px;"
       ),
       HTML("&nbsp;"),
       uiOutput("img")
