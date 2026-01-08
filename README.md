@@ -6,6 +6,10 @@ Check out our companion resource, [BioDIGSData](https://github.com/fhdsl/BioDIGS
 
 ## Data Snapshot Change Log
 
+### 2026-01-08
+
+- Added finalized climate / public database measures and metadata
+
 ### 2025-11-11
 
 - Received GPS information for Tuba City sites and was able to add environmental features to sites data (GPS still anonymous)
