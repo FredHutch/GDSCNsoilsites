@@ -146,6 +146,9 @@ getdata <- function(dataset = "sites", snapshot = "20260108") {
 #' @examples
 #' get_browseable_site_data()
 get_browseable_site_data <- function() {
+  # Set up hardiness as a factor to enable sorting
+  hardiness_levels <- c("4a", "5a", "6a", "7a", "7b", "8a", "8b", "9a", "9b", "10a")
+
   site_data_to_browse <-
     getdata(dataset = "sites") %>%
     mutate(gps = str_replace_all(gps, "[//(,//)]*", "")) %>%
@@ -153,6 +156,7 @@ get_browseable_site_data <- function() {
                     into = c("latitude", "longitude"),
                     sep = " ") %>%
     mutate(latitude = as.numeric(latitude), longitude = as.numeric(longitude)) %>%
+    mutate(usda_plant_hardiness_2023 = factor(usda_plant_hardiness_2023, levels = hardiness_levels)) %>%
     select(!google_img_id)
 
   return(site_data_to_browse)
