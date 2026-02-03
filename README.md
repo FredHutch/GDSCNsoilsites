@@ -6,6 +6,10 @@ Check out our companion resource, [BioDIGSData](https://github.com/fhdsl/BioDIGS
 
 ## Data Snapshot Change Log
 
+### 2026-02-03
+
+- Added sequencing instrument to metadata
+
 ### 2026-01-08
 
 - Added finalized climate / public database measures and metadata
