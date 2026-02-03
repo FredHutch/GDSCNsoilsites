@@ -121,7 +121,7 @@ scrubseqdata <- function(infile, outfile) {
 #' @examples
 #' getdata()
 #' getdata(dataset = "soil")
-getdata <- function(dataset = "sites", snapshot = "20260108") {
+getdata <- function(dataset = "sites", snapshot = "20260203") {
 
   if(dataset == "sites") {
     snapshot_path <- paste0("data/snapshots/BioDIGS_sites_", snapshot,".csv")
