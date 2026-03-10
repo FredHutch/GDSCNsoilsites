@@ -6,6 +6,10 @@ Check out our companion resource, [BioDIGSData](https://github.com/fhdsl/BioDIGS
 
 ## Data Snapshot Change Log
 
+### 2026-03-10
+
+- Added sequencing date and raw_id (sequencing facility name) to metadata for newest NovaSeq samples
+
 ### 2026-02-03
 
 - Added sequencing instrument to metadata
