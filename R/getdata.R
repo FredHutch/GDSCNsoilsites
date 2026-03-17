@@ -91,7 +91,7 @@ scrubsoildata <- function(infile, outfile) {
 #'   - Preserved data structure and column names
 #'
 #' @examples
-#' scrubseqdata(infile = "BioDIGS Sample Data and Kit Request MASTER - ALL_SAMPLES - SEQ SAMPLES.csv", outfile = "data/snapshots/BioDIGS_seq_20250616.csv")
+#' scrubseqdata(infile = "BioDIGS Sample Data and Kit Request MASTER - ALL_SAMPLES - SEQ SAMPLES.csv", outfile = "data/snapshots/BioDIGS_seq_20260310.csv")
 scrubseqdata <- function(infile, outfile) {
   scrubbed_data <-
     read.csv(infile) %>%
