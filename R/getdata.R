@@ -205,8 +205,7 @@ get_browseable_seq_data <- function() {
         collection_date | date_arrival_at_jhu | date_sent_seq | seq_date,
         ~ lubridate::mdy(.)
       )
-    ) %>%
-    select(!c(size_GB, reads))
+    )
 
   return(seq_data_to_browse)
 }
