@@ -21,7 +21,7 @@ Pb_EPA3051,"Lead (mg/kg), EPA Method 3051A"
 Zn_EPA3051,"Zinc (mg/kg), EPA Method 3051A"
 water_pH,pH
 A.E_Buffer_pH,Buffer pH
-OM_by_LOI_pct,Organic Matter by Loss on Ignition
+OM_by_LOI_pct,Organic Matter by Loss on Ignition. ISS indicates insufficient sample material to run the test.
 P_Mehlich3,"Phosphorus (mg/kg), using the Mehlich 3 soil test extractant"
 K_Mehlich3,"Potassium (mg/kg), using the Mehlich 3 soil test extractant"
 Ca_Mehlich3,"Calcium (mg/kg), using the Mehlich 3 soil test extractant"

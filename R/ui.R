@@ -232,7 +232,7 @@ shiny_ui <- function() {
         downloadButton('soiltest_download', label = 'Download data'),
         downloadButton('soil_data_dict_download', label = 'Data dictionary', icon = icon("th")),
         HTML(
-          "<br><br><i>Note: Arsenic (As_EPA3051) is not detectable below 3.0 mg/kg. Cadmium (Cd_EPA3051) is not detectable below 0.2 mg/kg.</i>"
+          "<br><br><i>Note: Arsenic (As_EPA3051) is not detectable below 3.0 mg/kg. Cadmium (Cd_EPA3051) is not detectable below 0.2 mg/kg. Copper (Cu_EPA3051) is not detectable below 2.0 mg/kg. Lead (Pb_EPA3051) is not detectable below 2.0 mg/kg.</i>"
         ),
         # actionButton(
         #   inputId = 'testing_data_dict',
