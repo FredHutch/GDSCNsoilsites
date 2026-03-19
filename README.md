@@ -11,6 +11,7 @@ Check out our companion resource, [BioDIGSData](https://github.com/fhdsl/BioDIGS
 - Added sequencing date and raw_id (sequencing facility name) to metadata for newest NovaSeq samples
 - Added file metadata for misplaced B22 Revio data
 - Added file metadata for NovaSeq samples
+- Added new soil testing data
 
 ### 2026-02-03
 
