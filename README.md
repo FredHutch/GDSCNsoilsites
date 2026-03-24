@@ -12,6 +12,7 @@ Check out our companion resource, [BioDIGSData](https://github.com/fhdsl/BioDIGS
 - Added file metadata for misplaced B22 Revio data
 - Added file metadata for NovaSeq samples
 - Added new soil testing data
+- Added file metadata for E02 (combined sample)
 
 ### 2026-02-03
 
