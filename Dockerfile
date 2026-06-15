@@ -1,4 +1,4 @@
-FROM fredhutch/r-shiny-server-base:4.4.1
+FROM fredhutch/r-shiny-server-base:4.5.1
 RUN apt-get update -y
 
 # Devtools dependencies
