@@ -189,7 +189,7 @@ shiny_ui <- function() {
     # Data & Packages Tab + Menu
     #####
     navbarMenu(
-      title = "DATA & PACKAGES",
+      title = "DATA",
 
       tabPanel(
         title = "Site Data",
@@ -294,125 +294,133 @@ shiny_ui <- function() {
     #####
     #  Closes the navbarMenu "Data & Packages"
 
-    # Protocols Tab
+    # Resources Tab + Menu
     #####
-    tabPanel(
-      title = "PROTOCOLS",
-      value = "protocols",
-      # Google Analytics
-      includeHTML("www/google_analytics.html"),
+    navbarMenu(
+      title = "RESOURCES",
 
-      HTML(paste0(biodigs_logo_header)),
+      # Protocols Tab
+      #####
+      tabPanel(
+        title = "Protocols",
+        value = "protocols",
+        # Google Analytics
+        includeHTML("www/google_analytics.html"),
 
-      h1("Protocols"),
-      HTML("<br>"),
-      actionButton(
-        inputId = 'ab1',
-        label = "Field Protocol (Google Doc)",
-        icon = icon("flask"),
-        onclick = "window.open('https://docs.google.com/document/d/1oyFaknksSQEpwN7yGEBuGZaDGN96rKGOaovGsbhlGic/edit?usp=sharing', '_blank')"
-      ),
-      HTML("<br><br>"),
-      actionButton(
-        inputId = 'ab2',
-        label = "Field Protocol (pdf)",
-        icon = icon("flask"),
-        onclick = "window.open('https://docs.google.com/document/d/1oyFaknksSQEpwN7yGEBuGZaDGN96rKGOaovGsbhlGic/export?format=pdf', '_blank')"
-      ),
-      HTML("<br><br>"),
-      actionButton(
-        inputId = 'ab2',
-        label = "Metadata Form (Google Form)",
-        icon = icon("table"),
-        onclick = "window.open('https://forms.gle/Z2yH2KBggEF1y4KY9', '_blank')"
-      ),
-      HTML("<br><br>"),
-      actionButton(
-        inputId = 'ab2',
-        label = "Protocol Videos",
-        icon = icon("video"),
-        onclick = "window.open('https://www.youtube.com/playlist?list=PLzgm426KgvrhheloBdlSWshM9v2VvJEcX', '_blank')"
-      ),
-      HTML("<br><br>"),
-      actionButton(
-        inputId = 'ab1',
-        label = "Field Safety (Google Doc)",
-        icon = icon("stethoscope"),
-        onclick = "window.open('https://docs.google.com/document/d/1MOeyYVEFyGTxh7cXWhlwMh9FbLIJVr_-eie5FSFpnEs/edit?usp=sharing', '_blank')"
-      ),
-      HTML("<br><br>"),
-      actionButton(
-        inputId = 'ab2',
-        label = "Field Safety (pdf)",
-        icon = icon("stethoscope"),
-        onclick = "window.open('https://docs.google.com/document/d/1MOeyYVEFyGTxh7cXWhlwMh9FbLIJVr_-eie5FSFpnEs/export?format=pdf', '_blank')"
-      ),
-      HTML("<br><br>"),
-      actionButton(
-        inputId = 'ab2',
-        label = "DNA Extraction (Google Doc)",
-        icon = icon("dna"),
-        onclick = "window.open('https://docs.google.com/document/d/1FZ0bXw_JB1KAyyB8BimiZInPEMFFqO1p4NcOhdJyekI/edit?usp=sharing', '_blank')"
-      ),
+        HTML(paste0(biodigs_logo_header)),
 
-    ),
-    #####
-    #  Closes the tabPanel called "Protocols"
-
-    # Education Tab
-    #####
-    tabPanel(
-      title = "CURRICULA",
-      value = "curricula",
-      # Google Analytics
-      includeHTML("www/google_analytics.html"),
-
-      HTML(paste0(biodigs_logo_header)),
-
-      includeMarkdown("www/education_1.md"),
-
-      HTML("<br>"),
-
-      column(
-        12,
+        h1("Protocols"),
+        HTML("<br>"),
+        actionButton(
+          inputId = 'ab1',
+          label = "Field Protocol (Google Doc)",
+          icon = icon("flask"),
+          onclick = "window.open('https://docs.google.com/document/d/1oyFaknksSQEpwN7yGEBuGZaDGN96rKGOaovGsbhlGic/edit?usp=sharing', '_blank')"
+        ),
+        HTML("<br><br>"),
         actionButton(
           inputId = 'ab2',
-          label = "Launch Exploring Soil Data",
-          onclick = "window.open('https://hutchdatascience.org/GDSCN_BioDIGS_Soil/')"
-        )
-        ,
-        align = "center"
-        ,
-        style = "margin-bottom: 10px;"
-        ,
-        style = "margin-top: -10px;"
+          label = "Field Protocol (pdf)",
+          icon = icon("flask"),
+          onclick = "window.open('https://docs.google.com/document/d/1oyFaknksSQEpwN7yGEBuGZaDGN96rKGOaovGsbhlGic/export?format=pdf', '_blank')"
+        ),
+        HTML("<br><br>"),
+        actionButton(
+          inputId = 'ab2',
+          label = "Metadata Form (Google Form)",
+          icon = icon("table"),
+          onclick = "window.open('https://forms.gle/Z2yH2KBggEF1y4KY9', '_blank')"
+        ),
+        HTML("<br><br>"),
+        actionButton(
+          inputId = 'ab2',
+          label = "Protocol Videos",
+          icon = icon("video"),
+          onclick = "window.open('https://www.youtube.com/playlist?list=PLzgm426KgvrhheloBdlSWshM9v2VvJEcX', '_blank')"
+        ),
+        HTML("<br><br>"),
+        actionButton(
+          inputId = 'ab1',
+          label = "Field Safety (Google Doc)",
+          icon = icon("stethoscope"),
+          onclick = "window.open('https://docs.google.com/document/d/1MOeyYVEFyGTxh7cXWhlwMh9FbLIJVr_-eie5FSFpnEs/edit?usp=sharing', '_blank')"
+        ),
+        HTML("<br><br>"),
+        actionButton(
+          inputId = 'ab2',
+          label = "Field Safety (pdf)",
+          icon = icon("stethoscope"),
+          onclick = "window.open('https://docs.google.com/document/d/1MOeyYVEFyGTxh7cXWhlwMh9FbLIJVr_-eie5FSFpnEs/export?format=pdf', '_blank')"
+        ),
+        HTML("<br><br>"),
+        actionButton(
+          inputId = 'ab2',
+          label = "DNA Extraction (Google Doc)",
+          icon = icon("dna"),
+          onclick = "window.open('https://docs.google.com/document/d/1FZ0bXw_JB1KAyyB8BimiZInPEMFFqO1p4NcOhdJyekI/edit?usp=sharing', '_blank')"
+        ),
+
       ),
+      #####
+      #  Closes the tabPanel called "Protocols"
 
-      HTML("<br><br>"),
+      # Education Tab
+      #####
+      tabPanel(
+        title = "Curricula",
+        value = "curricula",
+        # Google Analytics
+        includeHTML("www/google_analytics.html"),
 
-      includeMarkdown("www/education_2.md"),
+        HTML(paste0(biodigs_logo_header)),
 
-      HTML("<br><br>"),
+        includeMarkdown("www/education_1.md"),
 
-      # Create some whitespace - image removed for now
-      HTML("&nbsp;"),
-      HTML("&nbsp;")
+        HTML("<br>"),
+
+        column(
+          12,
+          actionButton(
+            inputId = 'ab2',
+            label = "Launch Exploring Soil Data",
+            onclick = "window.open('https://hutchdatascience.org/GDSCN_BioDIGS_Soil/')"
+          )
+          ,
+          align = "center"
+          ,
+          style = "margin-bottom: 10px;"
+          ,
+          style = "margin-top: -10px;"
+        ),
+
+        HTML("<br><br>"),
+
+        includeMarkdown("www/education_2.md"),
+
+        HTML("<br><br>"),
+
+        # Create some whitespace - image removed for now
+        HTML("&nbsp;"),
+        HTML("&nbsp;")
+      ),
+      #####
+      #  Closes the tabPanel called "Education"
+
+      # FAQ Tab
+      #####
+      tabPanel(
+        title = "Sampling FAQ",
+        value = "faq",
+        # Google Analytics
+        includeHTML("www/google_analytics.html"),
+
+        includeMarkdown("www/faq.md")
+      ),
+      #####
+      #  Closes the tabPanel called "FAQ"
     ),
     #####
-    #  Closes the tabPanel called "Education"
-
-    # FAQ Tab
-    #####
-    tabPanel(
-      title = "FAQ",
-      value = "faq",
-      # Google Analytics
-      includeHTML("www/google_analytics.html"),
-
-      includeMarkdown("www/faq.md")
-    ),
-    #####
-    #  Closes the tabPanel called "FAQ"
+    #  Closes the navbarMenu "Resources"
 
   ) # Close navbarPage
 
