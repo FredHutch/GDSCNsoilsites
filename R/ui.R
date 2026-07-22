@@ -246,6 +246,26 @@ shiny_ui <- function() {
       # Close the Soil data tab
 
       tabPanel(
+        title = "Sequencing Data Access",
+        value = "seq_data_access",
+        # Google Analytics
+        includeHTML("www/google_analytics.html"),
+
+        HTML(paste0(biodigs_logo_header)),
+
+        h1("Sequencing Data Access"),
+        HTML("<br>"),
+        actionButton(
+          inputId = 'ab2',
+          label = "Data Access Guide",
+          icon = icon("file"),
+          onclick = "window.open('https://docs.google.com/document/d/1kk9JUnN2wRpwnybIcw-IDdQjCVEu6JThTDYcQxJio1E/edit?usp=sharing', '_blank')"
+        ),
+
+      ),
+      # Close the Sequencing access tab
+
+      tabPanel(
         title = "Sequencing Metadata",
         value = "seq_data",
         # Google Analytics

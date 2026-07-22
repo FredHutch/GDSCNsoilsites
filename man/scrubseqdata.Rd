@@ -24,5 +24,5 @@ Scrubs SEQUENCING metadata according to faculty requests. This is an interactive
 could likely be automated using a GitHub Action Google Sheet pull at some point.
 }
 \examples{
-scrubseqdata(infile = "BioDIGS Sample Data and Kit Request MASTER - ALL_SAMPLES - SEQ SAMPLES.csv", outfile = "data/snapshots/BioDIGS_seq_20250616.csv")
+scrubseqdata(infile = "BioDIGS Sample Data and Kit Request MASTER - ALL_SAMPLES - SEQ SAMPLES.csv", outfile = "data/snapshots/BioDIGS_seq_20260310.csv")
 }
