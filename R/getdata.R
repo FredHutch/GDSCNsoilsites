@@ -32,7 +32,7 @@ scrubsitedata <- function(infile, outfile) {
   }
 
   # Save processed data
-  write.csv(scrubbed_data, outfile)
+  write.csv(scrubbed_data, outfile, row.names = FALSE)
 }
 
 
@@ -76,7 +76,7 @@ scrubsoildata <- function(infile, outfile) {
   }
 
   # Save processed data
-  write.csv(scrubbed_data, outfile)
+  write.csv(scrubbed_data, outfile, row.names = FALSE)
 }
 
 
@@ -91,7 +91,7 @@ scrubsoildata <- function(infile, outfile) {
 #'   - Preserved data structure and column names
 #'
 #' @examples
-#' scrubseqdata(infile = "BioDIGS Sample Data and Kit Request MASTER - ALL_SAMPLES - SEQ SAMPLES.csv", outfile = "data/snapshots/BioDIGS_seq_20260310.csv")
+#' scrubseqdata(infile = "BioDIGS Sample Data and Kit Request MASTER - ALL_SAMPLES - SEQ SAMPLES.csv", outfile = "data/snapshots/BioDIGS_seq_20260810.csv")
 scrubseqdata <- function(infile, outfile) {
   scrubbed_data <-
     read.csv(infile) %>%
@@ -100,7 +100,8 @@ scrubseqdata <- function(infile, outfile) {
     mutate(across(collection_date |
                     team, ~ na_if(., "not yet provided"))) %>%
     # Remove Tuba City names for anonymity
-    mutate(site_name_rep_detail = case_when(str_detect(site_id, "TC0") ~ NA, TRUE ~ site_name_rep_detail))
+    mutate(site_name_rep_detail = case_when(str_detect(site_id, "TC0") ~ NA, TRUE ~ site_name_rep_detail)) %>%
+    arrange(seq_date, sample_id)
 
   # Notify if overwriting existing file
   if (file.exists(outfile)) {
@@ -108,7 +109,7 @@ scrubseqdata <- function(infile, outfile) {
   }
 
   # Save processed data
-  write.csv(scrubbed_data, outfile)
+  write.csv(scrubbed_data, outfile, row.names = FALSE)
 }
 
 
@@ -150,7 +151,7 @@ get_browseable_site_data <- function() {
   hardiness_levels <- c("4a", "5a", "6a", "7a", "7b", "8a", "8b", "9a", "9b", "10a")
 
   site_data_to_browse <-
-    getdata(dataset = "sites") %>%
+    getdata(dataset = "sites", snapshot = "20260310") %>%
     mutate(gps = str_replace_all(gps, "[//(,//)]*", "")) %>%
     tidyr::separate(gps,
                     into = c("latitude", "longitude"),
@@ -172,7 +173,7 @@ get_browseable_site_data <- function() {
 #' get_browseable_soil_testing_data()
 get_browseable_soil_testing_data <- function() {
   testing_data_to_browse <-
-    getdata(dataset = "soil") %>%
+    getdata(dataset = "soil", snapshot = "20260810") %>%
     relocate(public_ok, .after = P_Sat_ratio) %>%
     relocate(Note, .before = public_ok) %>%
     mutate(date_sent_soil_analysis = na_if(date_sent_soil_analysis, "FALSE")) %>%
@@ -196,7 +197,7 @@ get_browseable_soil_testing_data <- function() {
 #' get_browseable_seq_data()
 get_browseable_seq_data <- function() {
   seq_data_to_browse <-
-    getdata(dataset = "seq") %>%
+    getdata(dataset = "seq", snapshot = "20260810") %>%
     relocate(public_ok, .after = Note) %>%
     mutate(date_sent_seq = na_if(date_sent_seq, "Planned")) %>%
     mutate(seq_date = na_if(seq_date, "not yet provided")) %>%

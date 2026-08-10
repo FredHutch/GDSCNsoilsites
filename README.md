@@ -6,6 +6,12 @@ Check out our companion resource, [BioDIGSData](https://github.com/fhdsl/BioDIGS
 
 ## Data Snapshot Change Log
 
+### 2026-08-10
+
+- Added a four sequenced samples' file naming pattern, file size, and number of reads
+- Made sequencing data sort by default
+- Changed date format to `YYYY-MM-DD`
+
 ### 2026-03-10
 
 - Added sequencing date and raw_id (sequencing facility name) to metadata for newest NovaSeq samples
