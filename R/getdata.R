@@ -11,7 +11,7 @@
 #'   - Preserved data structure and column names
 #'
 #' @examples
-#' scrubsitedata(infile = "BioDIGS Sample Data and Kit Request MASTER - ALL_SAMPLES - SITE DATA.csv", outfile = "data/snapshots/BioDIGS_sites_20250616.csv")
+#' scrubsitedata(infile = "BioDIGS Sample Data and Kit Request MASTER - ALL_SAMPLES - SITE DATA.csv", outfile = "data/snapshots/BioDIGS_sites_20260810.csv")
 scrubsitedata <- function(infile, outfile) {
   scrubbed_data <-
     read.csv(infile) %>%
@@ -48,7 +48,7 @@ scrubsitedata <- function(infile, outfile) {
 #'   - Preserved data structure and column names
 #'
 #' @examples
-#' scrubsoildata(infile = "BioDIGS Sample Data and Kit Request MASTER - ALL_SAMPLES - SOIL SAMPLES.csv", outfile = "data/snapshots/BioDIGS_soil_20260310.csv")
+#' scrubsoildata(infile = "BioDIGS Sample Data and Kit Request MASTER - ALL_SAMPLES - SOIL SAMPLES.csv", outfile = "data/snapshots/BioDIGS_soil_20260810.csv")
 scrubsoildata <- function(infile, outfile) {
   scrubbed_data <-
     read.csv(infile) %>%
@@ -122,7 +122,7 @@ scrubseqdata <- function(infile, outfile) {
 #' @examples
 #' getdata()
 #' getdata(dataset = "soil")
-getdata <- function(dataset = "sites", snapshot = "20260310") {
+getdata <- function(dataset = "sites", snapshot = "20260810") {
 
   if(dataset == "sites") {
     snapshot_path <- paste0("data/snapshots/BioDIGS_sites_", snapshot,".csv")
@@ -133,7 +133,7 @@ getdata <- function(dataset = "sites", snapshot = "20260310") {
   }
 
   if (file.exists(snapshot_path)) {
-    the_data <- read.csv(snapshot_path)[, -1]  # Remove first column
+    the_data <- read.csv(snapshot_path)
     return(the_data)
   }
 }
@@ -151,7 +151,7 @@ get_browseable_site_data <- function() {
   hardiness_levels <- c("4a", "5a", "6a", "7a", "7b", "8a", "8b", "9a", "9b", "10a")
 
   site_data_to_browse <-
-    getdata(dataset = "sites", snapshot = "20260310") %>%
+    getdata(dataset = "sites", snapshot = "20260810") %>%
     mutate(gps = str_replace_all(gps, "[//(,//)]*", "")) %>%
     tidyr::separate(gps,
                     into = c("latitude", "longitude"),
@@ -180,7 +180,7 @@ get_browseable_soil_testing_data <- function() {
     mutate(
       across(
         collection_date | date_arrival_at_jhu | date_sent_soil_analysis,
-        ~ lubridate::mdy(.)
+        ~ lubridate::ymd(.)
       )
     )
 
@@ -204,7 +204,7 @@ get_browseable_seq_data <- function() {
     mutate(
       across(
         collection_date | date_arrival_at_jhu | date_sent_seq | seq_date,
-        ~ lubridate::mdy(.)
+        ~ lubridate::ymd(.)
       )
     )
 

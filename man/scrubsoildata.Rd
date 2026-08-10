@@ -25,5 +25,5 @@ Scrubs SOIL data according to faculty requests. This is an interactive process t
 could likely be automated using a GitHub Action Google Sheet pull at some point.
 }
 \examples{
-scrubsoildata(infile = "BioDIGS Sample Data and Kit Request MASTER - ALL_SAMPLES - SOIL SAMPLES.csv", outfile = "data/snapshots/BioDIGS_soil_20260310.csv")
+scrubsoildata(infile = "BioDIGS Sample Data and Kit Request MASTER - ALL_SAMPLES - SOIL SAMPLES.csv", outfile = "data/snapshots/BioDIGS_soil_20260810.csv")
 }

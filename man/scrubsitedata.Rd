@@ -25,5 +25,5 @@ Scrubs SITE data according to faculty requests. This is an interactive process t
 could likely be automated using a GitHub Action Google Sheet pull at some point.
 }
 \examples{
-scrubsitedata(infile = "BioDIGS Sample Data and Kit Request MASTER - ALL_SAMPLES - SITE DATA.csv", outfile = "data/snapshots/BioDIGS_sites_20250616.csv")
+scrubsitedata(infile = "BioDIGS Sample Data and Kit Request MASTER - ALL_SAMPLES - SITE DATA.csv", outfile = "data/snapshots/BioDIGS_sites_20260810.csv")
 }
