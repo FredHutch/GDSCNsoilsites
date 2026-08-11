@@ -8,7 +8,8 @@ Check out our companion resource, [BioDIGSData](https://github.com/fhdsl/BioDIGS
 
 ### 2026-08-10
 
-- Added a four sequenced samples' file naming pattern, file size, and number of reads
+- Added 4 sequenced samples' file naming pattern, file size, and number of reads
+- Added several additional samples' file naming pattern (pattern only, no other info yet available)
 - Made sequencing data sort by default
 - Changed date format to `YYYY-MM-DD`
 
