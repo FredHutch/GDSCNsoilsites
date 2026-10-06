@@ -51,7 +51,7 @@ shiny_server <- function(input, output, session) {
       }
 
       leaflet() %>%
-        addProviderTiles(providers$CartoDB.Positron,
+        addProviderTiles(providers$OpenStreetMap.Mapnik,
                          options = providerTileOptions(noWrap = TRUE)) %>%
         addMarkers(
           data = toggled_pointsdata,
