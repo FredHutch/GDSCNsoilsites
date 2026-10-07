@@ -6,6 +6,14 @@ Check out our companion resource, [BioDIGSData](https://github.com/fhdsl/BioDIGS
 
 ## Data Snapshot Change Log
 
+### 2026-10-07
+
+- **Filled in PacBio file metadata** for CU01_1/2, ND05_1, ND07_1, GA06_1/2, JC01_2, ME01_2, OK01_1/2/2b and PH01_1: added FASTQ paths and MD5s, and sizes/read counts.
+- **Resolved N03_2 re-run:** replaced `MISSING` with file metadata (35.7767 GB; 8,063,246 reads). Flagged the earlier 972,487-read run as **“Data discarded.”**
+- **Recorded 12 newly dated PacBio runs** (September 19–October 2, 2026): GC01_2, H01_1/2, JC01_3, MS03_1/2, P01_1, PD02_01/02, PH01_2 and SC02_1/2. Added paths, raw IDs and lab references; all await human-read removal pipeline.
+- **Clarified pending work:** 18 records now explicitly await human-read removal, 11 await CSHL sequencing and 13 await CSHL metadata. These categories overlap; populated paths do not necessarily indicate ready-to-use data.
+- **Updated DNA outcomes:** E01_1/2 and TC04_1 now have `DNA_OK=FALSE` with low-DNA-mass failure notes. H01_1, JC01_3 and SC02_1/2 document `< 5kb BP size selected` according to CSHL processing decision.
+
 ### 2026-08-10
 
 - Added 4 sequenced samples' file naming pattern, file size, and number of reads
