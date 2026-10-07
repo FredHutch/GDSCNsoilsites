@@ -197,7 +197,7 @@ get_browseable_soil_testing_data <- function() {
 #' get_browseable_seq_data()
 get_browseable_seq_data <- function() {
   seq_data_to_browse <-
-    getdata(dataset = "seq", snapshot = "20260810") %>%
+    getdata(dataset = "seq", snapshot = "20261007") %>%
     relocate(public_ok, .after = Note) %>%
     mutate(date_sent_seq = na_if(date_sent_seq, "Planned")) %>%
     mutate(seq_date = na_if(seq_date, "not yet provided")) %>%
