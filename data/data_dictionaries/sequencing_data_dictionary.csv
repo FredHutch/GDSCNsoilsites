@@ -1,4 +1,5 @@
 Field,Description
+public_ok,Internal field indicating if the collector has provided public sharing permissions. Value is TRUE if there are no restrictions on sharing.
 bulk_type,"Describes the testing that will be performed. ""Molecular"" indicates this sample will be sent to a DNA sequencing facility."
 purpose,Describes whether the sample was intended to be part of the Project or part of Troubleshooting sample processing.
 vessel,Describes what the sample was stored in by collector prior to being prepared for sequencing.
@@ -14,11 +15,12 @@ status,"Current physical status of the sample, indicating whether it has been se
 date_sent_seq,Date on which the sample was sent or delivered to the sequencing facility.
 sequencing_facility,Facility where sample was sent for molecular/metagenomic analysis
 sequencing_instrument,"The kind of sequencer that was used: Nova-seq, PacBio Revio etc."
-DNA_OK,TRUE if DNA was successfully extracted. FALSE if no DNA was available or it was too degraded to perform sequencing.
-Qubit_conc_ng_ul,"Concentration of DNA as measured by Qubit instrument, in nanograms per microliter"
+DNA_OK,TRUE if DNA was successfully extracted. FALSE if no DNA was available or it was too degraded to perform sequencing. Other values in this field indicate any additional DNA cleanup procedures performed.
+Qubit_conc_ng_ul,"Concentration of DNA as measured by Qubit instrument, in nanograms per microliter, if available"
 seq_date,Date the sample was sequenced
 filename,"Name and path of the sequencing file that is available to BioDIGS partners, either on AnVIL or Galaxy."
-md5sum,"A file checksum, specifically one generated using the MD5 hashing algorithm.ÊIt's a 128-bit fingerprint of a file, used to verify its integrity by ensuring no changes have been made to the file since the checksum was generated"
+size_GB,Size of the fastq.gz file in GB (not GiB) after removing human reads.
+reads,Number of reads remaining after human reads were removed.
+md5sum,"A file checksum that reflects the fastq.gz file produced after removal of human reads. Specifically one generated using the MD5 hashing algorithm.ÊIt's a 128-bit fingerprint of a file, used to verify its integrity by ensuring no changes have been made to the file since the checksum was generated."
 raw_id,File naming convention used to help disambiguate samples received from the sequencing facility. Often the sequencing facility will have random file naming.
 Note,"Additional information about the sample collection or processing, if applicable"
-public_ok,Internal field indicating if the collector has provided public sharing permissions. Value is TRUE if there are no restrictions on sharing.
