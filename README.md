@@ -6,6 +6,15 @@ Check out our companion resource, [BioDIGSData](https://github.com/fhdsl/BioDIGS
 
 ## Data Snapshot Change Log
 
+### 2026-10-22
+
+- **Instrument corrected**: NovaSeq 6000 → NovaSeq X Plus for second and third Illumina sequencing batches
+- **Human-read removal file sizes, read counts and MD5s populated** for `GC01_2`, `H01_1–2`, `JC01_3`, `MS03_1–2`, `P01_1`, `PD02_01–02`, `PH01_2`, `SC02_1–2`, `D05_2`, `ME01_1`, `N03_1_leftover`, `N03_2_leftover`, `ND07_2`, `A01_1–2`, `GC01_1`, `P01_2`
+- **Date metadata added**:   - `GA06_1–2`, `JC01_2`, `ME01_2`, `OK01_1`, `OK01_2`, `OK01_2b`, `PH01_1`, `D05_2`, `ME01_1`, `N03_1_leftover`, `N03_2_leftover`, `ND07_2`
+- **Changed status to sequenced; awaiting human-read removal**: `F02_1–2`, `E02_1_leftover`, `CL04_1–2`, `E02_2_leftover`
+- **Added DNA cleanup info** (`< 5kb BP size selected`) and CSHL run/library IDs where possible
+- **Added:** `B03_12–19` — collected 2026-10-13, sent to CSHL on 2026-10-16
+
 ### 2026-10-07
 
 - **Filled in PacBio file metadata** for CU01_1/2, ND05_1, ND07_1, GA06_1/2, JC01_2, ME01_2, OK01_1/2/2b and PH01_1: added FASTQ paths and MD5s, and sizes/read counts.
